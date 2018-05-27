@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Ban ao online</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- My CSS and JavaScript -->
+    <!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/gioithieu.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/Chart.min.js"></script>
+    <script src="js/script.js"></script>
+</head>
+<body>
+    <div class="qhuy-big-container">
+        <div id="qhuy-signup-form" class="qhuy-modal">        
+            <form class="qhuy-modal-content qhuy-animate">
+                <div class="qhuy-img-container">
+                    <span class="qhuy-close" title="Close Modal">&times;</span>
+                </div>
+                <div class="qhuy-container">
+                    <label for="fullname"><b>Họ và tên</b></label>
+                    <input type="text" placeholder="vd: Nguyen Quoc Huy" name="fullname" required>
+                    <label for="usrname"><b>Tên đăng nhập</b></label>
+                    <input type="text" placeholder="vd: ngquochuy123" name="usrname" required>
+                    <label for="psw"><b>Mật khẩu</b></label>
+                    <input type="password" placeholder="vd: ********" name="psw" required>
+                    <label for="emailadd"><b>Email</b></label>
+                    <input type="email" placeholder="vd: ngquochuy@abcmail.com" name="emailadd" required>
+                    <label for="phonenb"><b>Số điện thoại</b></label>
+                    <input type="tel" placeholder="vd: 0123 456 789" name="phonenb" required>
+                    <button type="submit">Đăng ký</button>
+                </div>
+                <div class="qhuy-container qhuy-footbox">
+                    <button type="button" class="qhuy-cancelBtn">Hủy</button>
+                </div>
+            </form>
+        </div>
+        <div id="qhuy-login-form" class="qhuy-modal">
+            <form class="qhuy-modal-content qhuy-animate">
+                <div class="qhuy-img-container">
+                    <span class="qhuy-close" title="Close Modal">&times;</span>
+                </div>
+                <div class="qhuy-container">
+                    <label for="usrname"><b>Tên đăng nhập</b></label>
+                    <input type="text" placeholder="vd (admin account): ngquochuy123" name="usrname" required>
+                    <label for="psw"><b>Mặt khẩu</b></label>
+                    <input type="password" placeholder="vd (admin account): 123456" name="psw" required>
+                    <button type="submit">Đăng nhập</button>
+                    <label>
+                        <input type="checkbox" checked="checked" name="remember">
+                        Nhớ mặt khẩu
+                    </label>
+                </div>
+                <div class="qhuy-container qhuy-footbox">
+                    <button type="button" class="qhuy-cancelBtn">Hủy</button>
+                    <span class="qhuy-psw">Quên mật khẩu?</span>
+                </div>
+            </form>
+        </div>
+        <section>
+            <header>
+                <div class="qhuy-container" id="top">
+                    <div class="qhuy-logo">
+                        <a href='index.html'>
+                            <span class="qhuy-logo-img">
+                                <img src="img/logo/logo.png">
+                            </span>
+                            <span class="qhuy-logo-name">    
+                                <svg version="1.1" style="width: 100%" viewBox="0 0 190 38 ">
+                                    <text x="4" y="35" fill="black" font-size="28" font-weight="bold">Bán áo online</text>
+                                </svg>
+                            </span>
+                        </a>    
+                    </div>
+                    <!-- <a href='#'><h1 class="qhuy-logo"><img src="img/logo/logo.png" ><div>Bán áo online</div></h1></a> -->
+                    <nav class="qhuy-account-option">
+                        <ul>
+                            <li><a id="qhuy-login-btn" href="#">Đăng nhập</a></li>
+                            <li><a id="qhuy-signup-btn" href="#">Đăng kí</a></li>
+                            <li> <a id="gio-hang" href="./giohang.html">
+                                <img id="cart-logo" src="img/icon/cart.png">
+                                <strong>0 sản phẩm - 0VNĐ</strong>
+                            </a></li>
+                        </ul>
+                    </nav>
+                    <div class="qhuy-account-option">
+                        <div class="qhuy-account-avatar">
+                            <img src="img/blank-avatar.png" alt="avatar">
+                        </div>
+                        <div class="qhuy-account-name">
+                            <ul>
+                                <li><a href="#"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </header>
+        </section>
+    
+        <section class="qhuy-top-menu">
+            <div class="qhuy-container">
+                <nav class="qhuy-topside-menu">
+                    <ul>
+                        <li class="qhuy-user"><a href="thietkeao.html">Thiết kế áo</a></li>
+                        <li class="qhuy-user"><a href="index.html">Sản phẩm</a></li>
+                        <li class="qhuy-user"><a href="gioithieu.html">Giới thiệu</a></li>
+                        <li class="qhuy-user"><a href="hoptac.html">Hợp tác</a></li>
+                        <li class="qhuy-user"><a href="huongdan.html">Hướng dẫn</a></li>
+                        <li class="qhuy-user qhuy-end-menu"><a href="lienhe.html">Liên hệ</a></li>
+
+                        <li class="qhuy-admin"><a href="#">THỐNG KÊ</a></li>
+                        <li class="qhuy-admin"><a href="#">TÀI KHOẢN KHÁCH HÀNG</a></li>
+                        <li class="qhuy-admin qhuy-end-menu"><a href="#">QUẢN LÝ SẢN PHẨM</a></li>
+                    </ul>
+
+                    <div class="menu-search">
+                        <form>
+                            <input class="form-control" placeholder="Tìm kiếm" id="txt_global_search" value="" type="text">
+                            <button type="button" id="btn-search">
+                                <img src="img/icon/search.png" >
+                            </button>   
+                        </form>                           
+                    </div>
+                </nav>
+            </div>
+        </section>
+        
+        <section class="qhuy-slides-and-instruction qhuy-user">
+            <div class="qhuy-container">
+                <div class="qhuy-slides">
+                    <div class="qhuy-prev">
+                        <img src="img/arrow-left.png" alt="Prev" id="prev">
+                    </div>
+                    <div class="qhuy-slider">
+                        <div class="qhuy-slide">
+                            <img src="img/slides/slide-1.jpg" alt="slide">
+                        </div>
+                        <div class="qhuy-slide">
+                            <img src="img/slides/slide-2.jpg" alt="slide">
+                        </div>
+                        <div class="qhuy-slide">
+                            <img src="img/slides/slide-3.jpg" alt="slide">
+                        </div>
+                    </div>
+                    <div class="qhuy-next">
+                        <img src="img/arrow-right.png" alt="Next" id="next">
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <section id="qhuy-main-content" class="qhuy-user">
+            <div class="qhuy-container">
+                <div class="gioi-thieu-content">
+                    <h1>Những lợi ích nổi bật khi chọn dịch vụ của Bán Áo Online</h1>
+                    <ul>
+                        <li><strong>Không giới hạn số lượng áo của đơn hàng: </strong>từ 1 áo in theo yêu cầu đến 100.000 áo và hơn nữa.</li>
+                        <li><strong>Chất lượng vải cao cấp: </strong>100% cotton, chất lượng cao.</li>
+                        <li><strong>Hỗ trợ thiết kế áo: </strong>bạn có thể gởi thông tin để được thiết kế áo</li>
+                        <li><strong>Thời gian sản xuất nhanh: </strong>từ 1 đến 3 ngày sau khi đặt hàng</li>
+                        <li><strong>Công nghệ in đa dạng: </strong>vinyl, kỹ thuật số, in lụa... giữ màu sáng và bền theo thời gian</li>
+                        <li><strong>Dịch vụ đặc biệt: </strong>hỗ trợ thiết kế riêng theo yêu cầu của từng cá nhân trong nhóm hoặc in nhiều màu áo khác nhau trong cùng một nhóm.</li>
+                        <li><strong>Giao hàng nhanh: </strong>áp dụng phạm vi toàn quốc</li>
+                        <li><strong>Cam kết chất lượng, mức độ hài lòng:</strong>hoàn toàn miễn phí đổi trả sản phẩm nếu quý khách không hài lòng về chất lượng sản phẩm</li>
+                    </ul>
+                    <img src="img/gioithieu1.jpeg" id="hinh1">
+
+                    <h1>Chia sẻ về Sản phẩm Bán Áo Online</h1>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hiện nay chúng ta dễ dàng tìm kiếm được các đơn vị, công ty cung cấp giải pháp in ấn áo thun tại Tp Hồ Chí Minh. Nhưng để tìm được một nơi uy tín và chất lượng thì không dễ dàng. Một câu nói chị thu mua áo thun đồng phục cho công ty chuyên tổ chức sự kiện từng nói với chúng tôi rất nhiều lần: "Mua được một áo thun thì dễ nhưng là một cái áo thun đẹp và vải chất lượng thì khó quá".
+                        Áo Thun Thông Điệp hiểu được giá trị của một chiếc áo thun chất lượng cấu thành từ: chất lượng vải, đường may, kiểu dáng, thông số cỡ size, công nghệ in nên đã đầu tư rất nhiều cho quá trình phát triển sản phẩm từ các khâu: lựa chọn sợi, chọn đối tác dệt nhuộm và xử lý wash mềm vải, thiết kế form áo, đối tác may, công nghệ in... Với mục tiêu sản xuất và in thành công những chiếc áo làm người mặc thoải mái, dễ chịu và hài lòng về thẩm mỹ.</p>
+                    
+                    <img src="img/gioithieu2.jpeg" id="hinh2">
+
+                    <h1>Hàng ngàn khách hàng cá nhân, công ty và tổ chức đã chọn Bán Áo </h1>
+                    <img src="img/gioithieu3.jpeg" id="hinh3">
+                </div>
+        </section>
+
+        <section class="qhuy-admin">
+            <div class="qhuy-container">
+                <div class="thong-ke">
+                    <div class="sp">
+                        <div id="tong-sp">Số sản phẩm đã bán: 100</div>
+                        <div id="tong-so-tien">Tổng số tiền thu được: 10,000,000 VNĐ</div>
+                    </div>
+                    <div class="bieu-do">
+                        <div style="margin-top: 5px; font-weight: bold;">Biểu đồ doanh thu theo tháng</div>
+                        <div id="bd-canvas">
+                            <canvas id="canvas" height="250" width="730"></canvas>
+                        </div>
+                    </div>
+                    <div class="ds-giao-dich">
+                        <div class="ds-giao-dich-title">Danh sách cách giao dịch thực hiện gần đây</div>
+                        <div id="chi-tiet-gd">
+                            <table cellpadding="0" cellspacing="0" style="text-align: left;">
+                                <tbody>
+                                    <tr>
+                                        <th>Tài khoản giao dịch</th>
+                                        <th>Tên khách hàng</th>
+                                        <th>Mã sản phẩm</th>
+                                        <th>Tên sản phẩm</th>
+                                        <th>Só lượng</th>
+                                        <th>Đơn giá</th>
+                                        <th>Hình thức giao dịch</th>
+                                        <th>Thành tiền</th>
+                                        <th>Thời điểm giao dịch</th>
+                                    </tr>
+                                    <tr>
+                                        <td>nguyenvana123</td>
+                                        <td>Nguyễn Văn A</td>
+                                        <td>AT0001</td>
+                                        <td>Áo thun trắng cổ tròn</td>
+                                        <td>2</td>
+                                        <td>150.000</td>
+                                        <td>Agribank</td>
+                                        <td>300.000</td>
+                                        <td>22/4/2018</td>
+                                    </tr>
+                                    <tr>
+                                        <td>nguyenvana123</td>
+                                        <td>Nguyễn Văn A</td>
+                                        <td>AT0001</td>
+                                        <td>Áo thun trắng cổ tròn</td>
+                                        <td>2</td>
+                                        <td>150.000</td>
+                                        <td>Agribank</td>
+                                        <td>300.000</td>
+                                        <td>22/4/2018</td>
+                                    </tr>
+                                    <tr>
+                                        <td>nguyenvana123</td>
+                                        <td>Nguyễn Văn A</td>
+                                        <td>AT0001</td>
+                                        <td>Áo thun trắng cổ tròn</td>
+                                        <td>2</td>
+                                        <td>150.000</td>
+                                        <td>Agribank</td>
+                                        <td>300.000</td>
+                                        <td>22/4/2018</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>        
+        </section>
+
+        <section>
+                <footer>
+                    <div class="qhuy-container">
+                        <div class="footer-content">
+                            <div class="div-header">
+                                <div class="col1">
+                                    <img src="img/logo/logo-large.png">
+                                </div>
+                                <div class="col2">
+                                    <ul>
+                                        <li><strong>Công Ty TNHH TM Và DV Bán Áo Online</strong></li>                                    
+                                        <li><strong>Địa Chỉ:</strong> 99 Đường Trần Hưng Đạo, Cầu Ông Lãnh, Quận 1, TPHCM </li>
+                                    </ul>
+                                </div>
+                                <div class="col3">
+                                    <ul>
+                                        <li><strong>SĐT: </strong>0933.333.444 - 0903.777.888</li>
+                                        <li><strong>Email: </strong>banaoonline@gmail.com</li>
+                                        <li><strong>Copyright &copy;, All right reserved.</strong></li>
+                                    </ul>
+                                </div>
+    
+                                <div style="clear: both;"></div>
+                         </div>
+                        </div>
+                    </div>
+                </footer>
+            </section>
+    </div>
+</body>
+<script>
+    var BarChart = {
+        labels: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4","Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9","Tháng 10", "Tháng 11", "Tháng 12"],
+        datasets: [{
+            fillColor: "rgb(255, 165, 0)",
+            strokeColor: "rgb(255,0,0)",
+            data: [13, 20, 30, 40, 50, 13, 33, 5, 32, 5, 10, 12]
+        }]
+    };
+
+    var myBarChart = new Chart(document.getElementById("canvas").getContext("2d")).Bar(BarChart, {scaleFontSize: 12, scaleFontColor: "#000000"});
+</script>
+</html>

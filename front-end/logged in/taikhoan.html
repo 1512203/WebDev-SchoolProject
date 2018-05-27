@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Bán Áo Online</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- My CSS and JavaScript -->
+    <!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/taikhoanloggedin.css">
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/Chart.min.js"></script>
+    <script src="../js/script.js"></script>
+</head>
+
+<body>
+    <div class="qhuy-big-container">
+        <section>
+            <header>
+                <div class="qhuy-container" id="top">
+                    <div class="qhuy-logo">
+                        <a href='index.html'>
+                            <span class="qhuy-logo-img">
+                                <img src="../img/logo/logo.png">
+                            </span>
+                            <span class="qhuy-logo-name">
+                                <svg version="1.1" style="width: 100%" viewBox="0 0 190 38 ">
+                                    <text x="4" y="35" fill="black" font-size="28" font-weight="bold">Bán áo online</text>
+                                </svg>
+                            </span>
+                        </a>
+                    </div>
+                    <!-- <a href='#'><h1 class="qhuy-logo"><img src="../img/logo/logo.png" ><div>Bán áo online</div></h1></a> -->
+                    <nav class="qhuy-account-option">
+                        <ul>
+                            <div class="account-top" style="float: left;">
+                                <a href="taikhoan.html">
+                                    <li class="avatar">
+                                        <img src="../img/blank-avatar.png" alt="avatar">
+                                    </li>
+                                    <li id="chao">Chào Member</li>
+                                </a>
+                                <a href="../index.html" style="float:right;margin-right:30px;margin-left:10px;">
+                                    <img style="margin-top:2px;display: block;width: 19px;" src="../img/icon/log-out.png">
+                                </a>
+                            </div>
+                        </ul>
+                    </nav>
+                    <div class="qhuy-account-option">
+                        <div class="qhuy-account-avatar">
+                            <img src="../img/blank-avatar.png" alt="avatar">
+                        </div>
+                        <div class="qhuy-account-name">
+                            <ul>
+                                <li>
+                                    <a href="#"></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </header>
+        </section>
+
+        <section class="qhuy-top-menu">
+            <div class="qhuy-container">
+                <nav class="qhuy-topside-menu">
+                    <ul>
+                        <li class="qhuy-user">
+                            <a href="taikhoan.html">Thông tin tài khoản</a>
+                        </li>
+                        <li class="qhuy-user qhuy-end-menu">
+                            <a href="lichsumuahang.html">Lịch sử mua hàng</a>
+                        </li>
+                    </ul>
+
+                    <div class="menu-search">
+                        <form>
+                            <input class="form-control" placeholder="Tìm kiếm" id="txt_global_search" value="" type="text">
+                            <button type="button" id="btn-search">
+                                <img src="../img/icon/search.png">
+                            </button>
+                        </form>
+                    </div>
+                </nav>
+            </div>
+        </section>
+        <div class="thong-tin-tai-khoan">
+            <div>
+                <form name="thong-tin">
+                    <label for="fname">Họ tên: </label>
+                    <button class="edit" id="edit-fullname">Sửa</button>
+                    <input type="text" id="fullname" placeholder="Nguyen Van A">
+
+            </div>
+            <label for="lname">Tên đăng nhập</label>
+            <button class="edit" id="edit-username">Sửa</button>
+            <input type="text" id="username" placeholder="nguyenvana123">
+
+            <label for="lname">Mật khẩu</label>
+            <button class="edit" id="edit-password">Sửa</button>
+            <input type="text" id="password" placeholder="*******">
+
+            <label for="lname">Email</label>
+            <button class="edit" id="edit-email">Sửa</button>
+            <input type="text" id="email" placeholder="nguyenvana@gmail.com">
+
+            <label for="lname">Số điện thoại</label>
+            <button class="edit" id="edit-phone">Sửa</button>
+            <input type="text" id="phone" placeholder="0919888888">
+
+            <input type="submit" value="Thay đổi">
+            </form>
+        </div>
+
+        <section>
+            <footer>
+                <div class="qhuy-container">
+                    <div class="footer-content">
+                        <div class="div-header">
+                            <div class="col1">
+                                <img src="../img/logo/logo-large.png">
+                            </div>
+                            <div class="col2">
+                                <ul>
+                                    <li>
+                                        <strong>Công Ty TNHH TM Và DV Bán Áo Online</strong>
+                                    </li>
+                                    <li>
+                                        <strong>Địa Chỉ:</strong> 99 Đường Trần Hưng Đạo, Cầu Ông Lãnh, Quận 1, TPHCM </li>
+                                </ul>
+                            </div>
+                            <div class="col3">
+                                <ul>
+                                    <li>
+                                        <strong>SĐT: </strong>0933.333.444 - 0903.777.888</li>
+                                    <li>
+                                        <strong>Email: </strong>banaoonline@gmail.com</li>
+                                    <li>
+                                        <strong>Copyright &copy;, All right reserved.</strong>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div style="clear: both;"></div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </section>
+    </div>
+
+
+
+
+
+    <script>
+        $(document).ready(function () {
+
+            $("#edit-fullname").click(function () {
+                $("#fullname").removeAttr('readonly');
+            });
+        });
+
+    </script>
+
+
+</body>

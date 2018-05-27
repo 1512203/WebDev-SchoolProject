@@ -1,0 +1,70 @@
+.huong-dan-content{
+    color: black;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.huong-dan-content h1{
+    margin-bottom: 30px;
+}
+
+.huong-dan-content ul li{
+    list-style-type: disc;
+}
+
+.hd-header{
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hd-header .col1{
+    width: 30%;
+    float: left;
+}
+
+
+.hd-header .col2{
+    width: 30%;
+    float: left;
+    margin-left: 5%;
+
+}
+
+.hd-header .col3{
+    width: 30%;
+    float: left;
+    float: right;
+}
+
+.hd-header .clear-float{
+    clear: both;
+}
+
+.hd-header img{
+    display: block;
+    width: 100%;
+    margin: 0px auto;
+}
+
+.hd-header div .p-header{
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.hd-header div p{
+    text-align: center;
+}
+
+.huong-dan-content img.hinh-size{
+    display: block;
+    width: 70%;
+    margin: 0 auto;
+}
+
+#hinh-cuoi{
+    margin-bottom: 25px;
+}

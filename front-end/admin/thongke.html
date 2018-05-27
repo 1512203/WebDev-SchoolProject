@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Ban ao online</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- My CSS and JavaScript -->
+    <!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/script.js"></script>
+    <script src="../js/Chart.min.js"></script>
+
+</head>
+
+<body>
+
+    <div class="qhuy-big-container">
+        <section>
+            <header>
+                <div class="qhuy-container" id="top">
+                    <div class="qhuy-logo">
+                        <a href='thongke.html'>
+                            <span class="qhuy-logo-img">
+                                <img src="../img/logo/logo.png">
+                            </span>
+                            <span class="qhuy-logo-name">
+                                <svg version="1.1" style="width: 100%" viewBox="0 0 190 38 ">
+                                    <text x="4" y="35" fill="black" font-size="28" font-weight="bold">Bán áo online</text>
+                                </svg>
+                            </span>
+                        </a>
+                    </div>
+                    <nav class="qhuy-account-option">
+                        <ul>
+                            <div id="hello" style="margin-right: 10px;">Chào Admin Quốc Huy
+                                    <a href="../index.html" style="float:right;margin-right:30px;margin-left:10px;">
+                                        <img style="margin-top:2px;display: block;width: 19px;" src="../img/icon/log-out.png">
+                                    </a>
+                            </div>
+                        </ul>
+                    </nav>
+                    <div class="qhuy-account-option">
+                        <div class="qhuy-account-avatar">
+                            <img src="../img/blank-avatar.png" alt="avatar">
+                        </div>
+                        <div class="qhuy-account-name">
+                            <ul>
+                                <li>
+                                    <a href="#"></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </header>
+        </section>
+
+        <section class="qhuy-top-menu">
+            <div class="qhuy-container">
+                <nav class="qhuy-topside-menu">
+                    <ul>
+                        <li>
+                            <a href="thongke.html">THỐNG KÊ</a>
+                        </li>
+                        <li>
+                            <a href="taikhoankhachhang.html">TÀI KHOẢN KHÁCH HÀNG</a>
+                        </li>
+                        <li class="qhuy-end-menu">
+                            <a href="quanlisanpham.html">QUẢN LÝ SẢN PHẨM</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+
+
+        <section id="qhuy-main-content">
+            <div class="qhuy-container">
+                <div class="thong-ke">
+                    <div class="sp">
+                        <div id="tong-sp">Số sản phẩm đã bán: 100</div>
+                        <div id="tong-so-tien">Tổng số tiền thu được: 10,000,000 VNĐ</div>
+                    </div>
+                    <div class="bieu-do">
+                        <div style="margin-top: 5px; font-weight: bold;">Biểu đồ doanh thu theo tháng</div>
+                        <div id="bd-canvas">
+                            <canvas id="canvas" height="250" width="730"></canvas>
+                        </div>
+
+                    </div>
+                    <div class="ds-giao-dich">
+                        <div>Danh sách cách giao dịch thực hiện gần đây</div>
+                        <div id="chi-tiet-gd">
+                            <table cellpadding="0" cellspacing="0" style="text-align: left;">
+                                <tbody>
+                                    <tr>
+                                        <th>Tài khoản giao dịch</th>
+                                        <th>Tên khách hàng</th>
+                                        <th>Mã sản phẩm</th>
+                                        <th>Tên sản phẩm</th>
+                                        <th>Só lượng</th>
+                                        <th>Đơn giá</th>
+                                        <th>Hình thức giao dịch</th>
+                                        <th>Thành tiền</th>
+                                        <th>Thời điểm giao dịch</th>
+                                    </tr>
+                                    <tr>
+                                        <td>nguyenvana123</td>
+                                        <td>Nguyễn Văn A</td>
+                                        <td>AT0001</td>
+                                        <td>Áo thun trắng cổ tròn</td>
+                                        <td>2</td>
+                                        <td>150.000</td>
+                                        <td>Agribank</td>
+                                        <td>300.000</td>
+                                        <td>22/4/2018</td>
+                                    </tr>
+                                    <tr>
+                                        <td>nguyenvana123</td>
+                                        <td>Nguyễn Văn A</td>
+                                        <td>AT0001</td>
+                                        <td>Áo thun trắng cổ tròn</td>
+                                        <td>2</td>
+                                        <td>150.000</td>
+                                        <td>Agribank</td>
+                                        <td>300.000</td>
+                                        <td>22/4/2018</td>
+                                    </tr>
+                                    <tr>
+                                        <td>nguyenvana123</td>
+                                        <td>Nguyễn Văn A</td>
+                                        <td>AT0001</td>
+                                        <td>Áo thun trắng cổ tròn</td>
+                                        <td>2</td>
+                                        <td>150.000</td>
+                                        <td>Agribank</td>
+                                        <td>300.000</td>
+                                        <td>22/4/2018</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="qhuy-see-detail qhuy-modal">
+            <div class="qhuy-modal-content qhuy-animate">
+                <div class="qhuy-img-container">
+                    <span class="qhuy-close" title="Close Modal">&times;</span>
+                </div>
+                <div class="qhuy-container">
+                    <div class="qhuy-product-thumb">
+                        <img src="../img/products/shirt-1.jpg" alt="thumbnail">
+                    </div>
+                    <div class="qhuy-product-desp">
+                        <!-- <p style="color: #000;">Anim anim enim esse eu velit aute culpa minim veniam voluptate veniam nisi excepteur.</p> -->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <section>
+            <footer>
+                <div class="qhuy-container">
+                    <div class="footer-content">
+                        <div class="div-header">
+                            <div class="col1">
+                                <img src="../img/logo/logo-large.png">
+                            </div>
+                            <div class="col2">
+                                <ul>
+                                    <li>
+                                        <strong>Công Ty TNHH TM Và DV Bán Áo Online</strong>
+                                    </li>
+                                    <li>
+                                        <strong>Địa Chỉ:</strong> 99 Đường Trần Hưng Đạo, Cầu Ông Lãnh, Quận 1, TPHCM </li>
+                                </ul>
+                            </div>
+                            <div class="col3">
+                                <ul>
+                                    <li>
+                                        <strong>SĐT: </strong>0933.333.444 - 0903.777.888</li>
+                                    <li>
+                                        <strong>Email: </strong>banaoonline@gmail.com</li>
+                                    <li>
+                                        <strong>Copyright &copy;, All right reserved.</strong>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div style="clear: both;"></div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </section>
+
+    </div>
+</body>
+<script>
+    var BarChart = {
+        labels: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"],
+        datasets: [{
+            fillColor: "rgb(255, 165, 0)",
+            strokeColor: "rgb(255,0,0)",
+            data: [13, 20, 30, 40, 50, 13, 33, 5, 32, 5, 10, 12]
+        }]
+    }
+</script>
+<script>
+    var myBarChart = new Chart(document.getElementById("canvas").getContext("2d")).Bar(BarChart, { scaleFontSize: 12, scaleFontColor: "#000000" });
+</script>
+
+</html>

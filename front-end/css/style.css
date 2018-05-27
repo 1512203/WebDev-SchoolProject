@@ -1,0 +1,787 @@
+* {
+    list-style: none;
+    box-sizing: border-box;
+}
+
+div {
+    display: block;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    font-size: 15px;
+    color: #fff;
+    line-height: 1.6em;
+    /* background-color: rgba(36, 36, 33, 0.5); */
+    /* background-color: #88d2fd; */
+}
+
+.qhuy-big-container {
+    /* position: absolute; */
+    background-color: #DBECF6;
+    border: 10px solid rgba(36, 36, 33, 0.2);
+    border-radius: 5px;
+    width: 90%;
+    padding: auto;
+    margin: auto;
+}
+
+.qhuy-container {
+    overflow: auto;
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+}
+
+section .qhuy-container {
+    width: 95%;
+    margin: auto;
+    overflow: auto;
+}
+
+section header .qhuy-container {
+    width: 90%;
+}
+
+/* footer .qhuy-container, header .qhuy-container, .qhuy-top-menu .qhuy-container {
+    width: 80%;
+    margin: auto;
+    overflow: auto;
+} */
+
+header, footer {
+    background-color: #00338f;
+    min-height: 55px;
+    color: #fff;
+}
+
+header a {
+    color: #fff;
+}
+
+.qhuy-logo {
+    float: left;
+    /* width: 20%; */
+    width: 190px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    background-color:#D5E4E0;
+    border-radius: 5px;
+    margin: 8px 20px;
+    position: relative;
+}
+
+/* Nhan them vao */
+/* .qhuy-logo span h1{
+    margin-top: 10px;
+    color: black;
+} */
+
+/* Huy da edit */
+.qhuy-logo{
+    margin-left: 31px;
+}
+
+.qhuy-logo span {
+    padding: 0;
+    margin: 0;
+}
+
+.qhuy-logo span.qhuy-logo-img {
+    float: left;
+    width: 38px;
+    height: 38px;
+}
+
+.qhuy-logo span.qhuy-logo-name {
+    float: right;
+    width: 152px;
+}
+
+.qhuy-logo img{
+    width: 100%;
+    float: left;
+    margin-top:0px
+}
+
+#qhuy-side-menu #side-menu-head{
+    background: #00338f;
+    padding: 8px 15px;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.menu-search{
+    margin-top: 12px;
+    float: right;
+    width: 180px;
+    height: 35px;
+}
+
+.menu-search #txt_global_search{
+    width: 150px;
+    height: 26px;
+    float: left;
+}
+
+#btn-search{
+    width: 30px;
+    height: 26px;
+    float: right;
+}
+
+#btn-search img{
+    display: block;
+    width: 20px;
+    margin-left: -2px;
+}
+
+.center{
+    margin-top: 20px;
+    text-align: right;
+}
+
+.pagination {
+    display: inline-block;
+    background: #0077BD;
+    text-align: center;
+}
+
+.pagination a {
+    color: white;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    border: 1px solid #ddd;
+}
+
+.pagination a.act {
+    background-color: #4CAF50 !important;
+    border: 1px solid #4CAF50;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
+
+.pagination a:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.pagination a:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+/* ------------- */
+
+#gio-hang{
+    width: 16%;
+    background-color: #DDDDDD;
+    color: black;
+    font: bold;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+#gio-hang img{
+    height: 20px;
+    width: 20px;
+    padding-top: 3px;
+}
+
+#top{
+    width: 99.5%;
+}
+
+.qhuy-logo a{
+    outline : none;
+}
+
+/*------------------*/
+
+
+.qhuy-account-option {
+    float: right;
+    width: 60%;
+    margin-right: 20px;
+    /* padding: 10px 15px; */
+}
+
+div.qhuy-account-option {
+    display: none;
+}
+
+.qhuy-topside-menu {
+    width: 100%;
+    float: left;
+}
+
+.qhuy-account-option ul {
+    float: right;
+}
+
+.qhuy-topside-menu ul {
+    float: left;
+}
+
+.qhuy-account-option ul li {
+    text-align: center;
+    list-style: none;
+    float: left;
+    padding: 0 10px;
+}
+
+.qhuy-account-option .qhuy-account-avatar {
+    float: right;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    height: 50px;
+    width: 50px;
+}
+
+.qhuy-account-option .qhuy-account-avatar img {
+    position: relative;
+    width: 50px;
+    height: 50px;
+}
+
+
+.qhuy-topside-menu ul li {
+    text-align: center;
+    list-style: none;
+    float: left;
+    padding: 0 15px;
+    border-left: #999 1px solid;
+    display: block;
+}
+
+.qhuy-topside-menu ul li.qhuy-admin {
+    display: none;
+}
+
+.qhuy-topside-menu ul li.qhuy-end-menu {
+    border-right: #999 1px solid;
+}
+
+.qhuy-account-option a {
+    color: #fff;
+    padding-bottom: 5px;
+}
+
+.qhuy-account-option li.current a, .qhuy-account-option a:hover {
+    color: #03899c;
+    border-bottom: #03899c 3px solid;
+}
+
+.qhuy-top-menu {
+    background-color: #0077bd;
+}
+
+.qhuy-topside-menu li.current a, .qhuy-topside-menu a:hover, #qhuy-side-menu li.current a, #qhuy-side-menu a:hover {
+    /* color: #83afbc; */
+    border-bottom: #83afbc 3px solid;
+    border-bottom-right-radius: 40%;
+}
+
+/* #qhuy-side-menu li.current a, #qhuy-side-menu a:hover {
+    border-bottom-right-radius: 40%;
+} */
+
+.qhuy-slides-and-instruction .qhuy-slides {
+    position: relative;
+    /* width: 949.06px; */
+    /* width: 70.25%; */
+    width: 100%;
+    height: 360px;
+    margin: auto;
+    overflow: hidden;
+    padding: 0;
+    display: inline-block;
+    background: padding-box;
+    background-color: rgba(30, 30, 30, 0.3);
+    border-radius: 7px;
+}
+
+.qhuy-slider {
+    width: 100%;
+    height: 350px;
+    position: absolute;
+    overflow: hidden;
+    float: left;
+    padding: 0;
+    margin: auto; 
+    /* border: #333 solid 3px; */
+}
+
+.qhuy-slider img {
+    width: 100%;
+    /* height: 100%; */
+    height: 350px;
+}
+
+.qhuy-slide {
+    padding: 10px 10px;
+    width: 100%;
+    position: absolute;
+}
+
+#prev, #next {
+    margin-top: 147px;
+    cursor: pointer;
+    position: relative;
+    z-index: 103;
+    background-color: rgba(20, 20, 20, 0.55);
+    border-radius: 10px;
+}
+
+#prev {
+    float: left;
+    margin-right: -45px;
+}
+
+#next {
+    float: right;
+    margin-left: -45px;
+}
+
+.qhuy-slides-and-instruction .qhuy-instruction {
+    float: right;
+    width: 25%;
+    background-color: #0077bd;
+    margin: 5px 0;
+    padding: 10px;
+}
+
+#qhuy-main-content {
+    padding: 3px 0;
+    border-top: #333 1px dotted;
+    border-bottom: #333 1px dotted;
+}
+
+#qhuy-side-menu {
+    float: left;
+    width: 20%; 
+    display: block;
+    overflow: auto;
+    padding: 10px 10px;
+    background-clip: padding-box;
+    background-color: rgba(30, 30, 30, 0.3);
+    border-radius: 8px;
+}
+
+#qhuy-side-menu ul {
+    padding: 0;
+    margin: 0;
+}
+
+#qhuy-side-menu a {
+    padding: 8px 8px 8px 14px;
+    text-decoration: none;
+    font-size: 15px;
+    color: #fff;
+    background: #0077bd;
+    display: block;
+    border-top: #333 1px solid;
+    border-bottom: #333 1px solid;
+}
+
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+[class*="col-"] {
+    float: left;
+    padding: 15px;
+    border: 1px solid #555;
+}
+
+.col-3 {
+    width: 25%;
+}
+
+.qhuy-products {
+    width: 79%; 
+    display: block;
+    padding: 10px 10px;
+    margin: 0;
+    background-color: rgba(30, 30, 30, 0.3);
+    background-clip: padding-box;
+    border-radius: 8px;
+    float: right;
+}
+
+.qhuy-products .row .col-3 {
+    background: #fefefe;
+    display: block;
+    float: left;
+    cursor: pointer;
+    border-radius: 5%;
+    box-sizing: border-box;
+    border: #333 0.5px dashed;
+    position: relative;
+}
+
+.qhuy-products .row .col-3 img {
+    padding: 0 5px;
+    border-radius: 5%;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    align-content: center;
+    margin: auto;
+}
+
+.qhuy-products .row .col-3:hover {
+    background-color: rgba(120, 120, 120, 0.35);
+}
+
+footer p {
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+}
+
+footer{
+    color: white !important;
+}
+
+.qhuy-modal input[type=text], .qhuy-modal input[type=password], .qhuy-modal input[type=email], .qhuy-modal input[type=tel] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.qhuy-modal button {
+    background-color: #0077bd;
+    color: #fff;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.qhuy-modal button:hover {
+    opacity: 0.8;
+}
+
+.qhuy-modal .qhuy-cancelBtn{
+    width: auto;
+    padding: 10px 18px;
+    background-color: #7443fd;
+}
+
+.qhuy-modal .qhuy-img-container {
+    text-align: center;
+    margin: 24px 0 12px 0;
+    position: relative;
+}
+
+.qhuy-modal .qhuy-container {
+    padding: 16px;
+}
+
+.qhuy-modal span.qhuy-psw {
+    color: #333;    
+    float: right;
+    padding-top: 16px;
+}
+
+.qhuy-modal label {
+    color: #333;
+}
+
+.qhuy-modal {
+    display: none;
+    position: fixed;
+    z-index: 200;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+    padding-top: 60px;
+}
+
+.qhuy-modal-content {
+    background: #fefefe;
+    margin: 5% auto 15% auto;
+    border: 1px solid #888;
+    width: 80%;
+    border-radius: 10px;
+    border: rgb(30, 30, 30) 20px solid;
+    border: rgba(30, 30, 30, 0.3) 20px solid;
+    background-clip: padding-box;
+}
+
+.qhuy-modal .qhuy-close {
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.qhuy-modal .qhuy-close:hover, .qhuy-modal .qhuy-close:focus {
+    /* color: red; */
+    cursor: pointer;
+}
+
+.qhuy-modal .qhuy-animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+}
+
+.qhuy-modal .qhuy-footbox {
+    background: #f1f1f1;
+}
+
+.qhuy-see-detail .qhuy-product-thumb {
+    display: block; 
+    position: relative; 
+    width: 20%; 
+    float: left;
+}
+
+.qhuy-see-detail .qhuy-product-thumb img {
+    border: #333 solid 2px;
+    width: 100%;
+}
+
+.qhuy-see-detail .qhuy-product-desp {
+    color: black;
+    display: block; 
+    position: relative; 
+    width: 75%; 
+    float: right;
+}
+
+.qhuy-products .row .col-3 .qhuy-product-thumb-before-click {
+    width: 100%;
+    height: 80%;
+    float: left;
+}
+
+.qhuy-products .row .col-3 .qhuy-product-desp-before-click {
+    width: 100%;
+    height: 20%;
+    position: relative;
+    padding: 10px;
+    float: right;
+    color: #000000;
+}
+
+.qhuy-products .row .col-3 .qhuy-product-price-before-click {
+    font-size: 120%;
+    color: red;
+    width: 100%;
+    float: left;
+    position: relative;
+    text-align: center;
+}
+
+.qhuy-products .row .col-3 .qhuy-product-name-before-click {
+    font-weight: bold;
+    width: 100%;
+    float: right;
+    position: relative;
+    text-align: center;
+}
+
+section.qhuy-admin {
+    display: none;
+}
+
+/* Nhan them vao */
+.thong-ke{
+    color: black;
+    margin-top: 50px;
+}
+
+.thong-ke div{
+    background: #0077bd;
+    color: white;
+}
+
+
+.thong-ke .sp{
+    float: left;
+    width: 27%;
+    background-color: #a8e2ff;
+}
+
+.thong-ke .sp div{
+    padding: 15px 0px;
+}
+
+.thong-ke .sp #tong-sp{
+    margin-bottom: 20px;
+}
+
+.thong-ke .sp #tong-so-tien, .thong-ke .sp #tong-sp{
+    padding: 15px;
+}
+
+.ds-giao-dich .ds-giao-dich-title {
+    padding: 5px 15px;
+}
+
+.thong-ke .bieu-do{
+    background: white;
+    float: right;
+    height: 300px;
+    width: 72%;
+    margin-bottom: 30px;
+}
+
+.bieu-do div{
+    color: black;
+    text-align: center;
+    background: white;
+}
+
+
+.bieu-do #bd-canvas{
+    margin-top: 20px !important;
+}
+
+.thong-ke .ds-giao-dich{
+    margin-bottom: 20px;
+    height: 500px;
+    clear: both;
+}
+
+.ds-giao-dich{
+    margin-bottom: 30px;
+}
+
+.ds-giao-dich #chi-tiet-gd{
+    color: black;
+    background: white;
+    width: 97%;
+    height: 90%;
+    margin-top: 5px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#chi-tiet-gd table {
+    width:100%;
+}
+#chi-tiet-gd table td,table caption{
+    background:#fff;border:1px solid rgba(0,0,0,0.05);padding:10px;text-align:center;vertical-align:top
+}
+#chi-tiet-gd table th{
+    background:#e74c3c;color:#fff;border:1px solid rgba(0,0,0,0.05);border-bottom:0;padding:10px;text-align:center;vertical-align:top
+}
+#chi-tiet-gd table.tr-caption-container {
+    border:1px solid rgba(0,0,0,0.14);margin:0;
+}
+#chi-tiet-gd th{
+    font-weight:700;
+}
+#chi-tiet-gd table caption{
+    border:none;font-style:italic;
+}
+#chi-tiet-gd td, th{
+    vertical-align:top;text-align:left;font-size:13px;padding:3px 5px;border:1px solid #97b28e;
+}
+#chi-tiet-gd th:hover{
+    color:#fff;
+}
+#chi-tiet-gd td a{
+    color:#444;
+}
+#chi-tiet-gd td a:hover{
+    color:#cf4d35;
+}
+#chi-tiet-gd table.tr-caption-container td{
+    border:0;padding:8px;background:#fff;line-height:17px;overflow:hidden;text-align:center;text-overflow:ellipsis;white-space:nowrap;font-weight:700;color:#000;
+}
+#chi-tiet-gd table.tr-caption-container, table.tr-caption-container img, .post-body img {
+    max-width:100%;height:auto;
+}
+#chi-tiet-gd td.tr-caption {
+    color:#666;font-size:80%;padding:0px 8px 8px!important;
+}
+#chi-tiet-gd .sr {
+    visibility:hidden;width:0;height:0;
+}
+#chi-tiet-gd .clear{
+    clear:both
+}
+#chi-tiet-gd   ::selection {
+    background:#effdca;text-shadow:none;
+}
+
+
+.qhuy-product-desp{
+    margin-bottom: 10px;
+    margin-top: 0px;
+}
+/* ------------- */
+
+.avatar{
+    float: right;
+    padding: 0;
+    margin-top: -4px;
+    position: relative;
+    height: 30px;
+}
+
+.account-top{
+    cursor: pointer;
+}
+
+.account-top a:hover{
+    color: #DBECF6;
+}
+
+.avatar img{
+    position: relative;
+    width: 36px;
+    height: 36px;
+}
+
+#chao{
+    padding: 0;
+}
+
+.btn-quan-li-sua{
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.btn-quan-li-xoa{
+    background-color: red;
+    color: white;
+    font-weight: bold;
+}
+
+.account-top a:hover{
+    color: #00338F;
+    border-bottom: #03899c 0px solid
+}
+
+.account-top :last-child img{
+    margin-top: 3px !important;
+}
+
+#hello a:hover{
+    color: #00338F;
+    border-bottom: #03899c 0px solid;
+}

@@ -1,0 +1,13 @@
+.row-designer{
+    margin-top: 1px;
+    margin-bottom: 10px;
+}
+
+.design-header{
+    margin-top: 2px;
+    margin-bottom: 0px;
+    background: #00338f;
+    width: 20%;
+    padding: 5px 0px 5px 2px;
+    border-radius: 0px;
+}
