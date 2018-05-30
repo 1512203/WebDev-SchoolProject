@@ -113,6 +113,7 @@ $(document).ready(function() {
         });
     });
 
+
     $('.col-3').on('click', function(){
         $('.qhuy-see-detail').css('display', 'block');
     });

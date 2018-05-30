@@ -1,3 +1,50 @@
+<div id="qhuy-login-form" class="qhuy-modal">
+	<form class="qhuy-modal-content qhuy-animate">
+		<div class="qhuy-img-container">
+			<span class="qhuy-close" title="Close Modal">&times;</span>
+		</div>
+		<div class="qhuy-container">
+			<label for="usrname"><b>Tên đăng nhập</b></label>
+			<input type="text" placeholder="vd (admin account): ngquochuy123" name="usrname" required>
+			<label for="psw"><b>Mặt khẩu</b></label>
+			<input type="password" placeholder="vd (admin account): 123456" name="psw" required>
+			<button type="submit">Đăng nhập</button>
+			<label>
+				<input type="checkbox" checked="checked" name="remember">
+				Nhớ mặt khẩu
+			</label>
+		</div>
+		<div class="qhuy-container qhuy-footbox">
+			<button type="button" class="qhuy-cancelBtn">Hủy</button>
+			<span class="qhuy-psw">Quên mật khẩu?</span>
+		</div>
+	</form>
+</div>
+
+<div id="qhuy-signup-form" class="qhuy-modal">        
+	<form class="qhuy-modal-content qhuy-animate">
+		<div class="qhuy-img-container">
+			<span class="qhuy-close" title="Close Modal">&times;</span>
+		</div>
+		<div class="qhuy-container">
+			<label for="fullname"><b>Họ và tên</b></label>
+			<input type="text" placeholder="vd: Nguyen Quoc Huy" name="fullname" required>
+			<label for="usrname"><b>Tên đăng nhập</b></label>
+			<input type="text" placeholder="vd: ngquochuy123" name="usrname" required>
+			<label for="psw"><b>Mật khẩu</b></label>
+			<input type="password" placeholder="vd: ********" name="psw" required>
+			<label for="emailadd"><b>Email</b></label>
+			<input type="email" placeholder="vd: ngquochuy@abcmail.com" name="emailadd" required>
+			<label for="phonenb"><b>Số điện thoại</b></label>
+			<input type="tel" placeholder="vd: 0123 456 789" name="phonenb" required>
+			<button type="submit">Đăng ký</button>
+		</div>
+		<div class="qhuy-container qhuy-footbox">
+			<button type="button" class="qhuy-cancelBtn">Hủy</button>
+		</div>
+	</form>
+</div>
+
 <section class="qhuy-top-menu">
 	<div class="qhuy-container">
 		<nav class="qhuy-topside-menu">
@@ -8,11 +55,6 @@
 				<li class="qhuy-user"><a href="hoptac.html">Hợp tác</a></li>
 				<li class="qhuy-user"><a href="huongdan.html">Hướng dẫn</a></li>
 				<li class="qhuy-user qhuy-end-menu"><a href="lienhe.html">Liên hệ</a></li>
-				
-
-				<li class="qhuy-admin"><a href="#">THỐNG KÊ</a></li>
-				<li class="qhuy-admin"><a href="#">TÀI KHOẢN KHÁCH HÀNG</a></li>
-				<li class="qhuy-admin qhuy-end-menu"><a href="#">QUẢN LÝ SẢN PHẨM</a></li>
 			</ul>
 
 			<div class="menu-search">
@@ -63,263 +105,40 @@
 					<li><a href="#">Sản phẩm xem nhiều nhất</a></li>
 					<li><a href="#">Sản phẩm bán chạy nhất</a></li>
 					<li><a href="#">Mẫu áo đẹp</a></li>
-					<li><a href="#">&nbsp;• Áo phông hè</a></li>
-					<li><a href="#">&nbsp;• Áo phông Tết</a></li>
-					<li><a href="#">&nbsp;• Áo phông du lịch</a></li>
-					<li><a href="#">&nbsp;• Áo thun phong cách</a></li>
-					<li><a href="#">&nbsp;• Áo thun trơn</a></li>
-					<li><a href="#">&nbsp;• Áo nhóm, áo lớp đẹp</a></li>
-					<li><a href="#">&nbsp;• Áo thun Pokemon</a></li>
-					<li><a href="#">&nbsp;• Áo thun One Vietnam</a></li>
+					{{#each listOfStyles}}
+						<li><a href="style/{{this.id}}">&nbsp;&bull; {{this.name}}</a></li>
+					{{/each}}
 			</nav>
 		</div>
 		
 		<div class="qhuy-products">
-			<div class="row">
-				<div class="col-3 qhuy-root-item">
-					<a href="#">
-						<div class="qhuy-product-thumb-before-click">
-							<img src="img/products/shirt-1.jpg" alt="ao1">
-						</div>
-						<div class="qhuy-product-desp-before-click">
-							<span class="qhuy-product-price-before-click">100,000d</span>
-							<span class="qhuy-product-name-before-click">Áo mùa hè</span>
-						</div>
-					</a>
-				</div>
-				<div class="col-3">
-					<a href="#">
-						<div class="qhuy-product-thumb-before-click">
-							<img src="img/products/shirt-2.jpg" alt="ao1">
-						</div>
-						<div class="qhuy-product-desp-before-click">
-							<span class="qhuy-product-price-before-click">100,000d</span>
-							<span class="qhuy-product-name-before-click">Áo mùa hè</span>
-						</div>
-					</a>
-				</div>
-				<div class="col-3">
-					<a href="#">
-						<div class="qhuy-product-thumb-before-click">
-							<img src="img/products/shirt-3.jpg" alt="ao1">
-						</div>
-						<div class="qhuy-product-desp-before-click">
-							<span class="qhuy-product-price-before-click">100,000d</span>
-							<span class="qhuy-product-name-before-click">Áo mùa hè</span>
-						</div>
-					</a>
-				</div>
-				<div class="col-3">
-					<a href="#">
-						<div class="qhuy-product-thumb-before-click">
-							<img src="img/products/shirt-4.jpg" alt="ao1">
-						</div>
-						<div class="qhuy-product-desp-before-click">
-							<span class="qhuy-product-price-before-click">100,000d</span>
-							<span class="qhuy-product-name-before-click">Áo mùa hè</span>
-						</div>
-					</a>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-3">
-					<a href="#">
-						<div class="qhuy-product-thumb-before-click">
-							<img src="img/products/shirt-5.jpg" alt="ao1">
-						</div>
-						<div class="qhuy-product-desp-before-click">
-							<span class="qhuy-product-price-before-click">100,000d</span>
-							<span class="qhuy-product-name-before-click">Áo mùa hè</span>
-						</div>
-					</a>
-				</div>
-				<div class="col-3">
-					<a href="#">
-						<div class="qhuy-product-thumb-before-click">
-							<img src="img/products/shirt-6.jpg" alt="ao1">
-						</div>
-						<div class="qhuy-product-desp-before-click">
-							<span class="qhuy-product-price-before-click">100,000d</span>
-							<span class="qhuy-product-name-before-click">Áo mùa hè</span>
-						</div>
-					</a>
-				</div>
-				<div class="col-3">
-					<a href="#">
-						<div class="qhuy-product-thumb-before-click">
-							<img src="img/products/shirt-7.jpg" alt="ao1">
-						</div>
-						<div class="qhuy-product-desp-before-click">
-							<span class="qhuy-product-price-before-click">100,000d</span>
-							<span class="qhuy-product-name-before-click">Áo mùa hè</span>
-						</div>
-					</a>
-				</div>
-				<div class="col-3">
-					<a href="#">
-						<div class="qhuy-product-thumb-before-click">
-							<img src="img/products/shirt-8.jpg" alt="ao1">
-						</div>
-						<div class="qhuy-product-desp-before-click">
-							<span class="qhuy-product-price-before-click">100,000d</span>
-							<span class="qhuy-product-name-before-click">Áo mùa hè</span>
-						</div>
-					</a>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-3">
-					<a href="#">
-						<div class="qhuy-product-thumb-before-click">
-							<img src="img/products/shirt-9.jpg" alt="ao1">
-						</div>
-						<div class="qhuy-product-desp-before-click">
-							<span class="qhuy-product-price-before-click">100,000d</span>
-							<span class="qhuy-product-name-before-click">Áo mùa hè</span>
-						</div>
-					</a>
-				</div>
-				<div class="col-3">
-					<a href="#">
-						<div class="qhuy-product-thumb-before-click">
-							<img src="img/products/shirt-10.jpg" alt="ao1">
-						</div>
-						<div class="qhuy-product-desp-before-click">
-							<span class="qhuy-product-price-before-click">100,000d</span>
-							<span class="qhuy-product-name-before-click">Áo mùa hè</span>
-						</div>
-					</a>
-				</div>
-				<div class="col-3">
-					<a href="#">
-						<div class="qhuy-product-thumb-before-click">
-							<img src="img/products/shirt-11.jpg" alt="ao1">
-						</div>
-						<div class="qhuy-product-desp-before-click">
-							<span class="qhuy-product-price-before-click">100,000d</span>
-							<span class="qhuy-product-name-before-click">Áo mùa hè</span>
-						</div>
-					</a>
-				</div>
-				<div class="col-3">
-					<a href="#">
-						<div class="qhuy-product-thumb-before-click">
-							<img src="img/products/shirt-12.jpg" alt="ao1">
-						</div>
-						<div class="qhuy-product-desp-before-click">
-							<span class="qhuy-product-price-before-click">100,000d</span>
-							<span class="qhuy-product-name-before-click">Áo mùa hè</span>
-						</div>
-					</a>
-				</div>
-
-				<div class="col-3">
-					<a href="#">
-						<div class="qhuy-product-thumb-before-click">
-							<img src="img/products/shirt-13.jpg" alt="ao1">
-						</div>
-						<div class="qhuy-product-desp-before-click">
-							<span class="qhuy-product-price-before-click">100,000d</span>
-							<span class="qhuy-product-name-before-click">Áo mùa hè</span>
-						</div>
-					</a>
-				</div>
-
-				<div class="col-3">
-					<a href="#">
-						<div class="qhuy-product-thumb-before-click">
-							<img src="img/products/shirt-14.jpg" alt="ao1">
-						</div>
-						<div class="qhuy-product-desp-before-click">
-							<span class="qhuy-product-price-before-click">100,000d</span>
-							<span class="qhuy-product-name-before-click">Áo mùa hè</span>
-						</div>
-					</a>
-				</div>
-
-				<div class="col-3">
-					<a href="#">
-						<div class="qhuy-product-thumb-before-click">
-							<img src="img/products/shirt-15.jpg" alt="ao1">
-						</div>
-						<div class="qhuy-product-desp-before-click">
-							<span class="qhuy-product-price-before-click">100,000d</span>
-							<span class="qhuy-product-name-before-click">Áo mùa hè</span>
-						</div>
-					</a>
-				</div>
-
-				<div class="col-3">
-					<a href="#">
-						<div class="qhuy-product-thumb-before-click">
-							<img src="img/products/shirt-16.jpg" alt="ao1">
-						</div>
-						<div class="qhuy-product-desp-before-click">
-							<span class="qhuy-product-price-before-click">100,000d</span>
-							<span class="qhuy-product-name-before-click">Áo mùa hè</span>
-						</div>
-					</a>
-				</div>
-
-				<div class="col-3">
-						<a href="#">
-							<div class="qhuy-product-thumb-before-click">
-								<img src="img/products/shirt-17.png" alt="ao1">
-							</div>
-							<div class="qhuy-product-desp-before-click">
-								<span class="qhuy-product-price-before-click">100,000d</span>
-								<span class="qhuy-product-name-before-click">Áo mùa hè</span>
-							</div>
-						</a>
-					</div>
-
-					<div class="col-3">
-						<a href="#">
-							<div class="qhuy-product-thumb-before-click">
-								<img src="img/products/shirt-18.jpg" alt="ao1">
-							</div>
-							<div class="qhuy-product-desp-before-click">
-								<span class="qhuy-product-price-before-click">100,000d</span>
-								<span class="qhuy-product-name-before-click">Áo mùa hè</span>
-							</div>
-						</a>
-					</div>
-
-					<div class="col-3">
-						<a href="#">
-							<div class="qhuy-product-thumb-before-click">
-								<img src="img/products/shirt-19.png" alt="ao1">
-							</div>
-							<div class="qhuy-product-desp-before-click">
-								<span class="qhuy-product-price-before-click">100,000d</span>
-								<span class="qhuy-product-name-before-click">Áo mùa hè</span>
-							</div>
-						</a>
-					</div>
-
-					<div class="col-3">
+			{{#each listOfProducts}}
+				<div class="row">
+					{{#each this}}
+						<div class="col-3 {{#if this.isRootItem}}qhuy-root-item{{/if}}">
 							<a href="#">
 								<div class="qhuy-product-thumb-before-click">
-									<img src="img/products/shirt-20.png" alt="ao1">
+									<img src="{{this.productImage}}" alt="">
 								</div>
 								<div class="qhuy-product-desp-before-click">
-									<span class="qhuy-product-price-before-click">100,000d</span>
-									<span class="qhuy-product-name-before-click">Áo mùa hè</span>
+									<span class="qhuy-product-price-before-click">{{this.productPrice}}d</span>
+									<span class="qhuy-product-name-before-click">{{this.productName}}</span>
 								</div>
 							</a>
 						</div>
-			</div>
-
+					{{/each}}
+				</div>
+			{{/each}}
 			<div class="center">
 				<div class="pagination">
-						<a href="#">&laquo;</a>
-						<a href="#" class="act">1</a>
-						<a href="#">2</a>
-						<a href="#">3</a>
-						<a href="#">4</a>
-						<a href="#">5</a>
-						<a href="#">6</a>
-						<a href="#">&raquo;</a>
+					<a href="#">&laquo;</a>
+					<a href="#" class="act">1</a>
+					<a href="#">2</a>
+					<a href="#">3</a>
+					<a href="#">4</a>
+					<a href="#">5</a>
+					<a href="#">6</a>
+					<a href="#">&raquo;</a>
 				</div>
 			</div>
 
@@ -376,74 +195,4 @@
 	</div>
 </div>
 </div>
-
-<section class="qhuy-admin">
-	<div class="qhuy-container">
-		<div class="thong-ke">
-			<div class="sp">
-				<div id="tong-sp">Số sản phẩm đã bán: 100</div>
-				<div id="tong-so-tien">Tổng số tiền thu được: 10,000,000 VNĐ</div>
-			</div>
-			<div class="bieu-do">
-				<div style="margin-top: 5px; font-weight: bold;">Biểu đồ doanh thu theo tháng</div>
-				<div id="bd-canvas">
-					<canvas id="canvas" height="250" width="730"></canvas>
-				</div>
-			</div>
-			<div class="ds-giao-dich">
-				<div class="ds-giao-dich-title">Danh sách cách giao dịch thực hiện gần đây</div>
-				<div id="chi-tiet-gd">
-					<table cellpadding="0" cellspacing="0" style="text-align: left;">
-						<tbody>
-							<tr>
-								<th>Tài khoản giao dịch</th>
-								<th>Tên khách hàng</th>
-								<th>Mã sản phẩm</th>
-								<th>Tên sản phẩm</th>
-								<th>Só lượng</th>
-								<th>Đơn giá</th>
-								<th>Hình thức giao dịch</th>
-								<th>Thành tiền</th>
-								<th>Thời điểm giao dịch</th>
-							</tr>
-							<tr>
-								<td>nguyenvana123</td>
-								<td>Nguyễn Văn A</td>
-								<td>AT0001</td>
-								<td>Áo thun trắng cổ tròn</td>
-								<td>2</td>
-								<td>150.000</td>
-								<td>Agribank</td>
-								<td>300.000</td>
-								<td>22/4/2018</td>
-							</tr>
-							<tr>
-								<td>nguyenvana123</td>
-								<td>Nguyễn Văn A</td>
-								<td>AT0001</td>
-								<td>Áo thun trắng cổ tròn</td>
-								<td>2</td>
-								<td>150.000</td>
-								<td>Agribank</td>
-								<td>300.000</td>
-								<td>22/4/2018</td>
-							</tr>
-							<tr>
-								<td>nguyenvana123</td>
-								<td>Nguyễn Văn A</td>
-								<td>AT0001</td>
-								<td>Áo thun trắng cổ tròn</td>
-								<td>2</td>
-								<td>150.000</td>
-								<td>Agribank</td>
-								<td>300.000</td>
-								<td>22/4/2018</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</div>
-	</div>        
-</section>
 
