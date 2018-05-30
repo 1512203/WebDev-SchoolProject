@@ -4,13 +4,26 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+var expresshbs = require('express-handlebars');
+var paginateHelper = require('express-handlebars-paginate');
+
+var hbs = expresshbs.create({
+    extname: 'hbs',
+	defaultLayout	: 'layout', 
+	layoutsDir		: __dirname + '/views/layouts/',
+	partialsDir		: __dirname + '/views/partials/',
+	helpers			: {
+		paginate: paginateHelper.createPagination,
+	},
+});
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 
 app.use(logger('dev'));

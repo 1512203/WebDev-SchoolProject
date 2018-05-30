@@ -1,0 +1,25 @@
+#content{
+    color: black;
+    width: 90%;
+    margin: 0 auto;
+}
+
+#content img{
+    width: 50%;
+    height: 50%;
+    margin: 0 auto;
+    display: block;
+}
+
+h1{
+    font-size: 2em;
+    color: black;
+}
+
+#content ul li{
+    list-style: disc;
+}
+
+#content ol li{
+    list-style-type: decimal;
+}

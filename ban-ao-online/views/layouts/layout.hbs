@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>{{title}}</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- My CSS and JavaScript -->
+    <!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/Chart.min.js"></script>
+    <script src="js/script.js"></script>
+</head>
+<body>
+	<div class="qhuy-big-container">
+		{{> header}}
+		{{{body}}}
+		{{> footer}}
+	</div>
+</body>
+<script>
+    var BarChart = {
+        labels: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4","Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9","Tháng 10", "Tháng 11", "Tháng 12"],
+        datasets: [{
+            fillColor: "rgb(255, 165, 0)",
+            strokeColor: "rgb(255,0,0)",
+            data: [13, 20, 30, 40, 50, 13, 33, 5, 32, 5, 10, 12]
+        }]
+    };
+
+    var myBarChart = new Chart(document.getElementById("canvas").getContext("2d")).Bar(BarChart, {scaleFontSize: 12, scaleFontColor: "#000000"});
+</script>
+</html>
+
