@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Ban ao online</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- My CSS and JavaScript -->
+    <!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/giohang.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/script.js"></script>
+</head>
+<body>
+    <div class="qhuy-big-container">
+        <div id="qhuy-signup-form" class="qhuy-modal">        
+            <form class="qhuy-modal-content qhuy-animate">
+                <div class="qhuy-img-container">
+                    <span class="qhuy-close" title="Close Modal">&times;</span>
+                </div>
+                <div class="qhuy-container">
+                    <label for="fullname"><b>Họ và tên</b></label>
+                    <input type="text" placeholder="vd: Nguyen Quoc Huy" name="fullname" required>
+                    <label for="usrname"><b>Tên đăng nhập</b></label>
+                    <input type="text" placeholder="vd: ngquochuy123" name="usrname" required>
+                    <label for="psw"><b>Mật khẩu</b></label>
+                    <input type="password" placeholder="vd: ********" name="psw" required>
+                    <label for="emailadd"><b>Email</b></label>
+                    <input type="email" placeholder="vd: ngquochuy@abcmail.com" name="emailadd" required>
+                    <label for="phonenb"><b>Số điện thoại</b></label>
+                    <input type="tel" placeholder="vd: 0123 456 789" name="phonenb" required>
+                    <button type="submit">Đăng ký</button>
+                </div>
+                <div class="qhuy-container qhuy-footbox">
+                    <button type="button" class="qhuy-cancelBtn">Hủy</button>
+                </div>
+            </form>
+        </div>
+        <div id="qhuy-login-form" class="qhuy-modal">
+            <form class="qhuy-modal-content qhuy-animate">
+                <div class="qhuy-img-container">
+                    <span class="qhuy-close" title="Close Modal">&times;</span>
+                </div>
+                <div class="qhuy-container">
+                    <label for="usrname"><b>Tên đăng nhập</b></label>
+                    <input type="text" placeholder="vd (admin account): ngquochuy123" name="usrname" required>
+                    <label for="psw"><b>Mặt khẩu</b></label>
+                    <input type="password" placeholder="vd (admin account): 123456" name="psw" required>
+                    <button type="submit">Đăng nhập</button>
+                    <label>
+                        <input type="checkbox" checked="checked" name="remember">
+                        Nhớ mặt khẩu
+                    </label>
+                </div>
+                <div class="qhuy-container qhuy-footbox">
+                    <button type="button" class="qhuy-cancelBtn">Hủy</button>
+                    <span class="qhuy-psw">Quên mật khẩu?</span>
+                </div>
+            </form>
+        </div>
+        <section>
+            <header>
+                <div class="qhuy-container" id="top">
+                    <div class="qhuy-logo">
+                        <a href='index.html'>
+                            <span class="qhuy-logo-img">
+                                <img src="img/logo/logo.png">
+                            </span>
+                            <span class="qhuy-logo-name">    
+                                <svg version="1.1" style="width: 100%" viewBox="0 0 190 38 ">
+                                    <text x="4" y="35" fill="black" font-size="28" font-weight="bold">Bán áo online</text>
+                                </svg>
+                            </span>
+                        </a>    
+                    </div>
+                    <!-- <a href='#'><h1 class="qhuy-logo"><img src="img/logo/logo.png" ><div>Bán áo online</div></h1></a> -->
+                    <nav class="qhuy-account-option">
+                        <ul>
+                            <li><a id="qhuy-login-btn" href="#">Đăng nhập</a></li>
+                            <li><a id="qhuy-signup-btn" href="#">Đăng kí</a></li>
+                            <li> <a id="gio-hang" href="#">
+                                <img id="cart-logo" src="img/icon/cart.png">
+                                <strong>0 sản phẩm - 0VNĐ</strong>
+                            </a></li>
+                        </ul>
+                    </nav>
+                    <div class="qhuy-account-option">
+                        <div class="qhuy-account-avatar">
+                            <img src="img/blank-avatar.png" alt="avatar">
+                        </div>
+                        <div class="qhuy-account-name">
+                            <ul>
+                                <li><a href="#"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </header>
+        </section>
+    
+        <section class="qhuy-top-menu">
+            <div class="qhuy-container">
+                <nav class="qhuy-topside-menu">
+                    <ul>
+                        <li class="qhuy-user"><a href="thietkeao.html">Thiết kế áo</a></li>
+                        <li class="qhuy-user"><a href="index.html">Sản phẩm</a></li>
+                        <li class="qhuy-user"><a href="gioithieu.html">Giới thiệu</a></li>
+                        <li class="qhuy-user"><a href="hoptac.html">Hợp tác</a></li>
+                        <li class="qhuy-user"><a href="huongdan.html">Hướng dẫn</a></li>
+                        <li class="qhuy-user qhuy-end-menu"><a href="lienhe.html">Liên hệ</a></li>
+
+                        <li class="qhuy-admin"><a href="#">THỐNG KÊ</a></li>
+                        <li class="qhuy-admin"><a href="#">TÀI KHOẢN KHÁCH HÀNG</a></li>
+                        <li class="qhuy-admin qhuy-end-menu"><a href="#">QUẢN LÝ SẢN PHẨM</a></li>
+                    </ul>
+
+                    <div class="menu-search">
+                        <form>
+                            <input class="form-control" placeholder="Tìm kiếm" id="txt_global_search" value="" type="text">
+                            <button type="button" id="btn-search">
+                                <img src="img/icon/search.png" >
+                            </button>   
+                        </form>                           
+                    </div>
+                </nav>
+            </div>
+        </section>
+        
+        <section class="qhuy-slides-and-instruction qhuy-user">
+            <div class="qhuy-container">
+                <div class="qhuy-slides">
+                    <div class="qhuy-prev">
+                        <img src="img/arrow-left.png" alt="Prev" id="prev">
+                    </div>
+                    <div class="qhuy-slider">
+                        <div class="qhuy-slide">
+                            <img src="img/slides/slide-1.jpg" alt="slide">
+                        </div>
+                        <div class="qhuy-slide">
+                            <img src="img/slides/slide-2.jpg" alt="slide">
+                        </div>
+                        <div class="qhuy-slide">
+                            <img src="img/slides/slide-3.jpg" alt="slide">
+                        </div>
+                    </div>
+                    <div class="qhuy-next">
+                        <img src="img/arrow-right.png" alt="Next" id="next">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="gio-hang-container">
+
+            <div class="shopping-cart">
+                <!-- Title -->
+                <div class="title">
+                 Giỏ hàng
+                </div>
+          
+                <!-- Product #1 -->
+                <div class="item">
+                  <div class="buttons">
+                    <span class="delete-btn"></span>
+                    <span class="like-btn"></span>
+                  </div>
+          
+                  <div class="image">
+                    <img src="img/products small/shirt-1-small.jpg" alt="" />
+                  </div>
+          
+                  <div class="description">
+                    <span>Áo mùa hè</span>
+                    <span>Áo thun</span>
+                  </div>
+          
+                  <div class="quantity">
+                    <button class="minus-btn" type="button" name="button">
+                      <img src="img/icon/minus.svg" alt="" />
+                    </button>
+                    <input type="text" name="name" value="1">
+                    <button class="plus-btn" type="button" name="button">
+                        <img src="img/icon/plus.svg" alt="" />
+                    </button>
+                  </div>
+          
+                  <div class="total-price">
+                      100000</div>
+                      <div class="currency">VNĐ</div>
+                </div>
+                
+          
+                <!-- Product #2 -->
+                <div class="item">
+                  <div class="buttons">
+                    <span class="delete-btn"></span>
+                    <span class="like-btn"></span>
+                  </div>
+          
+                  <div class="image">
+                    <img src="img/products small/shirt-2-small.jpg" alt=""/>
+                  </div>
+          
+                  <div class="description">
+                        <span>Áo mùa hè</span>
+                        <span>Áo thun</span>
+                      </div>
+              
+                      <div class="quantity">
+                        <button class="minus-btn" type="button" name="button">
+                          <img src="img/icon/minus.svg" alt="" />
+                        </button>
+                        <input type="text" name="name" value="1">
+                        <button class="plus-btn" type="button" name="button">
+                            <img src="img/icon/plus.svg" alt="" />
+                        </button>
+                      </div>
+              
+                      <div class="total-price">
+                          100000</div>
+                          <div class="currency">VNĐ</div>
+                </div>
+          
+                <!-- Product #3 -->
+                <div class="item">
+                  <div class="buttons">
+                    <span class="delete-btn"></span>
+                    <span class="like-btn"></span>
+                  </div>
+          
+                  <div class="image">
+                    <img src="img/products small/shirt-5-small.jpg" alt="" />
+                  </div>
+          
+                  <div class="description">
+                        <span>Áo mùa hè</span>
+                        <span>Áo thun</span>
+                      </div>
+              
+                      <div class="quantity">
+                        <button class="minus-btn" type="button" name="button">
+                          <img src="img/icon/minus.svg" alt="" />
+                        </button>
+                        <input type="text" name="name" value="1">
+                        <button class="plus-btn" type="button" name="button">
+                            <img src="img/icon/plus.svg" alt="" />
+                        </button>
+                      </div>
+              
+                      <div class="total-price">
+                          100000</div>
+                        <div class="currency">VNĐ</div>
+            </div>
+
+            <div class="sum-price">
+                <span style="margin-right:50px">Tổng:</span>
+                <span class="so-luong">3</span>
+                <span class="tong-tien">300000</span>
+                <span>VNĐ</span>   
+            </div>
+            
+            <div class="button-xac-nhan">
+                    <button type="button" id="button-cart" class="btn btn-primary btn-lg btn-block">
+                            Xác nhận
+                    </button>
+            </div>
+
+
+              <script type="text/javascript">
+                $('.minus-btn').on('click', function(e) {
+                      e.preventDefault();
+                      var $this = $(this);
+                      var $input = $this.closest('div').find('input');
+                      var value = parseInt($input.val());
+          
+                      if (value > 1) {
+                          value = value - 1;
+                      } else {
+                          value = 0;
+                      }
+                      
+                      var tien = parseInt($(this).parent().parent().children(".total-price").text())-100000;
+                      if (tien > 0){
+                        $(this).parent().parent().children(".total-price").text(tien.toString());
+                      }
+                        $input.val(value);
+          
+                  });
+          
+                  $('.plus-btn').on('click', function(e) {
+                      e.preventDefault();
+                      var $this = $(this);
+                      var $input = $this.closest('div').find('input');
+                      var value = parseInt($input.val());
+                        
+                      
+                      if (value < 100) {
+                        value = value + 1;
+                      } else {
+                          value = 100;
+                      }
+
+                      
+                      var tien = parseInt($(this).parent().parent().children(".total-price").text())+100000;
+
+                      $(this).parent().parent().children(".total-price").text(tien.toString());
+                      $input.val(value);
+                  });
+          
+                $('.like-btn').on('click', function() {
+                  $(this).toggleClass('is-active');
+                });
+              </script>
+        </div>
+       
+</div>
+<section>
+        <footer>
+            <div class="qhuy-container">
+                <div class="footer-content">
+                    <div class="div-header">
+                        <div class="col1">
+                            <img src="img/logo/logo-large.png">
+                        </div>
+                        <div class="col2">
+                            <ul>
+                                <li><strong>Công Ty TNHH TM Và DV Bán Áo Online</strong></li>                                    
+                                <li><strong>Địa Chỉ:</strong> 99 Đường Trần Hưng Đạo, Cầu Ông Lãnh, Quận 1, TPHCM </li>
+                            </ul>
+                        </div>
+                        <div class="col3">
+                            <ul>
+                                <li><strong>SĐT: </strong>0933.333.444 - 0903.777.888</li>
+                                <li><strong>Email: </strong>banaoonline@gmail.com</li>
+                                <li><strong>Copyright &copy;, All right reserved.</strong></li>
+                            </ul>
+                        </div>
+
+                        <div style="clear: both;"></div>
+                 </div>
+                </div>
+            </div>
+        </footer>
+    </section>
+</body>
+

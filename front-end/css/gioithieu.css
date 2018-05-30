@@ -1,0 +1,28 @@
+.gioi-thieu-content{
+    color: black;
+    width: 90%;
+    margin: 0px auto;
+}
+
+.gioi-thieu-content img{
+    display: block;
+    margin: 0px auto;
+}
+
+.gioi-thieu-content #hinh1{
+    width: 40%;
+}
+
+.gioi-thieu-content #hinh3{
+    width: 60%;
+    margin-bottom: 25px;
+}
+
+.gioi-thieu-content p{
+    margin-left: 22px;
+}
+
+.gioi-thieu-content ul li{
+    list-style: disc;
+    margin-left: 15px;
+}
