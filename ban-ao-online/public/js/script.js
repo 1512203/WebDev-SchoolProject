@@ -113,9 +113,18 @@ $(document).ready(function() {
         });
     });
 
-
-    $('.col-3').on('click', function(){
-        $('.qhuy-see-detail').css('display', 'block');
+    // See product's detail
+    $('.col-3').on('click', function() {
+        var prodID = $(this).children('p.qhuy-productid-hidden').text();
+        console.log(prodID);
+        $.get('/product/'+prodID, function(data, status) {
+            $('.qhuy-see-detail .qhuy-product-thumb img').attr('src', data.pathToImg);
+            $('.qhuy-see-detail .qhuy-product-desp h1.title').text(data.productName);
+            $('.qhuy-see-detail .qhuy-product-desp ul.list-unstyled li.qhuy-product-style-detail span').text(data.Style.styleName);
+            $('.qhuy-see-detail .qhuy-product-desp ul.list-unstyled li.qhuy-product-status-detail span').text(data.availProducts);
+            $('.qhuy-see-detail .qhuy-product-desp ul.list-unstyled li.qhuy-product-price-detail h2').text(data.productPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " VNĐ");
+            $('.qhuy-see-detail').css('display', 'block');
+        });
     });
 
     var w = $('.qhuy-products .row .col-3.qhuy-root-item').height();

@@ -3,49 +3,28 @@ var router = express.Router();
 var controllers = require('../database/controllers');
 var stylesController = controllers.stylesController;
 var productsController = controllers.productsController;
+var extractListOfStyleNamesHelper = require('./extractListOfStyleNames-helper');
+var extractListOfProductsByRowsHelper = require('./extractListOfProductsByRows-helper.js');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
 	stylesController.getAllStyleNames({}, function(error, styles) {
 		console.log(error);
 		if (error) {
-			res.status(400).send({message: 'Cannot find the data'});
+			res.status(400).send({message: 'Cannot find the list of styles'});
 		}
 		else {
-			let styleNames = [];
-			for (let i = 0; i < styles.length; ++i) {
-				styleNames.push({
-					name: styles[i].dataValues.styleName,
-					id: styles[i].dataValues.id,
-				});
-			}
-			
-			productsController.getAllProducts({}, function(error, products) {
-				if (error) {
-					res.status(400).send({message: 'Cannot find the data'});
+            var styleList = extractListOfStyleNamesHelper.extractListOfStyleNames(styles);
+            productsController.getAllProducts({}, function(error, products) {
+                if (error) {
+					res.status(400).send({message: 'Cannot find the list of products'});
 				}
 				else {
-					let productList = [];
-					let nProductsInARow = 4;
-					for (let i = 0, k = 0; i < products.length; i += nProductsInARow, k += 1) {
-						productList.push([]);
-						console.log(productList, k);
-						for (let j = 0; i+j < products.length && j < nProductsInARow; ++j) {
-							productList[k].push({
-								productID: products[i+j].dataValues.id,
-								productName: products[i+j].dataValues.productName,
-								productPrice: products[i+j].dataValues.productPrice,
-								productImage: products[i+j].dataValues.pathToImg,
-								isRootItem: (i+j == 0),
-							});
-						}
-						console.log(productList[k]);
-					}
-					console.log(productList);
+                    var productList = extractListOfProductsByRowsHelper.extractListOfProductsByRows(products);
 					res.render('shop/index', {
 						title: 'Bán áo online',
 						isNotLogin: true,
-						listOfStyles: styleNames,
+						listOfStyles: styleList,
 						listOfProducts: productList,
 					});
 				}
@@ -54,26 +33,15 @@ router.get('/', function(req, res, next) {
 	});
 });
 
-router.get('/style/:id', function(req, res, next) {
-	stylesController.getAllStyleNames({}, function(error, styles) {
-		console.log(error);
-		if (error) {
-			res.status(400).send({message: 'Cannot find the data'});
-		}
-		else {
-			let styleNames = [];
-			for (let i = 0; i < styles.length; ++i) {
-				styleNames.push({
-					name: styles[i].dataValues.styleName,
-					id: styles[i].dataValues.id,
-				});
-			}
-			res.render('shop/index', {
-				title: 'Bán áo online',
-				isNotLogin: true,
-				styleLists: styleNames,
-			});
-		}
-	});
+router.get('/product/:id', function(req, res, next) {
+    console.log(req.params.id);
+    productsController.findProductByID(req.params.id, function(error, product) {
+        if (error) {
+            res.status(400).send({message: 'Cannot find product by id'});
+        }
+        else {
+            res.status(200).send(product.dataValues);
+        }
+    });
 });
 module.exports = router;

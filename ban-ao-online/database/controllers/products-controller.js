@@ -1,8 +1,8 @@
 var productsModel = require('../models').Product;
+var stylesModel = require('../models').Style;
 
 module.exports = {
     getAllProducts(constraints, done) {
-        console.log("Actual run here");
         return productsModel
             .findAll({
                 where: constraints,
@@ -13,5 +13,22 @@ module.exports = {
             .catch(function(error) {
                 done(error);
             });
+    },
+    findProductByID(productID, done) {
+        return productsModel
+                .findOne({
+                    where: {
+                        id: productID,
+                    },
+                    include: [{
+                        model: stylesModel,
+                    }],
+                })
+                .then(function(product) {
+                    done(null, product);
+                })
+                .catch(function(error) {
+                    done(error);
+                });
     }
 };

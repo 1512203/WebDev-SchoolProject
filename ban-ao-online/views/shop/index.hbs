@@ -116,12 +116,13 @@
 				<div class="row">
 					{{#each this}}
 						<div class="col-3 {{#if this.isRootItem}}qhuy-root-item{{/if}}">
+                            <p class="qhuy-productid-hidden" style="display: none;">{{this.productID}}</p>
 							<a href="#">
 								<div class="qhuy-product-thumb-before-click">
 									<img src="{{this.productImage}}" alt="">
 								</div>
 								<div class="qhuy-product-desp-before-click">
-									<span class="qhuy-product-price-before-click">{{this.productPrice}}d</span>
+									<span class="qhuy-product-price-before-click">{{this.productPrice}} VNĐ</span>
 									<span class="qhuy-product-name-before-click">{{this.productName}}</span>
 								</div>
 							</a>
@@ -154,17 +155,17 @@
 
 		<div class="qhuy-container">
 			<div class="qhuy-product-thumb">
-				<img src="img/products/shirt-1.jpg" alt="thumbnail">
+				<img src="" alt="thumbnail">
 			</div>
 	<div class="qhuy-product-desp">                        
 		<div class="btn-group hide">
-			<h1 class="title" style="color:#0bb395;">Áo mùa hè</h1>
+			<h1 class="title" style="color:#0bb395;"></h1>
 			<ul class="list-unstyled hide">
-				<li>Mã sản phẩm: áo phông</li>
-				<li>Tình trạng: Còn hàng</li>
+				<li class="qhuy-product-style-detail">Kiểu áo: <span></span></li>
+				<li class="qhuy-product-status-detail">Số lượng còn lại: <span></span></li>
 			</ul>
 			<ul class="list-unstyled">
-				<li>
+				<li class="qhuy-product-price-detail">
 					<h2 style="color:red;">100.000 VNĐ</h2>
 				</li>
 				</ul>
