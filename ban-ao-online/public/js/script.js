@@ -127,11 +127,4 @@ $(document).ready(function() {
         });
     });
 
-    var w = $('.qhuy-products .row .col-3.qhuy-root-item').height();
-    $('.qhuy-products .row .col-3').height(w);
-
-    $(window).resize(function() {
-        var w = $('.qhuy-products .row .col-3.qhuy-root-item').height();
-        $('.qhuy-products .row .col-3').height(w);
-    });    
 });
