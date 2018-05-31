@@ -4,6 +4,11 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+var session = require('express-session');
+var passport = require('passport');
+var flash = require('connect-flash');
+var validator = require('express-validator');
+
 var expresshbs = require('express-handlebars');
 var paginateHelper = require('express-handlebars-paginate');
 
@@ -22,6 +27,8 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+require('./config/passport');
+
 // view engine setup
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
@@ -29,6 +36,7 @@ app.set('view engine', 'hbs');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(validator());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
