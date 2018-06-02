@@ -1,116 +1,15 @@
-<div id="qhuy-login-form" class="qhuy-modal">
-	<form class="qhuy-modal-content qhuy-animate">
-		<div class="qhuy-img-container">
-			<span class="qhuy-close" title="Close Modal">&times;</span>
-		</div>
-		<div class="qhuy-container">
-			<label for="usrname"><b>Tên đăng nhập</b></label>
-			<input type="text" placeholder="vd (admin account): ngquochuy123" name="usrname" required>
-			<label for="psw"><b>Mặt khẩu</b></label>
-			<input type="password" placeholder="vd (admin account): 123456" name="psw" required>
-			<button type="submit">Đăng nhập</button>
-			<label>
-				<input type="checkbox" checked="checked" name="remember">
-				Nhớ mặt khẩu
-			</label>
-		</div>
-		<div class="qhuy-container qhuy-footbox">
-			<button type="button" class="qhuy-cancelBtn">Hủy</button>
-			<span class="qhuy-psw">Quên mật khẩu?</span>
-		</div>
-	</form>
-</div>
+{{#if login}}
+{{else}}
+	{{>loginForm}}
+	{{>signupForm}}
+{{/if}}
 
-<div id="qhuy-signup-form" class="qhuy-modal">        
-	<form class="qhuy-modal-content qhuy-animate">
-		<div class="qhuy-img-container">
-			<span class="qhuy-close" title="Close Modal">&times;</span>
-		</div>
-		<div class="qhuy-container">
-			<label for="fullname"><b>Họ và tên</b></label>
-			<input type="text" placeholder="vd: Nguyen Quoc Huy" name="fullname" required>
-			<label for="usrname"><b>Tên đăng nhập</b></label>
-			<input type="text" placeholder="vd: ngquochuy123" name="usrname" required>
-			<label for="psw"><b>Mật khẩu</b></label>
-			<input type="password" placeholder="vd: ********" name="psw" required>
-			<label for="emailadd"><b>Email</b></label>
-			<input type="email" placeholder="vd: ngquochuy@abcmail.com" name="emailadd" required>
-			<label for="phonenb"><b>Số điện thoại</b></label>
-			<input type="tel" placeholder="vd: 0123 456 789" name="phonenb" required>
-			<button type="submit">Đăng ký</button>
-		</div>
-		<div class="qhuy-container qhuy-footbox">
-			<button type="button" class="qhuy-cancelBtn">Hủy</button>
-		</div>
-	</form>
-</div>
-
-<section class="qhuy-top-menu">
-	<div class="qhuy-container">
-		<nav class="qhuy-topside-menu">
-			<ul>
-				<li class="qhuy-user"><a href="thietkeao.html">Thiết kế áo</a></li>
-				<li class="qhuy-user"><a href="index.html">Sản phẩm</a></li>
-				<li class="qhuy-user"><a href="gioithieu.html">Giới thiệu</a></li>
-				<li class="qhuy-user"><a href="hoptac.html">Hợp tác</a></li>
-				<li class="qhuy-user"><a href="huongdan.html">Hướng dẫn</a></li>
-				<li class="qhuy-user qhuy-end-menu"><a href="lienhe.html">Liên hệ</a></li>
-			</ul>
-
-			<div class="menu-search">
-				<form>
-					<input class="form-control" placeholder="Tìm kiếm" id="txt_global_search" value="" type="text">
-					<button type="button" id="btn-search">
-						<img src="/img/icon/search.png" >
-					</button>   
-				</form>                           
-			</div>
-		</nav>
-	</div>
-</section>
-
-<section class="qhuy-slides-and-instruction qhuy-user">
-	<div class="qhuy-container">
-		<div class="qhuy-slides">
-			<div class="qhuy-prev">
-				<img src="/img/arrow-left.png" alt="Prev" id="prev">
-			</div>
-			<div class="qhuy-slider">
-				<div class="qhuy-slide">
-					<img src="/img/slides/slide-1.jpg" alt="slide">
-				</div>
-				<div class="qhuy-slide">
-					<img src="/img/slides/slide-2.jpg" alt="slide">
-				</div>
-				<div class="qhuy-slide">
-					<img src="/img/slides/slide-3.jpg" alt="slide">
-				</div>
-			</div>
-			<div class="qhuy-next">
-				<img src="/img/arrow-right.png" alt="Next" id="next">
-			</div>
-		</div>
-	</div>
-</section>
+{{>topMenu}}
+{{>slide}}
 
 <section id="qhuy-main-content " class="qhuy-user">
 	<div class="qhuy-container">
-		<div id="qhuy-side-menu">
-			<nav>
-				<ul>
-					<li id="side-menu-head">Danh mục</li>
-					<li><a href="thietkeao.html">Thiết kế áo</a></li>
-					<li><a href="#">Tất cả sản phẩm</a></li>
-					<li><a href="#">Sản phẩm mới</a></li>
-					<li><a href="#">Sản phẩm xem nhiều nhất</a></li>
-					<li><a href="#">Sản phẩm bán chạy nhất</a></li>
-					<li><a href="#">Mẫu áo đẹp</a></li>
-					{{#each listOfStyles}}
-						<li><a href="/style/{{this.id}}">&nbsp;&bull; {{this.name}}</a></li>
-					{{/each}}
-			</nav>
-		</div>
-		
+        {{>sideMenu}}
 		<div class="qhuy-products">
 			{{#each listOfProducts}}
 				<div class="row">
@@ -147,53 +46,4 @@
 	</div>
 </section>
 
-<div class="qhuy-see-detail qhuy-modal">
-	<div class="qhuy-modal-content qhuy-animate">
-		<div class="qhuy-img-container">
-			<span class="qhuy-close" title="Close Modal">&times;</span>
-		</div>
-
-		<div class="qhuy-container">
-			<div class="qhuy-product-thumb">
-				<img src="" alt="thumbnail">
-			</div>
-	<div class="qhuy-product-desp">                        
-		<div class="btn-group hide">
-			<h1 class="title" style="color:#0bb395;"></h1>
-			<ul class="list-unstyled hide">
-				<li class="qhuy-product-style-detail">Kiểu áo: <span></span></li>
-				<li class="qhuy-product-status-detail">Số lượng còn lại: <span></span></li>
-			</ul>
-			<ul class="list-unstyled">
-				<li class="qhuy-product-price-detail">
-					<h2 style="color:red;">100.000 VNĐ</h2>
-				</li>
-				</ul>
-					<div id="product">
-						<div class="form-group required">
-						<label class="control-label" for="input-option1632">Size áo</label>
-						<select name="option[1632]" id="input-option1632" class="form-control">
-								<option value=""> --- Chọn --- </option>
-								<option value="29921">S</option>
-								<option value="29922">M </option>
-								<option value="29920">L </option>
-								<option value="29919">XL</option>
-								<option value="29918">XXL</option>
-								<option value="29923">XXXL </option>
-						</select>
-					</div>                                                                                                                                                    <div class="form-group">
-				<label class="control-label" for="input-quantity">Số lượng</label>
-				<input name="quantity" value="1" size="2" id="input-quantity" class="form-control" type="text">
-				<input name="product_id" value="1874" type="hidden">
-				<br>
-
-				<button type="button" id="button-cart" data-loading-text="Đang tải..." class="btn btn-primary btn-lg btn-block">Mua hàng</button>
-				</div>
-					</div>
-
-			</div>
-		</div>      
-	</div>
-</div>
-</div>
-
+{{>productDetail}}

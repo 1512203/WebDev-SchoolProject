@@ -1,0 +1,28 @@
+<div id="qhuy-login-form" class="qhuy-modal">
+	<div class="alert alert-danger" style="display: none;"></div>
+	<form class="qhuy-modal-content qhuy-animate" action="/user/login" method="post">
+		<div class="qhuy-img-container">
+			<span class="qhuy-close" title="Close Modal">&times;</span>
+		</div>
+		<div class="qhuy-container">
+			<label for="email"><b>Email</b></label>
+			<input type="text" placeholder="vd: abc@xyz.com" name="email" required>
+			<label for="password"><b>Mặt khẩu</b></label>
+			<input type="password" placeholder="vd: ******" name="password" required>
+            <input class="csrfToken" type="hidden" name="_csrf" value="{{ csrfToken }}">
+            <div class="alert">
+                  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+            </div>
+			<button type="submit">Đăng nhập</button>
+			<label>
+				<input type="checkbox" checked="checked" name="remember">
+				Nhớ mặt khẩu
+			</label>
+		</div>
+		<div class="qhuy-container qhuy-footbox">
+			<button type="button" class="qhuy-cancelBtn">Hủy</button>
+			<span class="qhuy-psw">Quên mật khẩu?</span>
+		</div>
+	</form>
+</div>
+

@@ -211,7 +211,7 @@ header a {
 }
 
 div.qhuy-account-option {
-    display: none;
+    display: block;
 }
 
 .qhuy-topside-menu {
@@ -784,4 +784,73 @@ section.qhuy-admin {
 #hello a:hover{
     color: #00338F;
     border-bottom: #03899c 0px solid;
+}
+
+/* The alert message box */
+.alert {
+    padding: 20px;
+    background-color: #f44336; /* Red */
+    color: white;
+    margin-bottom: 15px;
+}
+
+/* The close button */
+.alert .closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+
+/* When moving the mouse over the close button */
+.alert .closebtn:hover {
+    color: black;
+}
+
+.thong-tin-tai-khoan input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin-top: 0px;
+    margin-bottom: 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.thong-tin-tai-khoan input[type=submit] {
+    width: 50%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 10px auto;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+}
+
+.thong-tin-tai-khoan input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+.thong-tin-tai-khoan{
+    color: black;
+    width: 60%;
+    margin: 50px auto 70px auto;
+}
+
+.edit{
+    float:right;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+    background-color: #45a049;
 }

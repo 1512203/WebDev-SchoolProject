@@ -4,7 +4,6 @@ module.exports = {
         let nProductsInARow = 4;
         for (let i = 0, k = 0; i < productsFromSequelize.length; i += nProductsInARow, k += 1) {
             productList.push([]);
-            console.log(productList, k);
             for (let j = 0; i+j < productsFromSequelize.length && j < nProductsInARow; ++j) {
                 productList[k].push({
                     productID: productsFromSequelize[i+j].dataValues.id,
@@ -15,7 +14,6 @@ module.exports = {
                     productStyleID: productsFromSequelize[i+j].dataValues.productStyleID,
                 });
             }
-            console.log(productList[k]);
         }
         return productList;
     }

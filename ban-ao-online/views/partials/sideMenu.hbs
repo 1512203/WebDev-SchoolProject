@@ -1,0 +1,15 @@
+<div id="qhuy-side-menu">
+    <nav>
+        <ul>
+            <li id="side-menu-head">Danh mục</li>
+            <li><a href="/design">Thiết kế áo</a></li>
+            <li><a href="#">Tất cả sản phẩm</a></li>
+            <li><a href="#">Sản phẩm mới</a></li>
+            <li><a href="#">Sản phẩm xem nhiều nhất</a></li>
+            <li><a href="#">Sản phẩm bán chạy nhất</a></li>
+            <li><a href="#">Mẫu áo đẹp</a></li>
+            {{#each listOfStyles}}
+                <li><a href="/style/{{this.id}}">&nbsp;&bull; {{this.name}}</a></li>
+            {{/each}}
+    </nav>
+</div>

@@ -11,19 +11,20 @@ var validator = require('express-validator');
 
 var expresshbs = require('express-handlebars');
 var paginateHelper = require('express-handlebars-paginate');
+var pgStore = require('connect-pg-simple');
 
 var hbs = expresshbs.create({
-    extname: 'hbs',
+    extname         : 'hbs',
 	defaultLayout	: 'layout', 
 	layoutsDir		: __dirname + '/views/layouts/',
 	partialsDir		: __dirname + '/views/partials/',
 	helpers			: {
-		paginate: paginateHelper.createPagination,
+		paginate    : paginateHelper.createPagination,
 	},
 });
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var usersRouter = require('./routes/user');
 
 var app = express();
 
@@ -38,10 +39,29 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(validator());
 app.use(cookieParser());
+app.use(session({
+  store: new (pgStore(session))({
+    conString: 'postgres://postgres:abc@localhost:5432/db-banaoonline',
+  }),
+  secret: 'MySuperSecret',
+  resave: false,
+  saveUninitialized: false,
+  cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 },
+}));
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(function(req, res, next) {
+  res.locals.login = req.isAuthenticated();
+  res.locals.session = req.session;
+  next();
+});
+
+
+app.use('/user', usersRouter);
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
