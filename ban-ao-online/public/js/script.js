@@ -63,11 +63,11 @@ $(document).ready(function() {
                 for (let i = 0; i < data.messages.length; ++i) {
                     errorMess += "<p class=\"errorMess\">" + data.messages[i] + "</p>";
                 }
-                $('#qhuy-login-form div.alert').text(errorMess);
-                $('#qhuy-login-form div.alert').css('display', 'block');
+                $('div.alert').text(errorMess);
+                $('div.alert').css('display', 'block');
             }
             else {
-                $('#qhuy-login-form div.alert').css('display', 'none');
+                $('div.alert').css('display', 'none');
             }
         });
         $('#qhuy-login-form').css('display', 'block');
@@ -94,11 +94,11 @@ $(document).ready(function() {
                 for (let i = 0; i < data.messages.length; ++i) {
                     errorMess += "<p class=\"errorMess\">" + data.messages[i] + "</p>";
                 }
-                $('#qhuy-signup-form div.alert').text(errorMess);
-                $('#qhuy-signup-form div.alert').css('display', 'block');
+                $('div.alert').text(errorMess);
+                $('div.alert').css('display', 'block');
             }
             else {
-                $('#qhuy-signup-form div.alert').css('display', 'none');
+                $('div.alert').css('display', 'none');
             }
         });
         $('#qhuy-signup-form').css('display', 'block');

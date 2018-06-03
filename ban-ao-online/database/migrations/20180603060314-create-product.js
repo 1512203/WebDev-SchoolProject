@@ -20,6 +20,9 @@ module.exports = {
 			as: 'productStyleID',
 		},
 	  },
+      productDescription: {
+        type: Sequelize.TEXT
+      },
       productPrice: {
         type: Sequelize.FLOAT
       },
@@ -28,6 +31,15 @@ module.exports = {
       },
       pathToImg: {
         type: Sequelize.STRING
+      },
+      postedBy: {
+        type: Sequelize.INTEGER,
+        onDelete: 'SET NULL',
+        references: {
+          model: 'Users',
+          key: 'id',
+          as: 'postedBy',
+        },
       },
       createdAt: {
         allowNull: false,

@@ -1,11 +1,59 @@
 var express = require('express');
 var router = express.Router();
 var passport = require('passport');
-
+var controllers = require('../database/controllers');
+var stylesController = controllers.stylesController;
+var productsController = controllers.productsController;
+var extractListOfStyleNamesHelper = require('./helpers/extractListOfStyleNames-helper');
+var extractListOfProductsByRowsHelper = require('./helpers/extractListOfProductsByRows-helper.js');
 var csrf = require('csurf');
 
 var csrfProtection = csrf();
 router.use(csrfProtection);
+
+router.get('/loginFail', isNotLoggedIn, function(req, res, next) {
+    stylesController.getAllStyleNames({}, function(error, styles) {
+        if (error) res.status(400).send({message: 'Cannot find the list of styles'});
+        else {
+            var styleList = extractListOfStyleNamesHelper.extractListOfStyleNames(styles);
+            productsController.getAllProducts({}, function(error, products) {
+                if (error) res.status(400).send({message: 'Cannot find the list of products'});
+                else {
+                    var productList = extractListOfProductsByRowsHelper.extractListOfProductsByRows(products);
+                    res.render('shop/index', {
+                        title: 'Bán áo online',
+                        listOfStyles: styleList,
+                        listOfProducts: productList,
+                        errorMess: 'Fail to login',
+                        hasError: true,
+                    });
+                }
+            });
+        }
+    });
+});
+
+router.get('/signupFail', isNotLoggedIn, function(req, res, next) {
+    stylesController.getAllStyleNames({}, function(error, styles) {
+        if (error) res.status(400).send({message: 'Cannot find the list of styles'});
+        else {
+            var styleList = extractListOfStyleNamesHelper.extractListOfStyleNames(styles);
+            productsController.getAllProducts({}, function(error, products) {
+                if (error) res.status(400).send({message: 'Cannot find the list of products'});
+                else {
+                    var productList = extractListOfProductsByRowsHelper.extractListOfProductsByRows(products);
+                    res.render('shop/index', {
+                        title: 'Bán áo online',
+                        listOfStyles: styleList,
+                        listOfProducts: productList,
+                        errorMess: 'Fail to signup',
+                        hasError: true,
+                    });
+                }
+            });
+        }
+    });
+});
 
 router.get('/signup', isNotLoggedIn, function(req, res, next) {
   var messages = req.flash('error');
@@ -16,34 +64,11 @@ router.get('/signup', isNotLoggedIn, function(req, res, next) {
   });
 });
 
-router.post('/signup', isNotLoggedIn, function(req, res, next) {
-    passport.authenticate('local.signup', {
-            failureFlash: true,
-        }, function(err, user, info) {
-            if (err) {
-                return res.send({ 
-                    loginSuccess: false,
-                    message: err, 
-                });
-            }
-            if (!user) {
-                return res.send({ 
-                    loginSuccess: false,
-                    message: info,
-                });
-            }
-            req.logIn(user, function(err) {
-                if (err) {
-                    return next(err);
-                }
-                res.render('user/profile.hbs', {
-                    isNotLogin: false,
-                    email: 'abc@xyz.com',
-                });
-            });
-        }
-    )(req, res, next);
-});
+router.post('/signup', isNotLoggedIn, passport.authenticate('local.signup', {
+  successRedirect: './profile',
+  failureRedirect: '/signupFail',
+  failureFlash: true,
+}));
 
 router.get('/login', isNotLoggedIn, function(req, res, next) {
   var messages = req.flash('error');
@@ -54,9 +79,9 @@ router.get('/login', isNotLoggedIn, function(req, res, next) {
   });
 });
 
-router.post('/login', passport.authenticate('local.signin', {
+router.post('/login', isNotLoggedIn, passport.authenticate('local.signin', {
   successRedirect: './profile',
-  failureRedirect: './login',
+  failureRedirect: './loginFail',
   failureFlash: true,
 }));
 
@@ -77,8 +102,10 @@ router.get('/logout', isLoggedIn, function(req, res, next) {
   res.redirect('/');
 });
 
-
 module.exports = router;
+
+
+
 
 function isLoggedIn (req, res, next) {
   if (req.isAuthenticated()) {

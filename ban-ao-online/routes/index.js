@@ -8,21 +8,17 @@ var extractListOfStyleNamesHelper = require('./helpers/extractListOfStyleNames-h
 var extractListOfProductsByRowsHelper = require('./helpers/extractListOfProductsByRows-helper.js');
 
 router.get('/', function(req, res, next) {
-    usersController.findUserById(req.session.passport.user, function(error, user) {
+    var usrID = req.session.passport ? req.session.passport.user : (-1);
+    usersController.findUserById(usrID, function(error, user) {
         var curEmail = "";
-        if (user) {
-            curEmail = user.dataValues.email;
-        }
+        if (user) curEmail = user.dataValues.email;
+
         stylesController.getAllStyleNames({}, function(error, styles) {
-            if (error) {
-                res.status(400).send({message: 'Cannot find the list of styles'});
-            }
+            if (error) res.status(400).send({message: 'Cannot find the list of styles'});
             else {
                 var styleList = extractListOfStyleNamesHelper.extractListOfStyleNames(styles);
                 productsController.getAllProducts({}, function(error, products) {
-                    if (error) {
-                        res.status(400).send({message: 'Cannot find the list of products'});
-                    }
+                    if (error) res.status(400).send({message: 'Cannot find the list of products'});
                     else {
                         var productList = extractListOfProductsByRowsHelper.extractListOfProductsByRows(products);
                         res.render('shop/index', {
@@ -39,11 +35,10 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/design', function(req, res, next) {
+    var usrID = req.session.passport ? req.session.passport.user : (-1);
     usersController.findUserById(req.session.passport.user, function(error, user) {
         var curEmail = "";
-        if (user) {
-            curEmail = user.dataValues.email;
-        }
+        if (user) curEmail = user.dataValues.email;
         res.render('shop/design', {
             title: 'Bán áo online',
             email: curEmail,
@@ -52,11 +47,10 @@ router.get('/design', function(req, res, next) {
 });
 
 router.get('/cooperation', function(req, res, next) {
+    var usrID = req.session.passport ? req.session.passport.user : (-1);
     usersController.findUserById(req.session.passport.user, function(error, user) {
         var curEmail = "";
-        if (user) {
-            curEmail = user.dataValues.email;
-        }
+        if (user) curEmail = user.dataValues.email;
         res.render('shop/cooperation', {
             title: 'Bán áo online',
             email: curEmail,
@@ -65,11 +59,10 @@ router.get('/cooperation', function(req, res, next) {
 });
 
 router.get('/contact', function(req, res, next) {
+    var usrID = req.session.passport ? req.session.passport.user : (-1);
     usersController.findUserById(req.session.passport.user, function(error, user) {
         var curEmail = "";
-        if (user) {
-            curEmail = user.dataValues.email;
-        }
+        if (user) curEmail = user.dataValues.email;
         res.render('shop/contact', {
             title: 'Bán áo online',
             email: curEmail,
@@ -78,11 +71,10 @@ router.get('/contact', function(req, res, next) {
 });
 
 router.get('/introduction', function(req, res, next) {
+    var usrID = req.session.passport ? req.session.passport.user : (-1);
     usersController.findUserById(req.session.passport.user, function(error, user) {
         var curEmail = "";
-        if (user) {
-            curEmail = user.dataValues.email;
-        }
+        if (user) curEmail = user.dataValues.email;
         res.render('shop/introduction', {
             title: 'Bán áo online',
             email: curEmail,
@@ -91,16 +83,30 @@ router.get('/introduction', function(req, res, next) {
 });
 
 router.get('/instruction', function(req, res, next) {
+    var usrID = req.session.passport ? req.session.passport.user : (-1);
     usersController.findUserById(req.session.passport.user, function(error, user) {
         var curEmail = "";
-        if (user) {
-            curEmail = user.dataValues.email;
-        }
+        if (user) curEmail = user.dataValues.email;
         res.render('shop/instruction', {
             title: 'Bán áo online',
             email: curEmail,
         });
     });
+});
+
+router.get('/shoppingcartdetail', function(req, res, next) {
+    var usrID = req.session.passport ? req.session.passport.user : (-1);
+    usersController.findUserById(req.session.passport.user, function(error, user) {
+        var curEmail = "";
+        if (user) curEmail = user.dataValues.email;
+        res.render('shop/shoppingCartDetail', {
+            title: 'Bán áo online',
+            email: curEmail,
+        });
+    });
+});
+
+router.get('/addtocart/:id', function(req, res, next) {
 });
 
 router.get('/product/:id', function(req, res, next) {
@@ -114,21 +120,9 @@ router.get('/product/:id', function(req, res, next) {
     });
 });
 
-router.get('/shoppingcartdetail', function(req, res, next) {
-    usersController.findUserById(req.session.passport.user, function(error, user) {
-        var curEmail = "";
-        if (user) {
-            curEmail = user.dataValues.email;
-        }
-        res.render('shop/shoppingCartDetail', {
-            title: 'Bán áo online',
-            email: curEmail,
-        });
-    });
-});
-
 router.get('/style/:id', function(req, res, next) {
-    usersController.findUserById(req.session.passport.user, function(error, user) {
+    var usrID = req.session.passport ? req.session.passport.user : (-1);
+    usersController.findUserById(usrID, function(error, user) {
         var curEmail = "";
         if (user) {
             curEmail = user.dataValues.email;

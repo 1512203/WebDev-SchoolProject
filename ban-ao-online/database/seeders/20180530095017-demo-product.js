@@ -125,15 +125,6 @@ module.exports = {
 			productStyleID: 1,
 			productPrice: 100000.0,
 			availProducts: 10,
-			pathToImg: "/img/products/shirt-13.jpg",
-			createdAt: Sequelize.literal('NOW()'),
-			updatedAt: Sequelize.literal('NOW()')
-		},
-		{
-			productName: "Ao mua he",
-			productStyleID: 1,
-			productPrice: 100000.0,
-			availProducts: 10,
 			pathToImg: "/img/products/shirt-14.jpg",
 			createdAt: Sequelize.literal('NOW()'),
 			updatedAt: Sequelize.literal('NOW()')
@@ -161,7 +152,7 @@ module.exports = {
 			productStyleID: 1,
 			productPrice: 100000.0,
 			availProducts: 10,
-			pathToImg: "/img/products/shirt-17.jpg",
+			pathToImg: "/img/products/shirt-17.png",
 			createdAt: Sequelize.literal('NOW()'),
 			updatedAt: Sequelize.literal('NOW()')
 		},
@@ -179,7 +170,7 @@ module.exports = {
 			productStyleID: 1,
 			productPrice: 100000.0,
 			availProducts: 10,
-			pathToImg: "/img/products/shirt-19.jpg",
+			pathToImg: "/img/products/shirt-19.png",
 			createdAt: Sequelize.literal('NOW()'),
 			updatedAt: Sequelize.literal('NOW()')
 		},
@@ -188,7 +179,7 @@ module.exports = {
 			productStyleID: 1,
 			productPrice: 100000.0,
 			availProducts: 10,
-			pathToImg: "/img/products/shirt-20.jpg",
+			pathToImg: "/img/products/shirt-20.png",
 			createdAt: Sequelize.literal('NOW()'),
 			updatedAt: Sequelize.literal('NOW()')
 		},

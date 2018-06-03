@@ -1,0 +1,11 @@
+{{#if hasError}}
+<div class="qhuy-modal" style="display: block">
+    <div class="alert alert-danger">
+        {{errorMess}}
+          <span class="closebtn" onclick="
+                this.parentElement.parentElement.style.display='none';
+                window.location.replace('/');
+          ">&times;</span> 
+    </div>
+</div>
+{{/if}}
