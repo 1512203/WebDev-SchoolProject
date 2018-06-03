@@ -4,6 +4,7 @@ var passport = require('passport');
 var controllers = require('../database/controllers');
 var stylesController = controllers.stylesController;
 var productsController = controllers.productsController;
+var usersController = controllers.usersController;
 var extractListOfStyleNamesHelper = require('./helpers/extractListOfStyleNames-helper');
 var extractListOfProductsByRowsHelper = require('./helpers/extractListOfProductsByRows-helper.js');
 var csrf = require('csurf');
@@ -86,14 +87,24 @@ router.post('/login', isNotLoggedIn, passport.authenticate('local.signin', {
 }));
 
 router.get('/profile', isLoggedIn, function(req, res, next) {
-  res.render('user/profile', {
-    email: 'ngquochuy08@gmail.com',
-  });
+    var usrID = req.session.passport ? req.session.passport.user : (-1);
+    usersController.findUserById(req.session.passport.user, function(error, user) {
+        var curEmail = "";
+        if (user) curEmail = user.dataValues.email;
+          res.render('user/profile', {
+            email: curEmail,
+          });
+    });
 });
 
 router.get('/history', isLoggedIn, function(req, res, next) {
-    res.render('user/history', {
-        email: 'ngquochuy08@gmail.com',
+    var usrID = req.session.passport ? req.session.passport.user : (-1);
+    usersController.findUserById(req.session.passport.user, function(error, user) {
+        var curEmail = "";
+        if (user) curEmail = user.dataValues.email;
+          res.render('user/history', {
+            email: curEmail,
+          });
     });
 });
 

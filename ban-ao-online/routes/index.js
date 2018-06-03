@@ -4,6 +4,8 @@ var controllers = require('../database/controllers');
 var stylesController = controllers.stylesController;
 var productsController = controllers.productsController;
 var usersController = controllers.usersController;
+var cartsController = controllers.cartsController;
+var cartitemsController = controllers.cartitemsController;
 var extractListOfStyleNamesHelper = require('./helpers/extractListOfStyleNames-helper');
 var extractListOfProductsByRowsHelper = require('./helpers/extractListOfProductsByRows-helper.js');
 
@@ -99,6 +101,7 @@ router.get('/shoppingcartdetail', function(req, res, next) {
     usersController.findUserById(req.session.passport.user, function(error, user) {
         var curEmail = "";
         if (user) curEmail = user.dataValues.email;
+
         res.render('shop/shoppingCartDetail', {
             title: 'Bán áo online',
             email: curEmail,
@@ -107,6 +110,28 @@ router.get('/shoppingcartdetail', function(req, res, next) {
 });
 
 router.get('/addtocart/:id', function(req, res, next) {
+    var productID = req.params.id;
+
+    productsController.findProductByID(productID, function(err, product) {
+        if (err) return res.status(400).send({message: 'Cannot find the product'});
+
+        var cartID = req.session.cartID ? req.session.cartID : (-1);
+        if (cartID == -1) {
+            cartsController.createNewShoppingCart(function(error, cart) {
+                if (error) return res.status(400).send({message: 'Cannot create new cart'});
+                // Add product to cart
+                cartitemsController.addItemToCart(productID, cart.dataValues.id, function(error, cartitem) {
+                    res.redirect('/');
+                });
+            });
+        }
+        else {
+            // Add product to cart
+            cartitemsController.addItemToCart(productID, cartID, function(error, cartitem) {
+                res.redirect('/');
+            });
+        }
+    });
 });
 
 router.get('/product/:id', function(req, res, next) {

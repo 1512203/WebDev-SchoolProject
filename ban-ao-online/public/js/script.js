@@ -125,6 +125,7 @@ $(document).ready(function() {
             $('.qhuy-see-detail .qhuy-product-desp ul.list-unstyled li.qhuy-product-style-detail span').text(data.Style.styleName);
             $('.qhuy-see-detail .qhuy-product-desp ul.list-unstyled li.qhuy-product-status-detail span').text(data.availProducts);
             $('.qhuy-see-detail .qhuy-product-desp ul.list-unstyled li.qhuy-product-price-detail h2').text(data.productPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " VNĐ");
+            $('.qhuy-see-detail #product form').attr('action', '/addtocart/' + prodID);
             $('.qhuy-see-detail').css('display', 'block');
         });
     });
