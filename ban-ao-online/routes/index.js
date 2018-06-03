@@ -114,6 +114,19 @@ router.get('/product/:id', function(req, res, next) {
     });
 });
 
+router.get('/shoppingcartdetail', function(req, res, next) {
+    usersController.findUserById(req.session.passport.user, function(error, user) {
+        var curEmail = "";
+        if (user) {
+            curEmail = user.dataValues.email;
+        }
+        res.render('shop/shoppingCartDetail', {
+            title: 'Bán áo online',
+            email: curEmail,
+        });
+    });
+});
+
 router.get('/style/:id', function(req, res, next) {
     usersController.findUserById(req.session.passport.user, function(error, user) {
         var curEmail = "";
