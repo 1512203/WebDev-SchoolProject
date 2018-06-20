@@ -115,20 +115,27 @@ router.get('/addtocart/:id', function(req, res, next) {
     productsController.findProductByID(productID, function(err, product) {
         if (err) return res.status(400).send({message: 'Cannot find the product'});
 
-        var cartID = req.session.cartID ? req.session.cartID : (-1);
+        var cartID = Boolean(req.session.cartID) ? req.session.cartID : (-1);
         if (cartID == -1) {
             cartsController.createNewShoppingCart(function(error, cart) {
                 if (error) return res.status(400).send({message: 'Cannot create new cart'});
+                // Update cart session
+                req.session.cartID = cart.dataValues.id;
                 // Add product to cart
                 cartitemsController.addItemToCart(productID, cart.dataValues.id, function(error, cartitem) {
-                    res.redirect('/');
+                    cartsController.addItemToCart(cartitem.dataValues.cartID, function(error) {
+                        res.redirect('/');
+                    });
                 });
             });
         }
         else {
             // Add product to cart
             cartitemsController.addItemToCart(productID, cartID, function(error, cartitem) {
-                res.redirect('/');
+                cartsController.addItemToCart(cartitem.dataValues.cartID, function(error, cart) {
+                    res.redirect('/');
+                });
+                // res.redirect('/');
             });
         }
     });
