@@ -23,12 +23,37 @@ router.get('/', function(req, res, next) {
                     if (error) res.status(400).send({message: 'Cannot find the list of products'});
                     else {
                         var productList = extractListOfProductsByRowsHelper.extractListOfProductsByRows(products);
-                        res.render('shop/index', {
-                            title: 'Bán áo online',
-                            email: curEmail,
-                            listOfStyles: styleList,
-                            listOfProducts: productList,
-                        });
+                        var cartID = Boolean(req.session.cartID) ? req.session.cartID : (-1);
+                        if (cartID != -1) {
+                            cartsController.getCartInformation(cartID, function(error, cart) {
+                                var cartQuantity = 0, cartPrice = 0;
+                                if (Boolean(error)) {
+                                    // Do nothing here
+                                }
+                                else {
+                                    cartQuantity = cart.dataValues.totalQuantiles;
+                                    cartPrice = cart.dataValues.totalPrice;
+                                }
+                                res.render('shop/index', {
+                                    title: 'Bán áo online',
+                                    email: curEmail,
+                                    listOfStyles: styleList,
+                                    listOfProducts: productList,
+                                    cartQuantity: cartQuantity,
+                                    cartPrice: cartPrice,
+                                });
+                            });
+                        }
+                        else {
+                            res.render('shop/index', {
+                                title: 'Bán áo online',
+                                email: curEmail,
+                                listOfStyles: styleList,
+                                listOfProducts: productList,
+                                cartQuantity: 0,
+                                cartPrice: 0,
+                            });
+                        }
                     }
                 });
             }
@@ -38,74 +63,212 @@ router.get('/', function(req, res, next) {
 
 router.get('/design', function(req, res, next) {
     var usrID = req.session.passport ? req.session.passport.user : (-1);
-    usersController.findUserById(req.session.passport.user, function(error, user) {
+    usersController.findUserById(usrID, function(error, user) {
         var curEmail = "";
         if (user) curEmail = user.dataValues.email;
-        res.render('shop/design', {
-            title: 'Bán áo online',
-            email: curEmail,
-        });
+        var cartID = Boolean(req.session.cartID) ? req.session.cartID : (-1);
+        if (cartID != -1) {
+            cartsController.getCartInformation(cartID, function(error, cart) {
+                var cartQuantity = 0, cartPrice = 0;
+                if (Boolean(error)) {
+                    // Do nothing here
+                }
+                else {
+                    cartQuantity = cart.dataValues.totalQuantiles;
+                    cartPrice = cart.dataValues.totalPrice;
+                }
+                res.render('shop/design', {
+                    title: 'Bán áo online',
+                    email: curEmail,
+                    cartQuantity: cartQuantity,
+                    cartPrice: cartPrice,
+                });
+            });
+        }
+        else {
+            res.render('shop/design', {
+                title: 'Bán áo online',
+                email: curEmail,
+                cartQuantity: 0,
+                cartPrice: 0,
+            });
+        }
     });
 });
 
 router.get('/cooperation', function(req, res, next) {
     var usrID = req.session.passport ? req.session.passport.user : (-1);
-    usersController.findUserById(req.session.passport.user, function(error, user) {
+    usersController.findUserById(usrID, function(error, user) {
         var curEmail = "";
         if (user) curEmail = user.dataValues.email;
-        res.render('shop/cooperation', {
-            title: 'Bán áo online',
-            email: curEmail,
-        });
+        var cartID = Boolean(req.session.cartID) ? req.session.cartID : (-1);
+        if (cartID != -1) {
+            cartsController.getCartInformation(cartID, function(error, cart) {
+                var cartQuantity = 0, cartPrice = 0;
+                if (Boolean(error)) {
+                    // Do nothing here
+                }
+                else {
+                    cartQuantity = cart.dataValues.totalQuantiles;
+                    cartPrice = cart.dataValues.totalPrice;
+                }
+                res.render('shop/cooperation', {
+                    title: 'Bán áo online',
+                    email: curEmail,
+                    cartQuantity: cartQuantity,
+                    cartPrice: cartPrice,
+                });
+            });
+        }
+        else {
+            res.render('shop/cooperation', {
+                title: 'Bán áo online',
+                email: curEmail,
+                cartQuantity: 0,
+                cartPrice: 0,
+            });
+        }
     });
 });
 
 router.get('/contact', function(req, res, next) {
     var usrID = req.session.passport ? req.session.passport.user : (-1);
-    usersController.findUserById(req.session.passport.user, function(error, user) {
+    usersController.findUserById(usrID, function(error, user) {
         var curEmail = "";
         if (user) curEmail = user.dataValues.email;
-        res.render('shop/contact', {
-            title: 'Bán áo online',
-            email: curEmail,
-        });
+        var cartID = Boolean(req.session.cartID) ? req.session.cartID : (-1);
+        if (cartID != -1) {
+            cartsController.getCartInformation(cartID, function(error, cart) {
+                var cartQuantity = 0, cartPrice = 0;
+                if (Boolean(error)) {
+                    // Do nothing here
+                }
+                else {
+                    cartQuantity = cart.dataValues.totalQuantiles;
+                    cartPrice = cart.dataValues.totalPrice;
+                }
+                res.render('shop/contact', {
+                    title: 'Bán áo online',
+                    email: curEmail,
+                    cartQuantity: cartQuantity,
+                    cartPrice: cartPrice,
+                });
+            });
+        }
+        else {
+            res.render('shop/contact', {
+                title: 'Bán áo online',
+                email: curEmail,
+                cartQuantity: 0,
+                cartPrice: 0,
+            });
+        }
     });
 });
 
 router.get('/introduction', function(req, res, next) {
     var usrID = req.session.passport ? req.session.passport.user : (-1);
-    usersController.findUserById(req.session.passport.user, function(error, user) {
+    usersController.findUserById(usrID, function(error, user) {
         var curEmail = "";
         if (user) curEmail = user.dataValues.email;
-        res.render('shop/introduction', {
-            title: 'Bán áo online',
-            email: curEmail,
-        });
+        var cartID = Boolean(req.session.cartID) ? req.session.cartID : (-1);
+        if (cartID != -1) {
+            cartsController.getCartInformation(cartID, function(error, cart) {
+                var cartQuantity = 0, cartPrice = 0;
+                if (Boolean(error)) {
+                    // Do nothing here
+                }
+                else {
+                    cartQuantity = cart.dataValues.totalQuantiles;
+                    cartPrice = cart.dataValues.totalPrice;
+                }
+                res.render('shop/introduction', {
+                    title: 'Bán áo online',
+                    email: curEmail,
+                    cartQuantity: cartQuantity,
+                    cartPrice: cartPrice,
+                });
+            });
+        }
+        else {
+            res.render('shop/introduction', {
+                title: 'Bán áo online',
+                email: curEmail,
+                cartQuantity: 0,
+                cartPrice: 0,
+            });
+        }
     });
 });
 
 router.get('/instruction', function(req, res, next) {
     var usrID = req.session.passport ? req.session.passport.user : (-1);
-    usersController.findUserById(req.session.passport.user, function(error, user) {
+    usersController.findUserById(usrID, function(error, user) {
         var curEmail = "";
         if (user) curEmail = user.dataValues.email;
-        res.render('shop/instruction', {
-            title: 'Bán áo online',
-            email: curEmail,
-        });
+        var cartID = Boolean(req.session.cartID) ? req.session.cartID : (-1);
+        if (cartID != -1) {
+            cartsController.getCartInformation(cartID, function(error, cart) {
+                var cartQuantity = 0, cartPrice = 0;
+                if (Boolean(error)) {
+                    // Do nothing here
+                }
+                else {
+                    cartQuantity = cart.dataValues.totalQuantiles;
+                    cartPrice = cart.dataValues.totalPrice;
+                }
+                res.render('shop/instruction', {
+                    title: 'Bán áo online',
+                    email: curEmail,
+                    cartQuantity: cartQuantity,
+                    cartPrice: cartPrice,
+                });
+            });
+        }
+        else {
+            res.render('shop/instruction', {
+                title: 'Bán áo online',
+                email: curEmail,
+                cartQuantity: 0,
+                cartPrice: 0,
+            });
+        }
     });
 });
 
 router.get('/shoppingcartdetail', function(req, res, next) {
     var usrID = req.session.passport ? req.session.passport.user : (-1);
-    usersController.findUserById(req.session.passport.user, function(error, user) {
+    usersController.findUserById(usrID, function(error, user) {
         var curEmail = "";
         if (user) curEmail = user.dataValues.email;
 
-        res.render('shop/shoppingCartDetail', {
-            title: 'Bán áo online',
-            email: curEmail,
-        });
+        var cartID = Boolean(req.session.cartID) ? req.session.cartID : (-1);
+        if (cartID != -1) {
+            cartsController.getCartInformation(cartID, function(error, cart) {
+                var cartQuantity = 0, cartPrice = 0;
+                if (Boolean(error)) {
+                    // Do nothing here
+                }
+                else {
+                    cartQuantity = cart.dataValues.totalQuantiles;
+                    cartPrice = cart.dataValues.totalPrice;
+                }
+                res.render('shop/shoppingCartDetail', {
+                    title: 'Bán áo online',
+                    email: curEmail,
+                    cartQuantity: cartQuantity,
+                    cartPrice: cartPrice,
+                });
+            });
+        }
+        else {
+            res.render('shop/shoppingCartDetail', {
+                title: 'Bán áo online',
+                email: curEmail,
+                cartQuantity: 0,
+                cartPrice: 0,
+            });
+        }
     });
 });
 
@@ -116,6 +279,8 @@ router.get('/addtocart/:id', function(req, res, next) {
         if (err) return res.status(400).send({message: 'Cannot find the product'});
 
         var cartID = Boolean(req.session.cartID) ? req.session.cartID : (-1);
+        var productPrice = product.dataValues.productPrice;
+        console.log(productPrice);
         if (cartID == -1) {
             cartsController.createNewShoppingCart(function(error, cart) {
                 if (error) return res.status(400).send({message: 'Cannot create new cart'});
@@ -123,7 +288,8 @@ router.get('/addtocart/:id', function(req, res, next) {
                 req.session.cartID = cart.dataValues.id;
                 // Add product to cart
                 cartitemsController.addItemToCart(productID, cart.dataValues.id, function(error, cartitem) {
-                    cartsController.addItemToCart(cartitem.dataValues.cartID, function(error) {
+                    console.log(productPrice);
+                    cartsController.addItemToCart(cartitem.dataValues.cartID, productPrice, function(error) {
                         res.redirect('/');
                     });
                 });
@@ -132,10 +298,9 @@ router.get('/addtocart/:id', function(req, res, next) {
         else {
             // Add product to cart
             cartitemsController.addItemToCart(productID, cartID, function(error, cartitem) {
-                cartsController.addItemToCart(cartitem.dataValues.cartID, function(error, cart) {
+                cartsController.addItemToCart(cartitem.dataValues.cartID, productPrice, function(error, cart) {
                     res.redirect('/');
                 });
-                // res.redirect('/');
             });
         }
     });
@@ -171,12 +336,37 @@ router.get('/style/:id', function(req, res, next) {
                     }
                     else {
                         var productList = extractListOfProductsByRowsHelper.extractListOfProductsByRows(products);
-                        res.render('shop/index', {
-                            title: 'Bán áo online',
-                            email: curEmail,
-                            listOfStyles: styleList,
-                            listOfProducts: productList,
-                        });
+                        var cartID = Boolean(req.session.cartID) ? req.session.cartID : (-1);
+                        if (cartID != -1) {
+                            cartsController.getCartInformation(cartID, function(error, cart) {
+                                var cartQuantity = 0, cartPrice = 0;
+                                if (Boolean(error)) {
+                                    // Do nothing here
+                                }
+                                else {
+                                    cartQuantity = cart.dataValues.totalQuantiles;
+                                    cartPrice = cart.dataValues.totalPrice;
+                                }
+                                res.render('shop/index', {
+                                    title: 'Bán áo online',
+                                    email: curEmail,
+                                    listOfStyles: styleList,
+                                    listOfProducts: productList,
+                                    cartQuantity: cartQuantity,
+                                    cartPrice: cartPrice,
+                                });
+                            });
+                        }
+                        else {
+                            res.render('shop/index', {
+                                title: 'Bán áo online',
+                                email: curEmail,
+                                listOfStyles: styleList,
+                                listOfProducts: productList,
+                                cartQuantity: 0,
+                                cartPrice: 0,
+                            });
+                        }
                     }
                 });
             }
@@ -186,16 +376,3 @@ router.get('/style/:id', function(req, res, next) {
 
 module.exports = router;
 
-function isLoggedIn(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  res.redirect('/');
-}
-
-function isNotLoggedIn(req, res, next) {
-  if (!req.isAuthenticated()) {
-    return next();
-  }
-  res.redirect('/profile');
-}
