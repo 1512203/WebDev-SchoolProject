@@ -7,7 +7,8 @@ var usersController = controllers.usersController;
 var cartsController = controllers.cartsController;
 var cartitemsController = controllers.cartitemsController;
 var extractListOfStyleNamesHelper = require('./helpers/extractListOfStyleNames-helper');
-var extractListOfProductsByRowsHelper = require('./helpers/extractListOfProductsByRows-helper.js');
+var extractListOfProductsByRowsHelper = require('./helpers/extractListOfProductsByRows-helper');
+var extractListOfCartItems = require('./helpers/extractListOfCartItems-helper');
 
 router.get('/', function(req, res, next) {
     var usrID = req.session.passport ? req.session.passport.user : (-1);
@@ -87,7 +88,7 @@ router.get('/design', function(req, res, next) {
         }
         else {
             res.render('shop/design', {
-                title: 'Bán áo online',
+               title: 'Bán áo online',
                 email: curEmail,
                 cartQuantity: 0,
                 cartPrice: 0,
@@ -242,22 +243,19 @@ router.get('/shoppingcartdetail', function(req, res, next) {
         var curEmail = "";
         if (user) curEmail = user.dataValues.email;
 
+
         var cartID = Boolean(req.session.cartID) ? req.session.cartID : (-1);
         if (cartID != -1) {
-            cartsController.getCartInformation(cartID, function(error, cart) {
-                var cartQuantity = 0, cartPrice = 0;
-                if (Boolean(error)) {
-                    // Do nothing here
-                }
-                else {
-                    cartQuantity = cart.dataValues.totalQuantiles;
-                    cartPrice = cart.dataValues.totalPrice;
-                }
+            cartsController.getCartDetailInformation(cartID, function(error, cart) {
+                var extractedInfo = extractListOfCartItems.extractListOfCartItems(cart);
+                console.log("DEBUGGING:");
+                console.log(extractedInfo);
                 res.render('shop/shoppingCartDetail', {
                     title: 'Bán áo online',
                     email: curEmail,
-                    cartQuantity: cartQuantity,
-                    cartPrice: cartPrice,
+                    cartQuantity: extractedInfo.cartQuantity,
+                    cartPrice: extractedInfo.cartPrice,
+                    cartItems: extractedInfo.cartItems,
                 });
             });
         }
@@ -267,6 +265,7 @@ router.get('/shoppingcartdetail', function(req, res, next) {
                 email: curEmail,
                 cartQuantity: 0,
                 cartPrice: 0,
+                cartItems: [],
             });
         }
     });

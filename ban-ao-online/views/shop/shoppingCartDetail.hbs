@@ -4,85 +4,36 @@
         <div class="title">
             Giỏ hàng
         </div>
-        <!-- Product #1 -->
-        <div class="item">
-            <div class="buttons">
-                <span class="delete-btn"></span>
-                <span class="like-btn"></span>
+        {{#each cartItems}}
+            <div class="item">
+                <div class="buttons">
+                    <span class="delete-btn"></span>
+                    <span class="like-btn"></span>
+                </div>
+                <div class="image">
+                    <img src="{{this.pathToImg}}" alt="" style="width: 70px;"/>
+                </div>
+                <div class="description">
+                    <span>{{this.productName}}</span>
+                    <span>{{this.productDescription}}</span>
+                </div>
+                <div class="quantity">
+                    <button class="minus-btn" type="button" name="button">
+                        <img src="/img/icon/minus.svg" alt="" />
+                    </button>
+                    <input type="text" name="name" value="1">
+                    <button class="plus-btn" type="button" name="button">
+                        <img src="/img/icon/plus.svg" alt="" />
+                    </button>
+                </div>
+                <div class="total-price">{{this.productPrice}}</div>
+                <div class="currency">VNĐ</div>
             </div>
-            <div class="image">
-                <img src="../img/products small/shirt-1-small.jpg" alt="" />
-            </div>
-            <div class="description">
-                <span>Áo mùa hè</span>
-                <span>Áo thun</span>
-            </div>
-            <div class="quantity">
-                <button class="minus-btn" type="button" name="button">
-                    <img src="/img/icon/minus.svg" alt="" />
-                </button>
-                <input type="text" name="name" value="1">
-                <button class="plus-btn" type="button" name="button">
-                    <img src="/img/icon/plus.svg" alt="" />
-                </button>
-            </div>
-            <div class="total-price">100.000</div>
-            <div class="currency">VNĐ</div>
-        </div>
-        <!-- Product #2 -->
-        <div class="item">
-            <div class="buttons">
-                <span class="delete-btn"></span>
-                <span class="like-btn"></span>
-            </div>
-            <div class="image">
-                <img src="/img/products small/shirt-2-small.jpg" alt="" />
-            </div>
-            <div class="description">
-                <span>Áo mùa hè</span>
-                <span>Áo thun</span>
-            </div>
-            <div class="quantity">
-                <button class="minus-btn" type="button" name="button">
-                    <img src="/img/icon/minus.svg" alt="" />
-                </button>
-                <input type="text" name="name" value="1">
-                <button class="plus-btn" type="button" name="button">
-                    <img src="/img/icon/plus.svg" alt="" />
-                </button>
-            </div>
-            <div class="total-price">100.000</div>
-            <div class="currency">VNĐ</div>
-        </div>
-        <!-- Product #3 -->
-        <div class="item">
-            <div class="buttons">
-                <span class="delete-btn"></span>
-                <span class="like-btn"></span>
-            </div>
-            <div class="image">
-                <img src="/img/products small/shirt-5-small.jpg" alt="" />
-            </div>
-            <div class="description">
-                <span>Áo mùa hè</span>
-                <span>Áo thun</span>
-            </div>
-            <div class="quantity">
-                <button class="minus-btn" type="button" name="button">
-                    <img src="../img/icon/minus.svg" alt="" />
-                </button>
-                <input type="text" name="name" value="1">
-                <button class="plus-btn" type="button" name="button">
-                    <img src="../img/icon/plus.svg" alt="" />
-                </button>
-            </div>
-            <div class="total-price">100.000</div>
-            <div class="currency">VNĐ</div>
-        </div>
+        {{/each}}
         <div class="sum-price">
             <span style="margin-right:50px">Tổng:</span>
-            <span class="so-luong">3</span>
-            <span class="tong-tien">300.000</span>
+            <span class="so-luong">{{cartQuantity}}</span>
+            <span class="tong-tien">{{cartPrice}}</span>
             <span>VNĐ</span>
         </div>
         <div class="button-xac-nhan">

@@ -1,5 +1,6 @@
 var cartsModel = require('../models').Cart;
 var cartItemsModel = require('../models').CartItem;
+var productsModel = require('../models').Product;
 var sequelize = require('sequelize');
 
 module.exports = {
@@ -49,13 +50,13 @@ module.exports = {
     getCartDetailInformation(cartID, done) {
         return cartsModel
             .findOne({
-                where: {
-                   id: cartID,
-                },
+                where: { id: cartID, },
                 include: [{
                     model: cartItemsModel,
-                    through: {
-                    }
+                    as: 'cartitems',
+                    include: [{
+                        model: productsModel,
+                    }],
                 }],
             })
             .then(function(cart) {
