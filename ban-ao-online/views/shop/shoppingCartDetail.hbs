@@ -6,8 +6,9 @@
         </div>
         {{#each cartItems}}
             <div class="item">
+                <span style="display: none;" class="cartItemID">{{this.cartItemID}}</span>
                 <div class="buttons">
-                    <span class="delete-btn"></span>
+                    <a href="/removecartitem/{{this.cartItemID}}"><span class="delete-btn"></span></a>
                     <span class="like-btn"></span>
                 </div>
                 <div class="image">

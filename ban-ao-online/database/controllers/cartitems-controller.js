@@ -14,4 +14,15 @@ module.exports = {
                 done(error);
             });
     },
+
+    findCartItemByID(cartItemID, done) {
+        return cartitemsModel
+            .findById(cartItemID)
+            .then(function(cartitem) {
+                done(null, cartitem);
+            })
+            .catch(function(error) {
+                done(error);
+            });
+    },
 };

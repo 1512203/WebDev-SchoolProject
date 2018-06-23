@@ -65,6 +65,23 @@ module.exports = {
             .catch(function(err) {
                 done(err);
             })
+    },
+
+    removeItemFromCart(cartID, itemPrice, done) {
+        return cartsModel
+            .update({
+                totalQuantiles: sequelize.literal('\"totalQuantiles\"-1'),
+                totalPrice: sequelize.literal('\"totalPrice\"-' + itemPrice.toString()),
+            },
+            {
+                where: {id: cartID,}
+            })
+            .then(function() {
+                done(null);
+            })
+            .catch(function(err) {
+                done(err);
+            });
     }
 };
 

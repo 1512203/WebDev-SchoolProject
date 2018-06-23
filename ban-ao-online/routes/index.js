@@ -305,6 +305,35 @@ router.get('/addtocart/:id', function(req, res, next) {
     });
 });
 
+router.get('/removecartitem/:id', function(req, res, next) {
+    var cartItemID = req.params.id;
+    var cartID = Boolean(req.session.cartID) ? req.session.cartID : (-1);
+
+    cartitemsController.findCartItemByID(cartItemID, function(err, cartItem) {
+        if (err) return res.status(400).send({message: 'Cannot find the cart item'});
+
+        var productID = cartItem.dataValues.productID;
+        productsController.findProductByID(productID, function(err, product) {
+            if (err) return res.status(400).send({message: 'Cannot find the product'});
+
+            var productPrice = product.dataValues.productPrice;
+            cartsController.removeItemFromCart(cartID, productPrice, function(error) {
+                if (error) return res.status(400).send({message: 'Cannot remove item from cart'});
+
+                cartItem.destroy().then(function() {
+                    res.redirect('/shoppingcartdetail');
+                });
+
+                // cartitemsController.deleteCartItemByID(cartItemID, function(err, cartItem) {
+                //     if (err) return res.status(400).send({message: 'Cannot delete cart item'});
+
+                //     res.redirect('/shoppingcartdetail');
+                // });
+            });
+        });
+    });
+});
+
 router.get('/product/:id', function(req, res, next) {
     productsController.findProductByID(req.params.id, function(error, product) {
         if (error) {

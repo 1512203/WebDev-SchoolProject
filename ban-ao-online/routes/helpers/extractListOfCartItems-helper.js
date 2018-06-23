@@ -6,6 +6,7 @@ module.exports = {
             cartPrice = cartWithIncludedCartItems.dataValues.totalPrice;
             for (let i = 0; i < cartWithIncludedCartItems.dataValues.cartitems.length; ++i) {
                 var cartItem = cartWithIncludedCartItems.dataValues.cartitems[i].dataValues.Product.dataValues;
+                cartItem.cartItemID = cartWithIncludedCartItems.dataValues.cartitems[i].dataValues.id;
                 cartItems.push(cartItem);
             }
         }
