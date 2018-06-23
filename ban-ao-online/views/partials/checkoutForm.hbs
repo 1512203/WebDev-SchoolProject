@@ -1,0 +1,33 @@
+<div id="qhuy-checkout-form" class="qhuy-modal">        
+	<form class="qhuy-modal-content qhuy-animate" action="/checkout" method="post">
+		<div class="qhuy-img-container">
+			<span class="qhuy-close" title="Close Modal">&times;</span>
+		</div>
+		<div class="qhuy-container">
+			<label for="fullname"><b>Họ và tên</b></label>
+			<input type="text" placeholder="vd: Nguyen Quoc Huy" name="fullName" required>
+
+			<label for="address"><b>Địa chỉ</b></label>
+			<input type="text" placeholder="vd: ngquochuy@abcmail.com" name="address" required>
+
+			<label for="password"><b>Mật khẩu</b></label>
+			<input type="password" placeholder="vd: ********" name="password" required>
+
+			<label for="cardnumber"><b>Mã thẻ tín dụng</b></label>
+			<input type="text" placeholder="vd: 123456789" name="cardnumber" required>
+
+			<label for="cardowner"><b>Tên chủ sở hữu thẻ</b></label>
+			<input type="text" placeholder="vd: Nguyen Quoc Huy" name="cardowner" required>
+
+            <label for="CVC"><b>CVC</b></label>
+            <input type="text" placeholder="" name="CVC" required>
+
+            <input class="csrfToken" type="hidden" name="_csrf" value="{{ csrfToken }}">
+			<button type="submit">Thanh toán</button>
+		</div>
+		<div class="qhuy-container qhuy-footbox">
+			<button type="button" class="qhuy-cancelBtn">Hủy</button>
+		</div>
+	</form>
+</div>
+

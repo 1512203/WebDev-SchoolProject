@@ -9,6 +9,10 @@ var cartitemsController = controllers.cartitemsController;
 var extractListOfStyleNamesHelper = require('./helpers/extractListOfStyleNames-helper');
 var extractListOfProductsByRowsHelper = require('./helpers/extractListOfProductsByRows-helper');
 var extractListOfCartItems = require('./helpers/extractListOfCartItems-helper');
+var csrf = require('csurf');
+
+var csrfProtection = csrf();
+router.use(csrfProtection);
 
 router.get('/', function(req, res, next) {
     var usrID = req.session.passport ? req.session.passport.user : (-1);
@@ -399,6 +403,20 @@ router.get('/style/:id', function(req, res, next) {
                 });
             }
         });
+    });
+});
+
+router.get('/checkout', function(req, res, next) {
+    var cartID = (req.session.cart) ? (req.session.cart) : (-1);
+    if (cartID == -1) {
+        return res.redirect('/shoppingcartdetail');
+    }
+    var messages = req.flash('error');
+    console.log(messages);
+    res.send({
+        csrfToken: req.csrfToken(),
+        messages: messages,
+        hasErrors: messages.length > 0,
     });
 });
 

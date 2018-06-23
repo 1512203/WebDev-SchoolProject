@@ -53,6 +53,25 @@ $(document).ready(function() {
     }
 
 
+    $('#button-cart').on('click', function() {
+        $.get('/checkout', function(data, status) {
+            console.log(data.csrfToken);
+            $('#qhuy-checkout-form form input.csrfToken').val(data.csrfToken);
+            if (data.hasErrors > 0) {
+                let errorMess = '';
+                for (let i = 0; i < data.messages.length; ++i) {
+                    errorMess += "<p class=\"errorMess\">" + data.messages[i] + "</p>";
+                }
+                $('div.alert').text(errorMess);
+                $('div.alert').css('display', 'block');
+            }
+            else {
+                $('div.alert').css('display', 'none');
+            }
+        });
+        $('#qhuy-checkout-form').css('display', 'block');
+    });
+
 
     // Login event
     $('#qhuy-login-btn').on('click', function() {
@@ -106,6 +125,15 @@ $(document).ready(function() {
 
     $('#qhuy-signup-form .qhuy-close').on('click', function() {
         $('#qhuy-signup-form').css('display', 'none');
+    });
+
+    $('#qhuy-checkout-form .qhuy-close').on('click', function() {
+        $('#qhuy-checkout-form').css('display', 'none');
+    });
+
+    $('#qhuy-checkout-form .qhuy-cancelBtn').on('click', function() {
+        $('#qhuy-checkout-form form')[0].reset();
+        $('#qhuy-checkout-form').css('display', 'none');
     });
 
     $('#qhuy-signup-form .qhuy-cancelBtn').on('click', function() {
