@@ -789,9 +789,16 @@ section.qhuy-admin {
 /* The alert message box */
 .alert {
     padding: 20px;
-    background-color: #f44336; /* Red */
     color: white;
     margin-bottom: 15px;
+}
+
+.alert.alert-danger {
+    background-color: #f44336; /* Red */
+}
+
+.alert.alert-success {
+    background-color: #4CAF50;
 }
 
 /* The close button */

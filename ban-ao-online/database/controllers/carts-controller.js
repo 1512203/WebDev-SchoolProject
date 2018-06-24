@@ -82,6 +82,21 @@ module.exports = {
             .catch(function(err) {
                 done(err);
             });
-    }
+    },
+
+    findCartByID(cartID, done) {
+        return cartsModel
+            .findOne({
+                where: {
+                    id: cartID,
+                },
+            })
+            .then(function(cart) {
+                done(null, cart);
+            })
+            .catch(function(error) {
+                done(error);
+            });
+    },
 };
 

@@ -327,12 +327,6 @@ router.get('/removecartitem/:id', function(req, res, next) {
                 cartItem.destroy().then(function() {
                     res.redirect('/shoppingcartdetail');
                 });
-
-                // cartitemsController.deleteCartItemByID(cartItemID, function(err, cartItem) {
-                //     if (err) return res.status(400).send({message: 'Cannot delete cart item'});
-
-                //     res.redirect('/shoppingcartdetail');
-                // });
             });
         });
     });
@@ -407,7 +401,7 @@ router.get('/style/:id', function(req, res, next) {
 });
 
 router.get('/checkout', function(req, res, next) {
-    var cartID = (req.session.cart) ? (req.session.cart) : (-1);
+    var cartID = (req.session.cartID) ? (req.session.cartID) : (-1);
     if (cartID == -1) {
         return res.redirect('/shoppingcartdetail');
     }
@@ -418,6 +412,62 @@ router.get('/checkout', function(req, res, next) {
         messages: messages,
         hasErrors: messages.length > 0,
     });
+});
+
+router.post('/checkout', function(req, res, next) {
+    var cartID = Boolean(req.session.cartID) ? req.session.cartID : (-1);
+    if (cartID == -1) {
+        return res.redirect('/shoopingcartdetail');
+    }
+
+    cartsController.findCartByID(cartID, function(error, cart) {
+        if (error) {
+            return res.status(400).send({message: 'Cannot find the cart'});
+        }
+
+        var stripe = require("stripe")(
+            "sk_test_1LrBMlJbwsX3Q6saVmFi2ph7"
+        );
+
+        stripe.charges.create({
+            amount: cart.dataValues.totalPrice,
+            currency: "vnd",
+            source: req.body.stripeToken, // obtained with Stripe.js
+            description: "Test charge"
+        }, function(err, charge) {
+            // asynchronously called
+            if (err) {
+                req.flash('error', err.message);
+                return res.redirect('/shoppingcartdetail');
+            }
+            req.flash('success', 'Successfullly bought product!');
+            // req.cart = null;
+            res.redirect('/checkoutsuccess');
+        });
+    });
+});
+
+router.get('/checkoutsuccess', function(req, res, next) {
+    stylesController.getAllStyleNames({}, function(error, styles) {
+        if (error) res.status(400).send({message: 'Cannot find the list of styles'});
+        else {
+            var styleList = extractListOfStyleNamesHelper.extractListOfStyleNames(styles);
+            productsController.getAllProducts({}, function(error, products) {
+                if (error) res.status(400).send({message: 'Cannot find the list of products'});
+                else {
+                    var productList = extractListOfProductsByRowsHelper.extractListOfProductsByRows(products);
+                    res.render('shop/index', {
+                        title: 'Bán áo online',
+                        listOfStyles: styleList,
+                        listOfProducts: productList,
+                        successMess: 'Thanh toan thanh cong',
+                        hasSuccessMess: true,
+                    });
+                }
+            });
+        }
+    });
+
 });
 
 module.exports = router;

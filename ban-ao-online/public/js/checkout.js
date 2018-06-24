@@ -11,11 +11,8 @@ var style = {
 var card = elements.create('card', {style: style});
 card.mount("#card-element");
 
-var form = $('#qhuy-checkout-form form');
-
-form.submit(function(event) {
-    event.preventDefault();
-
+var button = $('#qhuy-checkout-form form .qhuy-has-input button');
+button.on('click', function() {
     stripe.createToken(card).then(function(result) {
         if (result.error) {
         }
@@ -28,4 +25,6 @@ form.submit(function(event) {
 function stripeTokenHandler(token) {
     var formInputs = $('#qhuy-checkout-form form .qhuy-has-input');
     formInputs.append("<input type=\"hidden\" name=\"stripeToken\" value=\"" + token.id + "\">");
+    var form = $('#qhuy-checkout-form form');
+    form.submit();
 }

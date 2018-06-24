@@ -9,3 +9,29 @@
     </div>
 </div>
 {{/if}}
+
+{{#if hasErrors}}
+{{#each messages}}
+<div class="qhuy-modal" style="displays: block">
+        <div class="alert alert-danger">
+            {{this}}
+              <span class="closebtn" onclick="
+                    this.parentElement.parentElement.style.display='none';
+                    window.location.replace('/');
+              ">&times;</span> 
+        </div>
+</div>
+{{/each}}
+{{/if}}
+
+{{#if hasSuccessMess}}
+<div class="qhuy-modal" style="display: block">
+    <div class="alert alert-success">
+        {{successMess}}
+          <span class="closebtn" onclick="
+                this.parentElement.parentElement.style.display='none';
+                window.location.replace('/');
+          ">&times;</span> 
+    </div>
+</div>
+{{/if}}
