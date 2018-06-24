@@ -3,24 +3,26 @@
 		<div class="qhuy-img-container">
 			<span class="qhuy-close" title="Close Modal">&times;</span>
 		</div>
-		<div class="qhuy-container">
+		<div class="qhuy-container qhuy-has-input">
 			<label for="fullname"><b>Họ và tên</b></label>
 			<input type="text" placeholder="vd: Nguyen Quoc Huy" name="fullName" required>
 
 			<label for="address"><b>Địa chỉ</b></label>
-			<input type="text" placeholder="vd: ngquochuy@abcmail.com" name="address" required>
+			<input type="text" placeholder="vd: A6, Phuong Tan Tien, Bien Hoa, Dong Nai" name="address" required>
 
-			<label for="password"><b>Mật khẩu</b></label>
-			<input type="password" placeholder="vd: ********" name="password" required>
+            <label for="card-element"><b>Credit or debit card</b></label>
+            <div id="card-element" style="
+                    width: 100%;
+                    padding: 12px 20px;
+                    margin: 8px 0;
+                    border: 1px solid #ccc;
+                    box-sizing: border-box;
+                ">
 
-			<label for="cardnumber"><b>Mã thẻ tín dụng</b></label>
-			<input type="text" placeholder="vd: 123456789" name="cardnumber" required>
+            </div>
 
 			<label for="cardowner"><b>Tên chủ sở hữu thẻ</b></label>
 			<input type="text" placeholder="vd: Nguyen Quoc Huy" name="cardowner" required>
-
-            <label for="CVC"><b>CVC</b></label>
-            <input type="text" placeholder="" name="CVC" required>
 
             <input class="csrfToken" type="hidden" name="_csrf" value="{{ csrfToken }}">
 			<button type="submit">Thanh toán</button>
@@ -30,4 +32,7 @@
 		</div>
 	</form>
 </div>
+<script src="https://js.stripe.com/v3/"></script>
+<script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/js/checkout.js"></script>
 
