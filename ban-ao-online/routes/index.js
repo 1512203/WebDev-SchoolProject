@@ -441,7 +441,7 @@ router.post('/checkout', function(req, res, next) {
                 return res.redirect('/shoppingcartdetail');
             }
             req.flash('success', 'Successfullly bought product!');
-            // req.cart = null;
+            req.session.cartID = null;
             res.redirect('/checkoutsuccess');
         });
     });
@@ -467,7 +467,6 @@ router.get('/checkoutsuccess', function(req, res, next) {
             });
         }
     });
-
 });
 
 module.exports = router;
