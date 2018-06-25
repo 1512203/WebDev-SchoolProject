@@ -12,6 +12,10 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'postedBy',
         as: 'products',
     });
+    User.hasMany(models.Order, {
+        foreignKey: 'userID',
+        as: 'orders',
+    });
   };
 
   User.encryptPassword = function(password) {
