@@ -5,13 +5,20 @@
 		</div>
 		<div class="qhuy-container">
 			<label for="fullname"><b>Họ và tên</b></label>
-			<input type="text" placeholder="vd: Nguyen Quoc Huy" name="fullName" required>
+			<input type="text" placeholder="vd: Nguyen Quoc Huy" name="fullname" required>
+
 			<label for="email"><b>Email</b></label>
 			<input type="email" placeholder="vd: ngquochuy@abcmail.com" name="email" required>
-			<label for="psw"><b>Mật khẩu</b></label>
+
+			<label for="password"><b>Mật khẩu</b></label>
 			<input type="password" placeholder="vd: ********" name="password" required>
-			<label for="phonenb"><b>Số điện thoại</b></label>
-			<input type="tel" placeholder="vd: 0123456789" name="phoneNumber" required>
+
+			<label for="phonenumber"><b>Số điện thoại</b></label>
+			<input type="tel" placeholder="vd: 0123456789" name="phonenumber" required>
+
+            <label for="address"><b>Địa chỉ</b></label>
+            <input type="text" placeholder="A6, Khu phố 6, Phường Tân Tiến, Biên Hòa" name="address" required>
+
             <input class="csrfToken" type="hidden" name="_csrf" value="{{ csrfToken }}">
 			<button type="submit">Đăng ký</button>
 		</div>

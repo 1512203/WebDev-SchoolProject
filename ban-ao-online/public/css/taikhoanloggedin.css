@@ -1,4 +1,4 @@
-.thong-tin-tai-khoan input[type=text], select {
+.thong-tin-tai-khoan input[type=text], .thong-tin-tai-khoan input[type=email], .thong-tin-tai-khoan input[type=password], select {
     width: 100%;
     padding: 12px 20px;
     margin-top: 0px;

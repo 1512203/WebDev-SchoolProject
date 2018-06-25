@@ -37,7 +37,10 @@ function(req, email, password, done) {
             });
         }
         else {
-            usersController.createNewUser(email, password, function(error, newUser) {
+            var phonenumber = req.body.phonenumber;
+            var fullname = req.body.fullname;
+            var address = req.body.address;
+            usersController.createNewUser(email, password, phonenumber, fullname, address, function(error, newUser) {
                 if (error) {
                     return done(error);
                 }

@@ -23,29 +23,39 @@
 </section>
 
 <div class="thong-tin-tai-khoan">
-    <div>
         <form name="thong-tin">
-            <label for="fname">Họ tên: </label>
-            <button class="edit" id="edit-fullname">Sửa</button>
-            <input type="text" id="fullname" placeholder="Nguyen Van A">
-    </div>
+            <div>
+                <label for="edfullname">Họ tên: </label>
+                <button class="edit" id="edit-fullname">Sửa</button>
+                <input name="edfullname" type="text" id="edfullname" placeholder="{{fullname}}">
+            </div>
 
-    <label for="lname">Tên đăng nhập</label>
-    <button class="edit" id="edit-username">Sửa</button>
-    <input type="text" id="username" placeholder="nguyenvana123">
-    <label for="lname">Mật khẩu</label>
-    <button class="edit" id="edit-password">Sửa</button>
-    <input type="text" id="password" placeholder="*******">
-    <label for="lname">Email</label>
-    <button class="edit" id="edit-email">Sửa</button>
-    <input type="text" id="email" placeholder="nguyenvana@gmail.com">
-    <label for="lname">Số điện thoại</label>
-    <button class="edit" id="edit-phone">Sửa</button>
-    <input type="text" id="phone" placeholder="0919888888">
-    <input type="submit" value="Thay đổi">
+            <div>
+                <label for="edemail">Email</label>
+                <button class="edit" id="edit-email">Sửa</button>
+                <input name="edemail" type="email" id="edemail" placeholder="{{email}}">
+            </div>
 
-    </form>
+            <div>
+                <label for="edpassword">Mật khẩu</label>
+                <button class="edit" id="edit-password">Sửa</button>
+                <input name="edpassword" type="password" id="edpassword" placeholder="*******">
+            </div>
 
+            <div>
+                <label for="edphonenumber">Số điện thoại</label>
+                <button class="edit" id="edit-phone">Sửa</button>
+                <input name="edphonenumber" type="tel" id="edphonenumber" placeholder="{{phonenumber}}">
+            </div>
+
+            <div>
+                <label for="edaddress">Địa chỉ</label>
+                <button class="edit" id="edit-address">Sửa</button>
+                <input name="edaddress" type="text" id="edaddress" placeholder="{{address}}">
+            </div>
+
+            <input type="submit" value="Thay đổi">
+        </form>
 </div>
 
 

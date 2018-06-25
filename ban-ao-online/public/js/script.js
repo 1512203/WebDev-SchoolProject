@@ -52,24 +52,42 @@ $(document).ready(function() {
         setInterval(switchToNextSlide, autoswitch_speed);
     }
 
-
+    // Checkout event
     $('#button-cart').on('click', function() {
         $.get('/checkout', function(data, status) {
-            console.log(data.csrfToken);
-            $('#qhuy-checkout-form form input.csrfToken').val(data.csrfToken);
-            if (data.hasErrors > 0) {
-                let errorMess = '';
-                for (let i = 0; i < data.messages.length; ++i) {
-                    errorMess += "<p class=\"errorMess\">" + data.messages[i] + "</p>";
+            if (data.login) {
+                $('#qhuy-checkout-form form input.csrfToken').val(data.csrfToken);
+                if (data.hasErrors > 0) {
+                    let errorMess = '';
+                    for (let i = 0; i < data.messages.length; ++i) {
+                        errorMess += "<p class=\"errorMess\">" + data.messages[i] + "</p>";
+                    }
+                    $('div.alert').text(errorMess);
+                    $('div.alert').css('display', 'block');
                 }
-                $('div.alert').text(errorMess);
-                $('div.alert').css('display', 'block');
+                else {
+                    $('div.alert').css('display', 'none');
+                }
+                $('#qhuy-checkout-form').css('display', 'block');
             }
             else {
-                $('div.alert').css('display', 'none');
+                $.get('/user/login', function(data, status) {
+                    $('#qhuy-login-form form input.csrfToken').val(data.csrfToken);
+                    if (data.hasErrors > 0) {
+                        let errorMess = '';
+                        for (let i = 0; i < data.messages.length; ++i) {
+                            errorMess += "<p class=\"errorMess\">" + data.messages[i] + "</p>";
+                        }
+                        $('div.alert').text(errorMess);
+                        $('div.alert').css('display', 'block');
+                    }
+                    else {
+                        $('div.alert').css('display', 'none');
+                    }
+                    $('#qhuy-login-form').css('display', 'block');
+                });
             }
         });
-        $('#qhuy-checkout-form').css('display', 'block');
     });
 
 
@@ -88,8 +106,8 @@ $(document).ready(function() {
             else {
                 $('div.alert').css('display', 'none');
             }
+            $('#qhuy-login-form').css('display', 'block');
         });
-        $('#qhuy-login-form').css('display', 'block');
     });
 
     $('#qhuy-login-form .qhuy-close').on('click', function() {

@@ -89,11 +89,47 @@ router.post('/login', isNotLoggedIn, passport.authenticate('local.signin', {
 router.get('/profile', isLoggedIn, function(req, res, next) {
     var usrID = req.session.passport ? req.session.passport.user : (-1);
     usersController.findUserById(req.session.passport.user, function(error, user) {
-        var curEmail = "";
-        if (user) curEmail = user.dataValues.email;
-          res.render('user/profile', {
-            email: curEmail,
-          });
+        var curEmail = "", fullname = "", phonenumber = "", address = "";
+        if (user) {
+            curEmail = user.dataValues.email;
+            fullname = user.dataValues.fullname;
+            phonenumber = user.dataValues.phonenumber;
+            address = user.dataValues.address;
+        }
+
+        var cartID = Boolean(req.session.cartID) ? req.session.cartID : (-1);
+        if (cartID != -1) {
+            cartsController.getCartInformation(cartID, function(error, cart) {
+                var cartQuantity = 0, cartPrice = 0;
+                if (Boolean(error)) {
+                    // Do nothing here
+                }
+                else {
+                    cartQuantity = cart.dataValues.totalQuantiles;
+                    cartPrice = cart.dataValues.totalPrice;
+                }
+                res.render('user/profile', {
+                    title: 'Bán áo online',
+                    email: curEmail,
+                    fullname: fullname,
+                    phonenumber: phonenumber,
+                    address: address,
+                    cartQuantity: cartQuantity,
+                    cartPrice: cartPrice,
+                });
+            });
+        }
+        else {
+            res.render('user/profile', {
+                title: 'Bán áo online',
+                email: curEmail,
+                fullname: fullname,
+                phonenumber: phonenumber,
+                address: address,
+                cartQuantity: 0,
+                cartPrice: 0,
+            });
+        }
     });
 });
 

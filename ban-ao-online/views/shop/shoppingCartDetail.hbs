@@ -1,4 +1,9 @@
-{{>checkoutForm}}
+{{#if login}}
+    {{>checkoutForm}}
+{{else}}
+    {{>loginForm}}
+    {{>signupForm}}
+{{/if}}
 
 <div class="gio-hang-container">
     <div class="shopping-cart">

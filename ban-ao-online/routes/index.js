@@ -1,11 +1,14 @@
 var express = require('express');
 var router = express.Router();
 var controllers = require('../database/controllers');
+
 var stylesController = controllers.stylesController;
 var productsController = controllers.productsController;
 var usersController = controllers.usersController;
 var cartsController = controllers.cartsController;
 var cartitemsController = controllers.cartitemsController;
+var ordersController = controllers.ordersController;
+
 var extractListOfStyleNamesHelper = require('./helpers/extractListOfStyleNames-helper');
 var extractListOfProductsByRowsHelper = require('./helpers/extractListOfProductsByRows-helper');
 var extractListOfCartItems = require('./helpers/extractListOfCartItems-helper');
@@ -242,21 +245,23 @@ router.get('/instruction', function(req, res, next) {
 });
 
 router.get('/shoppingcartdetail', function(req, res, next) {
-    var usrID = req.session.passport ? req.session.passport.user : (-1);
+    var usrID = req.session.passport ? (req.session.passport.user) : (-1);
     usersController.findUserById(usrID, function(error, user) {
         var curEmail = "";
-        if (user) curEmail = user.dataValues.email;
-
+        var islogin = false;
+        if (user) {
+            curEmail = user.dataValues.email;
+            islogin = true;
+        }
 
         var cartID = Boolean(req.session.cartID) ? req.session.cartID : (-1);
         if (cartID != -1) {
             cartsController.getCartDetailInformation(cartID, function(error, cart) {
                 var extractedInfo = extractListOfCartItems.extractListOfCartItems(cart);
-                console.log("DEBUGGING:");
-                console.log(extractedInfo);
                 res.render('shop/shoppingCartDetail', {
                     title: 'Bán áo online',
                     email: curEmail,
+                    login: islogin,
                     cartQuantity: extractedInfo.cartQuantity,
                     cartPrice: extractedInfo.cartPrice,
                     cartItems: extractedInfo.cartItems,
@@ -266,6 +271,7 @@ router.get('/shoppingcartdetail', function(req, res, next) {
         else {
             res.render('shop/shoppingCartDetail', {
                 title: 'Bán áo online',
+                login: islogin,
                 email: curEmail,
                 cartQuantity: 0,
                 cartPrice: 0,
@@ -283,7 +289,7 @@ router.get('/addtocart/:id', function(req, res, next) {
 
         var cartID = Boolean(req.session.cartID) ? req.session.cartID : (-1);
         var productPrice = product.dataValues.productPrice;
-        console.log(productPrice);
+        // console.log(productPrice);
         if (cartID == -1) {
             cartsController.createNewShoppingCart(function(error, cart) {
                 if (error) return res.status(400).send({message: 'Cannot create new cart'});
@@ -291,7 +297,7 @@ router.get('/addtocart/:id', function(req, res, next) {
                 req.session.cartID = cart.dataValues.id;
                 // Add product to cart
                 cartitemsController.addItemToCart(productID, cart.dataValues.id, function(error, cartitem) {
-                    console.log(productPrice);
+                    // console.log(productPrice);
                     cartsController.addItemToCart(cartitem.dataValues.cartID, productPrice, function(error) {
                         res.redirect('/');
                     });
@@ -405,19 +411,24 @@ router.get('/checkout', function(req, res, next) {
     if (cartID == -1) {
         return res.redirect('/shoppingcartdetail');
     }
-    var messages = req.flash('error');
-    console.log(messages);
-    res.send({
-        csrfToken: req.csrfToken(),
-        messages: messages,
-        hasErrors: messages.length > 0,
+    var usrID = req.session.passport ? req.session.passport.user : (-1);
+    usersController.findUserById(usrID, function(error, user) {
+        var islogin = false;
+        if (user) islogin = true;
+        var messages = req.flash('error');
+        res.send({
+            login: true,
+            csrfToken: req.csrfToken(),
+            messages: messages,
+            hasErrors: messages.length > 0,
+        });
     });
 });
 
 router.post('/checkout', function(req, res, next) {
     var cartID = Boolean(req.session.cartID) ? req.session.cartID : (-1);
     if (cartID == -1) {
-        return res.redirect('/shoopingcartdetail');
+        return res.redirect('/shoppingcartdetail');
     }
 
     cartsController.findCartByID(cartID, function(error, cart) {
@@ -435,14 +446,27 @@ router.post('/checkout', function(req, res, next) {
             source: req.body.stripeToken, // obtained with Stripe.js
             description: "Test charge"
         }, function(err, charge) {
-            // asynchronously called
             if (err) {
                 req.flash('error', err.message);
                 return res.redirect('/shoppingcartdetail');
             }
-            req.flash('success', 'Successfullly bought product!');
-            req.session.cartID = null;
-            res.redirect('/checkoutsuccess');
+
+            var usrID = req.session.passport ? req.session.passport.user : (-1);
+            ordersController.createNewOrder({
+                userID: usrID,
+                cartID: cartID,
+                address: req.body.address,
+                name: req.body.fullname,
+                paymentID: charge.id,
+            }, function(error, order) {
+                if (error) {
+                    // console.log(error);
+                    return res.redirect('/shoppingcartdetail');
+                }
+                req.flash('success', 'Successfullly bought product!');
+                req.session.cartID = null;
+                res.redirect('/checkoutsuccess');
+            });
         });
     });
 });
