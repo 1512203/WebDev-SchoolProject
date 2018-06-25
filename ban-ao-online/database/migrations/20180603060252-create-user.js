@@ -8,6 +8,9 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+        fullname: {
+            type: Sequelize.STRING,
+        },
       email: {
         type: Sequelize.STRING
       },
@@ -17,6 +20,12 @@ module.exports = {
       isAdmin: {
         type: Sequelize.BOOLEAN,
       },
+        phonenumber: {
+            type: Sequelize.STRING,
+        },
+        address: {
+            type: Sequelize.STRING,
+        },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

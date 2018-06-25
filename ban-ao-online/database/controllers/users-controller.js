@@ -1,18 +1,21 @@
 var usersModel = require('../models').User;
 
 module.exports = {
-    createNewUser(email, password, done) {
-        usersModel
-        .create({
-            email: email,
-            password: usersModel.encryptPassword(password),
-        })
-        .then(function(newUser) {
-            done(null, newUser);
-        })
-        .catch(function(error) {
-            done(error);
-        });
+    createNewUser(email, password, phonenumber, fullname, address, done) {
+        return usersModel
+            .create({
+                email: email,
+                password: usersModel.encryptPassword(password),
+                phonenumber: phonenumber,
+                fullname: fullname,
+                address: address,
+            })
+            .then(function(newUser) {
+                done(null, newUser);
+            })
+            .catch(function(error) {
+                done(error);
+            });
     },
 
     findOneUser(email, done) {

@@ -2,8 +2,11 @@
 var bcrypt = require('bcrypt-nodejs');
 module.exports = (sequelize, DataTypes) => {
   var User = sequelize.define('User', {
+      fullname: DataTypes.STRING,
     email: DataTypes.STRING,
     password: DataTypes.STRING,
+    phonenumber: DataTypes.STRING,
+    address: DataTypes.STRING,
     isAdmin: DataTypes.BOOLEAN
   }, {});
   User.associate = function(models) {
