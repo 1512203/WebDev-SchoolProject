@@ -10,15 +10,18 @@ var extractListOfProductsByRowsHelper = require('./helpers/extractListOfProducts
 var csrf = require('csurf');
 
 var csrfProtection = csrf();
+
+const request = require('request');
+
 router.use(csrfProtection);
 
-router.get('/loginFail', isNotLoggedIn, function(req, res, next) {
-    stylesController.getAllStyleNames({}, function(error, styles) {
-        if (error) res.status(400).send({message: 'Cannot find the list of styles'});
+router.get('/loginFail', isNotLoggedIn, function (req, res, next) {
+    stylesController.getAllStyleNames({}, function (error, styles) {
+        if (error) res.status(400).send({ message: 'Cannot find the list of styles' });
         else {
             var styleList = extractListOfStyleNamesHelper.extractListOfStyleNames(styles);
-            productsController.getAllProducts({}, function(error, products) {
-                if (error) res.status(400).send({message: 'Cannot find the list of products'});
+            productsController.getAllProducts({}, function (error, products) {
+                if (error) res.status(400).send({ message: 'Cannot find the list of products' });
                 else {
                     var productList = extractListOfProductsByRowsHelper.extractListOfProductsByRows(products);
                     res.render('shop/index', {
@@ -34,13 +37,13 @@ router.get('/loginFail', isNotLoggedIn, function(req, res, next) {
     });
 });
 
-router.get('/signupFail', isNotLoggedIn, function(req, res, next) {
-    stylesController.getAllStyleNames({}, function(error, styles) {
-        if (error) res.status(400).send({message: 'Cannot find the list of styles'});
+router.get('/signupFail', isNotLoggedIn, function (req, res, next) {
+    stylesController.getAllStyleNames({}, function (error, styles) {
+        if (error) res.status(400).send({ message: 'Cannot find the list of styles' });
         else {
             var styleList = extractListOfStyleNamesHelper.extractListOfStyleNames(styles);
-            productsController.getAllProducts({}, function(error, products) {
-                if (error) res.status(400).send({message: 'Cannot find the list of products'});
+            productsController.getAllProducts({}, function (error, products) {
+                if (error) res.status(400).send({ message: 'Cannot find the list of products' });
                 else {
                     var productList = extractListOfProductsByRowsHelper.extractListOfProductsByRows(products);
                     res.render('shop/index', {
@@ -56,39 +59,39 @@ router.get('/signupFail', isNotLoggedIn, function(req, res, next) {
     });
 });
 
-router.get('/signup', isNotLoggedIn, function(req, res, next) {
-  var messages = req.flash('error');
-  res.send({
-    csrfToken: req.csrfToken(),
-    messages: messages,
-    hasErrors: messages.length > 0,
-  });
+router.get('/signup', isNotLoggedIn, function (req, res, next) {
+    var messages = req.flash('error');
+    res.send({
+        csrfToken: req.csrfToken(),
+        messages: messages,
+        hasErrors: messages.length > 0,
+    });
 });
 
 router.post('/signup', isNotLoggedIn, passport.authenticate('local.signup', {
-  successRedirect: './profile',
-  failureRedirect: '/signupFail',
-  failureFlash: true,
+    successRedirect: './profile',
+    failureRedirect: '/signupFail',
+    failureFlash: true,
 }));
 
-router.get('/login', isNotLoggedIn, function(req, res, next) {
-  var messages = req.flash('error');
-  res.send({
-    csrfToken: req.csrfToken(),
-    messages: messages,
-    hasErrors: messages.length > 0,
-  });
+router.get('/login', isNotLoggedIn, function (req, res, next) {
+    var messages = req.flash('error');
+    res.send({
+        csrfToken: req.csrfToken(),
+        messages: messages,
+        hasErrors: messages.length > 0,
+    });
 });
 
 router.post('/login', isNotLoggedIn, passport.authenticate('local.signin', {
-  successRedirect: './profile',
-  failureRedirect: './loginFail',
-  failureFlash: true,
+    successRedirect: './profile',
+    failureRedirect: './loginFail',
+    failureFlash: true,
 }));
 
-router.get('/profile', isLoggedIn, function(req, res, next) {
+router.get('/profile', isLoggedIn, function (req, res, next) {
     var usrID = req.session.passport ? req.session.passport.user : (-1);
-    usersController.findUserById(req.session.passport.user, function(error, user) {
+    usersController.findUserById(req.session.passport.user, function (error, user) {
         var curEmail = "", fullname = "", phonenumber = "", address = "";
         if (user) {
             curEmail = user.dataValues.email;
@@ -99,7 +102,7 @@ router.get('/profile', isLoggedIn, function(req, res, next) {
 
         var cartID = Boolean(req.session.cartID) ? req.session.cartID : (-1);
         if (cartID != -1) {
-            cartsController.getCartInformation(cartID, function(error, cart) {
+            cartsController.getCartInformation(cartID, function (error, cart) {
                 var cartQuantity = 0, cartPrice = 0;
                 if (Boolean(error)) {
                     // Do nothing here
@@ -133,20 +136,20 @@ router.get('/profile', isLoggedIn, function(req, res, next) {
     });
 });
 
-router.get('/history', isLoggedIn, function(req, res, next) {
+router.get('/history', isLoggedIn, function (req, res, next) {
     var usrID = req.session.passport ? req.session.passport.user : (-1);
-    usersController.findUserById(req.session.passport.user, function(error, user) {
+    usersController.findUserById(req.session.passport.user, function (error, user) {
         var curEmail = "";
         if (user) curEmail = user.dataValues.email;
-          res.render('user/history', {
+        res.render('user/history', {
             email: curEmail,
-          });
+        });
     });
 });
 
-router.get('/logout', isLoggedIn, function(req, res, next) {
-  req.logout();
-  res.redirect('/');
+router.get('/logout', isLoggedIn, function (req, res, next) {
+    req.logout();
+    res.redirect('/');
 });
 
 module.exports = router;
@@ -154,17 +157,17 @@ module.exports = router;
 
 
 
-function isLoggedIn (req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  res.redirect('/');
+function isLoggedIn(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    res.redirect('/');
 }
 
 
-function isNotLoggedIn (req, res, next) {
-  if (!req.isAuthenticated()) {
-    return next();
-  }
-  res.redirect('/');
+function isNotLoggedIn(req, res, next) {
+    if (!req.isAuthenticated()) {
+        return next();
+    }
+    res.redirect('/');
 }
