@@ -70,11 +70,11 @@ module.exports = {
             })
     },
 
-    removeItemFromCart(cartID, itemPrice, done) {
+    removeItemFromCart(cartID, itemPrice, itemQuantity, done) {
         return cartsModel
             .update({
-                totalQuantiles: sequelize.literal('\"totalQuantiles\"-1'),
-                totalPrice: sequelize.literal('\"totalPrice\"-' + itemPrice.toString()),
+                totalQuantiles: sequelize.literal('\"totalQuantiles\"-' + itemQuantity),
+                totalPrice: sequelize.literal('\"totalPrice\"-' + (itemPrice * itemQuantity).toString()),
             },
             {
                 where: {id: cartID,}

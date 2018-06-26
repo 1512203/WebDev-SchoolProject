@@ -43,6 +43,10 @@ module.exports = {
     },
 
     updateUserInformation(usrID, userInfo, done) {
+        if (userInfo.password) {
+            userInfo.password = usersModel.encryptPassword(userInfo.password);
+        }
+
         return usersModel
             .update(userInfo, {
                 where: {

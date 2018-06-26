@@ -36,16 +36,20 @@
                         <th>Thành tiền</th>
                         <th>Thời gian mua</th>
                     </tr>
-                    {{#each carts}}
-                        {{#each this.cartitems}}
+                    {{#each carts as |cart cartIndex|}}
+                        {{#each this.items}}
                         <tr>
-                            {{#if this.firstrow}}<td rowspan="{{this.numberOfItems}}">{{this.cartnumber}}</td>{{/if}}
-                            <td>{{this.productid}}</td>
-                            <td>{{this.productname}}</td>
-                            <td>{{this.productunitprice}}</td>
-                            <td>{{this.productquantities}}</td>
-                            <td>{{this.productprice}}</td>
-                            {{#if this.firstrow}}<td rowspan="{{this.numberOfItems}}">{{this.checkoutday}}</td>{{/if}}
+                            {{#if this.isFirstRow}}
+                                <td rowspan="{{cart.numberOfItems}}" style="vertical-align: middle;">{{cart.cartNumber}}</td>
+                            {{/if}}
+                            <td>{{this.productID}}</td>
+                            <td>{{this.productName}}</td>
+                            <td>{{this.productPrice}}</td>
+                            <td>{{this.productQuantity}}</td>
+                            <td>{{this.itemTotal}}</td>
+                            {{#if this.isFirstRow}}
+                                <td rowspan="{{cart.numberOfItems}}" style="vertical-align: middle;">{{cart.checkoutDay}}</td>
+                            {{/if}}
                         </tr>
                         {{/each}}
                     {{/each}}

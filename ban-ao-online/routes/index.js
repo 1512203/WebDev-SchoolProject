@@ -349,11 +349,12 @@ router.get('/removecartitem/:id', function(req, res, next) {
         if (err) return res.status(400).send({message: 'Cannot find the cart item'});
 
         var productID = cartItem.dataValues.productID;
+        var productQuantity = cartItem.dataValues.productQuantity;
         productsController.findProductByID(productID, function(err, product) {
             if (err) return res.status(400).send({message: 'Cannot find the product'});
 
             var productPrice = product.dataValues.productPrice;
-            cartsController.removeItemFromCart(cartID, productPrice, function(error) {
+            cartsController.removeItemFromCart(cartID, productPrice, productQuantity, function(error) {
                 if (error) return res.status(400).send({message: 'Cannot remove item from cart'});
 
                 cartItem.destroy().then(function() {
