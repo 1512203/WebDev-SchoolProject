@@ -23,7 +23,7 @@
 </section>
 
 <div class="thong-tin-tai-khoan">
-        <form name="thong-tin">
+        <form name="thong-tin" method="post" action="/user/editprofile">
             <div>
                 <label for="edfullname">Họ tên: </label>
                 <button class="edit" id="edit-fullname">Sửa</button>
@@ -54,6 +54,7 @@
                 <input name="edaddress" type="text" id="edaddress" placeholder="{{address}}">
             </div>
 
+			<input class="csrfToken" type="hidden" name="_csrf" value="{{ csrfToken }}">
             <input type="submit" value="Thay đổi">
         </form>
 </div>

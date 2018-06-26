@@ -29,48 +29,26 @@
                 <tbody>
                     <tr>
                         <th>STT</th>
-                        <th>Mã đơn hàng</th>
                         <th>Mã sản phẩm</th>
                         <th>Tên sản phẩm</th>
-                        <th>Só lượng</th>
                         <th>Đơn giá</th>
-                        <th>Hình thức giao dịch</th>
+                        <th>Só lượng</th>
                         <th>Thành tiền</th>
                         <th>Thời gian mua</th>
                     </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>DEALTJOF123</td>
-                        <td>AT0001</td>
-                        <td>Áo thun trắng cổ tròn</td>
-                        <td>2</td>
-                        <td>150.000</td>
-                        <td>Agribank</td>
-                        <td>300.000</td>
-                        <td>22/4/2018 9:10am</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>DEALTJOF123</td>
-                        <td>AT0001</td>
-                        <td>Áo thun trắng cổ tròn</td>
-                        <td>2</td>
-                        <td>150.000</td>
-                        <td>Agribank</td>
-                        <td>300.000</td>
-                        <td>22/4/2018 9:10am</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>DEALTJOF123</td>
-                        <td>AT0001</td>
-                        <td>Áo thun trắng cổ tròn</td>
-                        <td>2</td>
-                        <td>150.000</td>
-                        <td>Agribank</td>
-                        <td>300.000</td>
-                        <td>22/4/2018 9:10am</td>
-                    </tr>
+                    {{#each carts}}
+                        {{#each this.cartitems}}
+                        <tr>
+                            {{#if this.firstrow}}<td rowspan="{{this.numberOfItems}}">{{this.cartnumber}}</td>{{/if}}
+                            <td>{{this.productid}}</td>
+                            <td>{{this.productname}}</td>
+                            <td>{{this.productunitprice}}</td>
+                            <td>{{this.productquantities}}</td>
+                            <td>{{this.productprice}}</td>
+                            {{#if this.firstrow}}<td rowspan="{{this.numberOfItems}}">{{this.checkoutday}}</td>{{/if}}
+                        </tr>
+                        {{/each}}
+                    {{/each}}
                 </tbody>
             </table>
         </div>

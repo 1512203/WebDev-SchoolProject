@@ -13,7 +13,6 @@
                     <h1 class="title" style="color:#0bb395;"></h1>
                         <ul class="list-unstyled hide">
                             <li class="qhuy-product-style-detail">Kiểu áo: <span></span></li>
-                            <li class="qhuy-product-status-detail">Số lượng còn lại: <span></span></li>
                         </ul>
                         <ul class="list-unstyled">
                             <li class="qhuy-product-price-detail">
@@ -21,23 +20,24 @@
                             </li>
                         </ul>
                         <div id="product">
-                            <form action="" method="GET">
+                            <form action="" method="POST">
                             <div class="form-group required">
-                                <label class="control-label" for="input-option1632">Size áo</label>
-                                <select name="option[1632]" id="input-option1632" class="form-control">
-                                    <option value=""> --- Chọn --- </option>
-                                    <option value="29921">S</option>
-                                    <option value="29922">M </option>
-                                    <option value="29920">L </option>
-                                    <option value="29919">XL</option>
-                                    <option value="29918">XXL</option>
-                                    <option value="29923">XXXL </option>
+                                <label class="control-label" for="sizeoption">Size áo</label>
+                                <select name="productsize" id="productsize" class="form-control">
+                                    <option value="0"> --- Chọn --- </option>
+                                    <option value="1">S</option>
+                                    <option value="2">M </option>
+                                    <option value="3">L </option>
+                                    <option value="4">XL</option>
+                                    <option value="5">XXL</option>
+                                    <option value="6">XXXL </option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label class="control-label" for="input-quantity">Số lượng</label>
-                                <input name="quantity" value="1" size="2" id="input-quantity" class="form-control" type="text">
-                                <input name="product_id" value="1874" type="hidden"><br>
+                                <label class="control-label" for="productquantity">Số lượng</label>
+                                <input name="productquantity" value="1" size="2" id="productquantity" class="form-control" type="text">
+                                <input class="csrfToken" type="hidden" name="_csrf" value="{{ csrfToken }}">
+                                <!-- <input name="product_id" type="hidden"><br> -->
                                 <button type="submit" id="button-cart" data-loading-text="Đang tải..." class="btn btn-primary btn-lg btn-block">Mua hàng</button>
                             </div>
                             </form>

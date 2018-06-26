@@ -26,9 +26,6 @@ module.exports = {
       productPrice: {
         type: Sequelize.FLOAT
       },
-      availProducts: {
-        type: Sequelize.INTEGER
-      },
       pathToImg: {
         type: Sequelize.STRING
       },

@@ -40,5 +40,20 @@ module.exports = {
         .catch(function(error) {
             done(error);
         });
-    }
+    },
+
+    updateUserInformation(usrID, userInfo, done) {
+        return usersModel
+            .update(userInfo, {
+                where: {
+                    id: usrID,
+                },
+            })
+            .then(function() {
+                done(null);
+            })
+            .catch(function(error) {
+                done(error);
+            });
+    },
 };

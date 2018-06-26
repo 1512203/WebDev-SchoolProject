@@ -6,7 +6,10 @@ var sequelize = require('sequelize');
 module.exports = {
     createNewShoppingCart(done) {
         return cartsModel
-            .create({totalQuantiles: 0, totalPrice: 0})
+            .create({
+                totalQuantiles: 0, 
+                totalPrice: 0,
+            })
             .then(function(cart) {
                 done(null, cart);
             })
@@ -15,11 +18,11 @@ module.exports = {
             });
     },
 
-    addItemToCart(cartID, itemPrice, done) {
+    addItemToCart(cartID, itemPrice, itemQuantity, done) {
         return cartsModel
             .update({
-                totalQuantiles: sequelize.literal('\"totalQuantiles\"+1'),
-                totalPrice: sequelize.literal('\"totalPrice\"+' + itemPrice.toString()),
+                totalQuantiles: sequelize.literal('\"totalQuantiles\"+' + itemQuantity),
+                totalPrice: sequelize.literal('\"totalPrice\"+' + (itemPrice * itemQuantity).toString()),
             },
             {
                 where: {id: cartID,}

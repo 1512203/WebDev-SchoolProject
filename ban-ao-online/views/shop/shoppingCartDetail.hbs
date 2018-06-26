@@ -29,12 +29,12 @@
                     <button class="minus-btn" type="button" name="button">
                         <img src="/img/icon/minus.svg" alt="" />
                     </button>
-                    <input type="text" name="name" value="1">
+                    <input type="text" name="name" value="{{this.itemQuantity}}">
                     <button class="plus-btn" type="button" name="button">
                         <img src="/img/icon/plus.svg" alt="" />
                     </button>
                 </div>
-                <div class="total-price">{{this.productPrice}}</div>
+                <div class="total-price">{{this.itemPrice}}</div>
                 <div class="currency">VNĐ</div>
             </div>
         {{/each}}

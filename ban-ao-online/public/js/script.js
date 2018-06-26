@@ -1,4 +1,40 @@
 $(document).ready(function () {
+    slideController();
+
+    loginEventHandler();
+    signupEventHandler();
+
+    checkoutEventHandler();
+
+    seeProductDetailHandler();
+});
+
+
+
+
+function seeProductDetailHandler() {
+    // See product's detail
+    $('.col-3').on('click', function () {
+        var prodID = $(this).children('p.qhuy-productid-hidden').text();
+        console.log(prodID);
+        $.get('/product/' + prodID, function (data, status) {
+            $('.qhuy-see-detail #product form input.csrfToken').val(data.csrfToken);
+            $('.qhuy-see-detail .qhuy-product-thumb img').attr('src', data.pathToImg);
+            $('.qhuy-see-detail .qhuy-product-desp h1.title').text(data.productName);
+            $('.qhuy-see-detail .qhuy-product-desp ul.list-unstyled li.qhuy-product-style-detail span').text(data.Style.styleName);
+            $('.qhuy-see-detail .qhuy-product-desp ul.list-unstyled li.qhuy-product-status-detail span').text(data.availProducts);
+            $('.qhuy-see-detail .qhuy-product-desp ul.list-unstyled li.qhuy-product-price-detail h2').text(data.productPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " VNĐ");
+            $('.qhuy-see-detail #product form').attr('action', '/addtocart/' + prodID);
+            $('.qhuy-see-detail').css('display', 'block');
+        });
+    });
+
+    $('.qhuy-see-detail .qhuy-close').on('click', function () {
+        $('.qhuy-see-detail').css('display', 'none');
+    });
+}
+
+function slideController() {
     // Set Options 
     var speed = 500;        // fade speed
     var autoswitch = true;  // auto slider options
@@ -51,63 +87,12 @@ $(document).ready(function () {
     if (autoswitch == true) {
         setInterval(switchToNextSlide, autoswitch_speed);
     }
+}
 
-    // Checkout event
-    $('#button-cart').on('click', function () {
-        $.get('/checkout', function (data, status) {
-            if (data.login) {
-                $('#qhuy-checkout-form form input.csrfToken').val(data.csrfToken);
-                if (data.hasErrors > 0) {
-                    let errorMess = '';
-                    for (let i = 0; i < data.messages.length; ++i) {
-                        errorMess += "<p class=\"errorMess\">" + data.messages[i] + "</p>";
-                    }
-                    $('div.alert').text(errorMess);
-                    $('div.alert').css('display', 'block');
-                }
-                else {
-                    $('div.alert').css('display', 'none');
-                }
-                $('#qhuy-checkout-form').css('display', 'block');
-            }
-            else {
-                $.get('/user/login', function (data, status) {
-                    $('#qhuy-login-form form input.csrfToken').val(data.csrfToken);
-                    if (data.hasErrors > 0) {
-                        let errorMess = '';
-                        for (let i = 0; i < data.messages.length; ++i) {
-                            errorMess += "<p class=\"errorMess\">" + data.messages[i] + "</p>";
-                        }
-                        $('div.alert').text(errorMess);
-                        $('div.alert').css('display', 'block');
-                    }
-                    else {
-                        $('div.alert').css('display', 'none');
-                    }
-                    $('#qhuy-login-form').css('display', 'block');
-                });
-            }
-        });
-    });
-
-
+function loginEventHandler() {
     // Login event
     $('#qhuy-login-btn').on('click', function () {
-        $.get('/user/login', function (data, status) {
-            $('#qhuy-login-form form input.csrfToken').val(data.csrfToken);
-            if (data.hasErrors > 0) {
-                let errorMess = '';
-                for (let i = 0; i < data.messages.length; ++i) {
-                    errorMess += "<p class=\"errorMess\">" + data.messages[i] + "</p>";
-                }
-                $('div.alert').text(errorMess);
-                $('div.alert').css('display', 'block');
-            }
-            else {
-                $('div.alert').css('display', 'none');
-            }
-            $('#qhuy-login-form').css('display', 'block');
-        });
+        $.get('/user/login', processAfterSendingLoginGetRequest);
     });
 
     $('#qhuy-login-form .qhuy-close').on('click', function () {
@@ -118,46 +103,75 @@ $(document).ready(function () {
         $('#qhuy-login-form form')[0].reset();
         $('#qhuy-login-form').css('display', 'none');
     });
+}
 
+function processAfterSendingLoginGetRequest(data, status) {
+    $('#qhuy-login-form form input.csrfToken').val(data.csrfToken);
+    if (data.hasErrors > 0) {
+        let errorMess = '';
+        for (let i = 0; i < data.messages.length; ++i) {
+            errorMess += "<p class=\"errorMess\">" + data.messages[i] + "</p>";
+        }
+        $('div.alert').text(errorMess);
+        $('div.alert').css('display', 'block');
+    }
+    else {
+        $('div.alert').css('display', 'none');
+    }
+    $('#qhuy-login-form').css('display', 'block');
+}
 
-
-
+function signupEventHandler() {
     // Signup event
     $('#qhuy-signup-btn').on('click', function () {
-        $.get('/user/signup', function (data, status) {
-            $('#qhuy-signup-form form input.csrfToken').val(data.csrfToken);
-            if (data.hasErrors > 0) {
-                let errorMess = '';
-                for (let i = 0; i < data.messages.length; ++i) {
-                    errorMess += "<p class=\"errorMess\">" + data.messages[i] + "</p>";
-                }
-                $('div.alert').text(errorMess);
-                $('div.alert').css('display', 'block');
-            }
-            else {
-                $('div.alert').css('display', 'none');
-            }
-        });
-        $('#qhuy-signup-form').css('display', 'block');
+        $.get('/user/signup', processAfterSendingSignupGetRequest);
     });
 
-    $('.qhuy-signup-form').on("submit", function () {
-        var v = grecaptcha.getResponse();
-        if(v.length == 0)
-        {
-            document.getElementById('captcha').innerHTML="You can't leave Captcha Code empty";
-            return false;
-        }
-        else
-        {
-            document.getElementById('captcha').innerHTML="Captcha completed";
-            return true; 
-        }
-    });
-
+    $('#qhuy-signup-form form').on("submit", captchaProcessWhenSignup);
 
     $('#qhuy-signup-form .qhuy-close').on('click', function () {
         $('#qhuy-signup-form').css('display', 'none');
+    });
+
+    $('#qhuy-signup-form .qhuy-cancelBtn').on('click', function () {
+        $('#qhuy-signup-form form')[0].reset();
+        $('#qhuy-signup-form').css('display', 'none');
+    });
+}
+
+function captchaProcessWhenSignup() {
+    var v = grecaptcha.getResponse();
+    if(v.length == 0)
+    {
+        document.getElementById('captcha').innerHTML="You can't leave Captcha Code empty";
+        return false;
+    }
+    else
+    {
+        // document.getElementById('captcha').innerHTML="Captcha completed";
+        return true; 
+    }
+}
+
+function processAfterSendingSignupGetRequest(data, status) {
+    $('#qhuy-signup-form form input.csrfToken').val(data.csrfToken);
+    if (data.hasErrors > 0) {
+        let errorMess = '';
+        for (let i = 0; i < data.messages.length; ++i) {
+            errorMess += "<p class=\"errorMess\">" + data.messages[i] + "</p>";
+        }
+        $('div.alert').text(errorMess);
+        $('div.alert').css('display', 'block');
+    }
+    else {
+        $('div.alert').css('display', 'none');
+    }
+    $('#qhuy-signup-form').css('display', 'block');
+}
+
+function checkoutEventHandler() {
+    $('#button-cart').on('click', function () {
+        $.get('/checkout', processAfterSendingCheckoutRequest);
     });
 
     $('#qhuy-checkout-form .qhuy-close').on('click', function () {
@@ -169,30 +183,34 @@ $(document).ready(function () {
         $('#qhuy-checkout-form').css('display', 'none');
     });
 
-    $('#qhuy-signup-form .qhuy-cancelBtn').on('click', function () {
-        $('#qhuy-signup-form form')[0].reset();
-        $('#qhuy-signup-form').css('display', 'none');
-    });
+}
 
+function processAfterSendingCheckoutRequest(data, status) {
+    console.log(data);
+    if (data.login) {
+        continueCheckoutIfHasLoggedInAlready(data);
+    }
+    else {
+        loginRequiredBeforeCheckout();
+    }
+}
 
+function continueCheckoutIfHasLoggedInAlready(data) {
+    $('#qhuy-checkout-form form input.csrfToken').val(data.csrfToken);
+    if (data.hasErrors > 0) {
+        let errorMess = '';
+        for (let i = 0; i < data.messages.length; ++i) {
+            errorMess += "<p class=\"errorMess\">" + data.messages[i] + "</p>";
+        }
+        $('div.alert').text(errorMess);
+        $('div.alert').css('display', 'block');
+    }
+    else {
+        $('div.alert').css('display', 'none');
+    }
+    $('#qhuy-checkout-form').css('display', 'block');
+}
 
-    // See product's detail
-    $('.col-3').on('click', function () {
-        var prodID = $(this).children('p.qhuy-productid-hidden').text();
-        console.log(prodID);
-        $.get('/product/' + prodID, function (data, status) {
-            $('.qhuy-see-detail .qhuy-product-thumb img').attr('src', data.pathToImg);
-            $('.qhuy-see-detail .qhuy-product-desp h1.title').text(data.productName);
-            $('.qhuy-see-detail .qhuy-product-desp ul.list-unstyled li.qhuy-product-style-detail span').text(data.Style.styleName);
-            $('.qhuy-see-detail .qhuy-product-desp ul.list-unstyled li.qhuy-product-status-detail span').text(data.availProducts);
-            $('.qhuy-see-detail .qhuy-product-desp ul.list-unstyled li.qhuy-product-price-detail h2').text(data.productPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " VNĐ");
-            $('.qhuy-see-detail #product form').attr('action', '/addtocart/' + prodID);
-            $('.qhuy-see-detail').css('display', 'block');
-        });
-    });
-
-    $('.qhuy-see-detail .qhuy-close').on('click', function () {
-        $('.qhuy-see-detail').css('display', 'none');
-    });
-
-});
+function loginRequiredBeforeCheckout() {
+    $.get('/user/login', processAfterSendingLoginGetRequest);
+}

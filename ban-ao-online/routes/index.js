@@ -258,6 +258,7 @@ router.get('/shoppingcartdetail', function(req, res, next) {
         if (cartID != -1) {
             cartsController.getCartDetailInformation(cartID, function(error, cart) {
                 var extractedInfo = extractListOfCartItems.extractListOfCartItems(cart);
+
                 res.render('shop/shoppingCartDetail', {
                     title: 'Bán áo online',
                     email: curEmail,
@@ -281,33 +282,58 @@ router.get('/shoppingcartdetail', function(req, res, next) {
     });
 });
 
-router.get('/addtocart/:id', function(req, res, next) {
+router.post('/addtocart/:id', function(req, res, next) {
     var productID = req.params.id;
+    console.log(req.params);
+    console.log(req.body);
 
     productsController.findProductByID(productID, function(err, product) {
         if (err) return res.status(400).send({message: 'Cannot find the product'});
 
         var cartID = Boolean(req.session.cartID) ? req.session.cartID : (-1);
         var productPrice = product.dataValues.productPrice;
-        // console.log(productPrice);
+        var productQuantity = parseInt(req.body.productquantity);
+        var productSize = parseInt(req.body.productsize);
+
         if (cartID == -1) {
             cartsController.createNewShoppingCart(function(error, cart) {
                 if (error) return res.status(400).send({message: 'Cannot create new cart'});
-                // Update cart session
+
                 req.session.cartID = cart.dataValues.id;
-                // Add product to cart
-                cartitemsController.addItemToCart(productID, cart.dataValues.id, function(error, cartitem) {
-                    // console.log(productPrice);
-                    cartsController.addItemToCart(cartitem.dataValues.cartID, productPrice, function(error) {
+                cartitemsController.addItemToCart(
+                        productID, 
+                        cart.dataValues.id, 
+                        productQuantity, 
+                        productSize, 
+                        function(error, cartitem) {
+
+                    cartsController.addItemToCart(
+                            cartitem.dataValues.cartID, 
+                            productPrice, 
+                            productQuantity, 
+                            function(error) {
                         res.redirect('/');
                     });
+
                 });
             });
         }
         else {
-            // Add product to cart
-            cartitemsController.addItemToCart(productID, cartID, function(error, cartitem) {
-                cartsController.addItemToCart(cartitem.dataValues.cartID, productPrice, function(error, cart) {
+            cartitemsController.addItemToCart(
+                    productID, 
+                    cartID, 
+                    productQuantity, 
+                    productSize, 
+                    function(error, cartitem) {
+
+                if (error) return res.status(400).send({message: 'Cannot add item to cart'});
+
+                cartsController.addItemToCart(
+                        cartitem.dataValues.cartID, 
+                        productPrice, 
+                        productQuantity, 
+                        function(error) {
+                    if (error) return res.status(400).send({message: 'Cannot add item to cart 2'});
                     res.redirect('/');
                 });
             });
@@ -344,7 +370,9 @@ router.get('/product/:id', function(req, res, next) {
             res.status(400).send({message: 'Cannot find product by id'});
         }
         else {
-            res.status(200).send(product.dataValues);
+            var result = product.dataValues;
+            result.csrfToken = req.csrfToken();
+            res.status(200).send(result);
         }
     });
 });
@@ -417,7 +445,7 @@ router.get('/checkout', function(req, res, next) {
         if (user) islogin = true;
         var messages = req.flash('error');
         res.send({
-            login: true,
+            login: islogin,
             csrfToken: req.csrfToken(),
             messages: messages,
             hasErrors: messages.length > 0,

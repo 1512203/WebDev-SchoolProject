@@ -8,6 +8,12 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      productQuantity: {
+          type: Sequelize.INTEGER,
+      },
+      productSize: {
+          type: Sequelize.INTEGER,
+      },
       cartID: {
         type: Sequelize.INTEGER,
         onDelete: 'CASCADE',

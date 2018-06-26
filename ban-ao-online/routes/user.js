@@ -10,9 +10,6 @@ var extractListOfProductsByRowsHelper = require('./helpers/extractListOfProducts
 var csrf = require('csurf');
 
 var csrfProtection = csrf();
-
-const request = require('request');
-
 router.use(csrfProtection);
 
 router.get('/loginFail', isNotLoggedIn, function (req, res, next) {
@@ -70,7 +67,7 @@ router.get('/signup', isNotLoggedIn, function (req, res, next) {
 
 router.post('/signup', isNotLoggedIn, passport.authenticate('local.signup', {
     successRedirect: './profile',
-    failureRedirect: '/signupFail',
+    failureRedirect: './signupFail',
     failureFlash: true,
 }));
 
@@ -113,6 +110,7 @@ router.get('/profile', isLoggedIn, function (req, res, next) {
                 }
                 res.render('user/profile', {
                     title: 'Bán áo online',
+                    csrfToken: req.csrfToken(),
                     email: curEmail,
                     fullname: fullname,
                     phonenumber: phonenumber,
@@ -125,6 +123,7 @@ router.get('/profile', isLoggedIn, function (req, res, next) {
         else {
             res.render('user/profile', {
                 title: 'Bán áo online',
+                csrfToken: req.csrfToken(),
                 email: curEmail,
                 fullname: fullname,
                 phonenumber: phonenumber,
@@ -136,14 +135,72 @@ router.get('/profile', isLoggedIn, function (req, res, next) {
     });
 });
 
+router.post('/editprofile', isLoggedIn, function(req, res, next) {
+    var usrID = req.session.passport ? req.session.passport.user : (-1);
+    usersController.findUserById(usrID, function(error, user) {
+        if (!user) {
+            return res.redirect('/');
+        }
+
+        var newName = req.body.edfullname;
+        var newEmail = req.body.edemail;
+        var newPassword = req.body.edpassword;
+        var newPhoneNumber = req.body.edphonenumber;
+        var newAddress = req.body.edaddress;
+        if (newName || newEmail || newPassword || newPhoneNumber || newAddress) {
+            var userInfo = {};
+            if (newName) userInfo.fullname = newName;
+            if (newEmail) userInfo.email = newEmail;
+            if (newPassword) userInfo.password = newPassword;
+            if (newPhoneNumber) userInfo.phonenumber = newPhoneNumber;
+            if (newAddress) userInfo.address = newAddress;
+            usersController.updateUserInformation(usrID, userInfo, function(error) {
+                res.redirect('/user/profile');
+            });
+        }
+        else {
+            res.redirect('/user/profile');
+        }
+    });
+});
+
 router.get('/history', isLoggedIn, function (req, res, next) {
     var usrID = req.session.passport ? req.session.passport.user : (-1);
     usersController.findUserById(req.session.passport.user, function (error, user) {
         var curEmail = "";
-        if (user) curEmail = user.dataValues.email;
-        res.render('user/history', {
-            email: curEmail,
-        });
+        if (user) {
+            curEmail = user.dataValues.email;
+        }
+
+        var cartID = Boolean(req.session.cartID) ? req.session.cartID : (-1);
+        if (cartID != -1) {
+            cartsController.getCartInformation(cartID, function (error, cart) {
+                var cartQuantity = 0, cartPrice = 0;
+                if (Boolean(error)) {
+                    // Do nothing here
+                }
+                else {
+                    cartQuantity = cart.dataValues.totalQuantiles;
+                    cartPrice = cart.dataValues.totalPrice;
+                }
+                res.render('user/history', {
+                    title: 'Bán áo online',
+                    csrfToken: req.csrfToken(),
+                    email: curEmail,
+                    cartQuantity: cartQuantity,
+                    cartPrice: cartPrice,
+                });
+            });
+        }
+        else {
+            res.render('user/history', {
+                title: 'Bán áo online',
+                csrfToken: req.csrfToken(),
+                email: curEmail,
+                cartQuantity: 0,
+                cartPrice: 0,
+            });
+        }
     });
 });
 
