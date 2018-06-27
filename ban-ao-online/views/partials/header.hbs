@@ -19,11 +19,16 @@
 			</div>
 			<div class="qhuy-account-name">
 				<ul>
+                    {{#if isAdmin}}
+                    {{else}}
                     <li> <a id="gio-hang" href="/shoppingcartdetail">
                         <img id="cart-logo" src="/img/icon/cart.png">
                         <strong>{{cartQuantity}} sản phẩm - {{cartPrice}} VNĐ</strong>
                     </a></li>
-                    <li id="chao"><a href="/user/profile">{{email}}</a></li>
+                    {{/if}}
+                    <li id="chao">{{#if isAdmin}}Chào Admin {{/if}}
+                        <a href="{{#if isAdmin}}/admin/dashboard{{else}}/user/profile{{/if}}">{{email}}</a>
+                    </li>
                     <li>
                         <a href="/user/logout" style="float:right;margin-right:30px;margin-left:10px;">
                             <img style="margin-top:2px;display: block;width: 19px;" src="/img/icon/log-out.png">

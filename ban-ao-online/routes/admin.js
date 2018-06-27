@@ -21,19 +21,29 @@ router.use(csrfProtection);
 
 
 router.get('/dashboard', isLoggedIn, function(req, res, next) {
-    ordersController.getAllOrdersFromAllUsers(function(error, orders) {
-        if (orders === undefined) {
-            res.redirect('/user/logout');
+    var usrID = req.session.passport ? req.session.passport.user : (-1);
+    usersController.findUserById(usrID, function(error, user) {
+        if (user.dataValues.isAdmin) {
+            ordersController.getAllOrdersFromAllUsers(function(error, orders) {
+                if (orders === undefined) {
+                    return res.redirect('/user/logout');
+                }
+                else {
+                    var extractedList = extractListOfAllOrders.extractListOfAllOrders(orders);
+                    console.log(extractedList);
+                    return res.render('admin/dashboard', {
+                        isAdmin: true,
+                        carts: extractedList.carts,
+                        totalMoney: extractedList.totalMoney,
+                        totalQuantity: extractedList.totalQuantity,
+                        title: "Bán áo online",
+                        email: user.dataValues.email,
+                    });
+                }
+            });
         }
         else {
-            var extractedList = extractListOfAllOrders.extractListOfAllOrders(orders);
-            console.log(extractedList);
-            res.render('admin/dashboard', {
-                carts: extractedList.carts,
-                totalMoney: extractedList.totalMoney,
-                totalQuantity: extractedList.totalQuantity,
-                title: "Bán áo online",
-            });
+            return res.redirect('/');
         }
     });
 });
