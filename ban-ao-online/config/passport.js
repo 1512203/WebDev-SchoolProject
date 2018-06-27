@@ -2,6 +2,7 @@ var passport = require('passport');
 var controllers = require('../database/controllers');
 var usersController = controllers.usersController;
 var localStrategy = require('passport-local').Strategy;
+var jwt = require('jsonwebtoken');
 
 passport.serializeUser(function(user, done) {
     done(null, user.id);
@@ -15,8 +16,7 @@ passport.use('local.signup', new localStrategy({
     usernameField: 'email',
     passwordField: 'password',
     passReqToCallback: true,
-}, 
-function(req, email, password, done) {
+}, function(req, email, password, done) {
     req.checkBody('email', 'Invalid email').notEmpty().isEmail();
     req.checkBody('password', 'Invalid password').notEmpty().isLength({min: 8,});
     var errors = req.validationErrors();

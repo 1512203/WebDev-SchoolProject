@@ -677,6 +677,16 @@ section.qhuy-admin {
     margin-right: auto;
 }
 
+.qhuy-see-cart-detail .qhuy-detail-cart{
+    color: black;
+    background: white;
+    width: 97%;
+    height: 90%;
+    margin-top: 5px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 #chi-tiet-gd table {
     width:100%;
 }
@@ -686,6 +696,11 @@ section.qhuy-admin {
 #chi-tiet-gd table th{
     background:#e74c3c;color:#fff;border:1px solid rgba(0,0,0,0.05);border-bottom:0;padding:10px;text-align:center;vertical-align:top
 }
+
+.qhuy-see-cart-detail .qhuy-detail-cart table th{
+    background:#e74c3c;color:#fff;border:1px solid rgba(0,0,0,0.05);border-bottom:0;padding:10px;text-align:center;vertical-align:top
+}
+
 #chi-tiet-gd table.tr-caption-container {
     border:1px solid rgba(0,0,0,0.14);margin:0;
 }
@@ -697,6 +712,13 @@ section.qhuy-admin {
 }
 #chi-tiet-gd td, th{
     vertical-align:top;text-align:left;font-size:13px;padding:3px 5px;border:1px solid #97b28e;
+}
+.qhuy-see-cart-detail .qhuy-detail-cart table td {
+    border: 1px solid rgba(0,0,0,0.05);
+    border-bottom: 0;
+    padding: 10px;
+    text-align: center;
+    vertical-align:top;
 }
 #chi-tiet-gd th:hover{
     color:#fff;

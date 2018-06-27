@@ -1,0 +1,100 @@
+<section class="qhuy-top-menu">
+	<div class="qhuy-container">
+		<nav class="qhuy-topside-menu">
+			<ul>
+				<li>
+					<a href="/admin/dashboard">THỐNG KÊ</a>
+				</li>
+				<li>
+					<a href="#">TÀI KHOẢN KHÁCH HÀNG</a>
+				</li>
+				<li class="qhuy-end-menu">
+					<a href="#">QUẢN LÝ SẢN PHẨM</a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+</section>
+
+<section id="qhuy-main-content">
+	<div class="qhuy-container">
+		<div class="thong-ke">
+			<div class="sp">
+                <div id="tong-sp">Số sản phẩm đã bán: {{totalQuantity}}</div>
+                <div id="tong-so-tien">Tổng số tiền thu được: {{totalMoney}}</div>
+				</div>
+				<div class="bieu-do">
+					<div style="margin-top: 5px; font-weight: bold;">Biểu đồ doanh thu theo tháng</div>
+					<div id="bd-canvas">
+						<canvas id="canvas" height="250" width="730"></canvas>
+					</div>
+				</div>
+				<div class="ds-giao-dich">
+					<div>Danh sách cách giao dịch thực hiện gần đây</div>
+					<div id="chi-tiet-gd">
+						<table cellpadding="0" cellspacing="0" style="text-align: left;">
+							<tbody>
+								<tr>
+                                    <th>Tên chủ sở hữu thẻ</th>
+									<th>Email thành viên</th>
+									<th>Tên thành viên</th>
+                                    <th>Số sản phẩm đã mua</th>
+                                    <th>Tổng số tiền thu được</th>
+									<th>Thời điểm thanh toán</th>
+								</tr>
+                                {{#each carts}}
+                                <tr onclick="showCartDetail({{this.orderID}})">
+                                    <td>{{this.ownerCartName}}</td>
+                                    <td>{{this.customerEmail}}</td>
+                                    <td>{{this.customerName}}</td>
+                                    <td>{{this.totalQuantity}}</td>
+                                    <td>{{this.totalPrice}}</td>
+                                    <td>{{this.checkoutTime}}</td>
+								</tr>
+                                {{/each}}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+</section>
+
+<script>
+function showCartDetail(orderID) {
+    $.get('/admin/getcartinfo/'+orderID, function(data, status) {
+        console.log(data);
+        let view = $('.qhuy-see-cart-detail.qhuy-modal');
+        let table_view = $('.qhuy-see-cart-detail.qhuy-modal table tbody');
+        for (let i = 0; i < data.length; ++i) {
+            let addedItem = "<tr class=\"qhuy-not-head\">\n" 
+                + "<td>" + (i+1) +"</td>\n"
+                + "<td>" + (data[i].productID) + "</td>\n"
+                + "<td>" + (data[i].productName) + "</td>\n"
+                + "<td>" + (data[i].productPrice) + "</td>\n"
+                + "<td>" + (data[i].productQuantity) + "</td>\n"
+                + "<td>" + (data[i].totalPrice) + "</td>\n"
+                + "</tr>"
+            table_view.append(addedItem);
+        }
+        view.css('display', 'block');
+    });
+}
+</script>
+
+<script>
+    var BarChart = {
+        labels: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"],
+        datasets: [{
+            fillColor: "rgb(255, 165, 0)",
+            strokeColor: "rgb(255,0,0)",
+            data: [13, 20, 30, 40, 50, 13, 33, 5, 32, 5, 10, 12]
+        }]
+    }
+</script>
+
+<script>
+    var myBarChart = new Chart(document.getElementById("canvas").getContext("2d")).Bar(BarChart, { scaleFontSize: 12, scaleFontColor: "#000000" });
+</script>
+
+{{>cartDetail}}

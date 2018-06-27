@@ -1,0 +1,35 @@
+<div class="qhuy-see-cart-detail qhuy-modal">
+    <div class="qhuy-modal-content qhuy-animate">
+        <div class="qhuy-img-container">
+            <span class="qhuy-close" title="Close Modal" onclick="closeThis()">&times;</span>
+        </div>
+
+        <div class="qhuy-container">
+            <div class="qhuy-detail-cart">
+            <table cellpadding="0" cellspacing="0" style="
+                text-align: center; 
+                width: 100%; 
+                padding: 20px;
+                border-color: grey;
+            ">
+                <tbody>
+                    <tr style="background-color: #e74c3c; border: 1px solid rgba(0, 0, 0, 0.05);">
+                        <th>STT</th>
+                        <th>Mã sản phẩm</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Đơn giá</th>
+                        <th>Só lượng</th>
+                        <th>Thành tiền</th>
+                    </tr>
+                </tbody>
+            </table>
+            </div>      
+        </div>
+    </div>
+</div>
+<script>
+function closeThis() {
+    $('.qhuy-see-cart-detail.qhuy-modal').css('display', 'none');
+    $('.qhuy-see-cart-detail.qhuy-modal table tbody tr').remove(".qhuy-not-head");
+}
+</script>

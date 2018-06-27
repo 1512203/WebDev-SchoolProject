@@ -25,6 +25,7 @@ var hbs = expresshbs.create({
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/user');
+var adminsRouter = require('./routes/admin');
 
 var app = express();
 
@@ -60,6 +61,7 @@ app.use(function(req, res, next) {
 });
 
 
+app.use('/admin', adminsRouter);
 app.use('/user', usersRouter);
 app.use('/', indexRouter);
 

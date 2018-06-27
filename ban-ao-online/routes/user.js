@@ -94,8 +94,12 @@ router.post('/login', isNotLoggedIn, passport.authenticate('local.signin', {
 router.get('/profile', isLoggedIn, function (req, res, next) {
     var usrID = req.session.passport ? req.session.passport.user : (-1);
     usersController.findUserById(usrID, function (error, user) {
+
         var curEmail = "", fullname = "", phonenumber = "", address = "";
         if (user) {
+            if (user.dataValues.isAdmin) {
+                return router.redirect('/admin/dashboard');
+            }
             curEmail = user.dataValues.email;
             fullname = user.dataValues.fullname;
             phonenumber = user.dataValues.phonenumber;
