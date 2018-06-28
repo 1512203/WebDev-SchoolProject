@@ -33,5 +33,20 @@ module.exports = {
                 .catch(function(error) {
                     done(error);
                 });
+    },
+    getAllProductsOrders(orderType, done) {
+        return productsModel
+            .findAll({
+                order: [['id', orderType]],
+                include: [{
+                    model: stylesModel,
+                }],
+            })
+            .then(function(products) {
+                done(null, products);
+            })
+            .catch(function(error) {
+                done(error);
+            });
     }
 };

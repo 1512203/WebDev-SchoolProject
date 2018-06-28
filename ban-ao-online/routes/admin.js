@@ -21,6 +21,9 @@ var extractListOfUsers = require('./helpers/extractListOfUsers-helper');
 var csrf = require('csurf');
 
 var csrfProtection = csrf();
+
+var productSortType = "DESC";
+
 router.use(csrfProtection);
 
 router.get('/deleteproduct/:productID', isLoggedIn, function(req, res, next) {
@@ -106,7 +109,7 @@ router.get('/manageproducts', isLoggedIn, function(req, res, next) {
         if (!user.dataValues.isAdmin) 
             return res.redirect('/');
 
-        productsController.getAllProducts({}, function(error, products) {
+        productsController.getAllProductsOrders('ASC',function(error, products) {
             var productsList = extractListOfProducts.extractListOfProducts(products);
             res.render('admin/manageproducts', {
                 isAdmin: true,
@@ -117,6 +120,31 @@ router.get('/manageproducts', isLoggedIn, function(req, res, next) {
         });
     });
 });
+
+router.get('/manageproducts/changeSortType', isLoggedIn, function(req, res, next) {
+    var usrID = req.session.passport ? req.session.passport.user : (-1);
+    usersController.findUserById(usrID, function(error, user) {
+        if (!user.dataValues.isAdmin) 
+            return res.redirect('/');
+
+        if (productSortType == 'DESC'){
+            productSortType = 'ASC';
+        }
+        else{
+            productSortType = 'DESC';
+        }
+        productsController.getAllProductsOrders(productSortType,function(error, products) {
+            var productsList = extractListOfProducts.extractListOfProducts(products);
+            res.render('admin/manageproducts', {
+                isAdmin: true,
+                products: productsList,
+                title: "Bán áo online",
+                email: user.dataValues.email,
+            });
+        });
+    });
+});
+
 
 router.get('/dashboard', isLoggedIn, function(req, res, next) {
     var usrID = req.session.passport ? req.session.passport.user : (-1);
