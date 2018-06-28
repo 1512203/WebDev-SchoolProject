@@ -1,18 +1,18 @@
-.huong-dan-content{
+.lien-he-content{
     color: black;
 }
 
-.huong-dan-content{
+.lien-he-content{
     width: 90%;
     margin: 0 auto;
 }
 
-.huong-dan-content .div-header div{
+.lien-he-content .div-header div{
     width: 25%;
     text-align: left;
 }
 
-.huong-dan-content .col1{
+.lien-he-content .col1{
     margin-top: 20px;
     margin-left: 5px;
     width: 15% !important;
@@ -20,20 +20,20 @@
  
 }
 
-.huong-dan-content .col2{
+.lien-he-content .col2{
     margin-top: 0px;
     margin-left: 4%;
     float: left;
 
 }
 
-.huong-dan-content .col3{
+.lien-he-content .col3{
     margin-left: 3%;
     float: left;
   
 }
 
-.huong-dan-content .col4{
+.lien-he-content .col4{
     margin-top: 15px;
     margin-bottom: 20px;
     float: right ;
