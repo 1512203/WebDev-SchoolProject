@@ -17,12 +17,15 @@ var extracListOfCartItemsOfOrder = require('./helpers/extractListOfCartItemsOfOr
 var extractSumList = require('./helpers/extractSumList-helper');
 var extractListOfProducts = require('./helpers/extractListOfProducts-helper');
 var extractListOfUsers = require('./helpers/extractListOfUsers-helper');
+var bodyParser = require('body-parser');
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 var csrf = require('csurf');
 
 var csrfProtection = csrf();
 
 var productSortType = "DESC";
+
 
 router.use(csrfProtection);
 
@@ -145,6 +148,22 @@ router.get('/manageproducts/changeSortType', isLoggedIn, function(req, res, next
     });
 });
 
+
+router.post('/manageproducts', function(req,res){
+    var priceStart= req.body.priceStartVar;
+    var priceEnd= req.body.priceEndVar;
+    
+    productsController.getAllProductsFilterByPrice(priceStart, priceEnd,function(error, products) {
+        var productsList = extractListOfProducts.extractListOfProducts(products);
+        res.render('admin/manageproducts', {
+            isAdmin: true,
+            products: productsList,
+            title: "Bán áo online",
+            email: user.dataValues.email,
+        });
+    });
+    
+});
 
 router.get('/dashboard', isLoggedIn, function(req, res, next) {
     var usrID = req.session.passport ? req.session.passport.user : (-1);
