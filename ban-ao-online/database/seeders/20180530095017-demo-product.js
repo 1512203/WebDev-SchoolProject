@@ -4,7 +4,7 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
 	var products = [
 		{
-			productName: "Ao mua he",
+			productName: "Áo phông HA001",
 			productStyleID: 1,
 			productPrice: 100000.0,
 			availProducts: 10,
@@ -13,7 +13,7 @@ module.exports = {
 			updatedAt: Sequelize.literal('NOW()')
 		},
 		{
-			productName: "Ao mua he",
+			productName: "Áo phông HA002",
 			productStyleID: 2,
 			productPrice: 100000.0,
 			availProducts: 10,
@@ -22,7 +22,7 @@ module.exports = {
 			updatedAt: Sequelize.literal('NOW()')
 		},
 		{
-			productName: "Ao mua he",
+			productName: "Áo phông HA003",
 			productStyleID: 3,
 			productPrice: 100000.0,
 			availProducts: 10,
@@ -31,7 +31,7 @@ module.exports = {
 			updatedAt: Sequelize.literal('NOW()')
 		},
 		{
-			productName: "Ao mua he",
+			productName: "Áo phông HA004",
 			productStyleID: 4,
 			productPrice: 100000.0,
 			availProducts: 10,
@@ -40,7 +40,7 @@ module.exports = {
 			updatedAt: Sequelize.literal('NOW()')
 		},
 		{
-			productName: "Ao mua he",
+			productName: "Áo phông HA005",
 			productStyleID: 5,
 			productPrice: 100000.0,
 			availProducts: 10,
@@ -49,7 +49,7 @@ module.exports = {
 			updatedAt: Sequelize.literal('NOW()')
 		},
 		{
-			productName: "Ao mua he",
+			productName: "Áo phông HA006",
 			productStyleID: 6,
 			productPrice: 100000.0,
 			availProducts: 10,
@@ -58,7 +58,7 @@ module.exports = {
 			updatedAt: Sequelize.literal('NOW()')
 		},
 		{
-			productName: "Ao mua he",
+			productName: "Áo phông HA007",
 			productStyleID: 7,
 			productPrice: 100000.0,
 			availProducts: 10,
@@ -67,7 +67,7 @@ module.exports = {
 			updatedAt: Sequelize.literal('NOW()')
 		},
 		{
-			productName: "Ao mua he",
+			productName: "Áo phông HA008",
 			productStyleID: 8,
 			productPrice: 100000.0,
 			availProducts: 10,
@@ -76,7 +76,7 @@ module.exports = {
 			updatedAt: Sequelize.literal('NOW()')
 		},
 		{
-			productName: "Ao mua he",
+			productName: "Áo phông HA009",
 			productStyleID: 1,
 			productPrice: 100000.0,
 			availProducts: 10,
@@ -85,7 +85,7 @@ module.exports = {
 			updatedAt: Sequelize.literal('NOW()')
 		},
 		{
-			productName: "Ao mua he",
+			productName: "AÁo phông HA010",
 			productStyleID: 2,
 			productPrice: 100000.0,
 			availProducts: 10,
@@ -94,7 +94,7 @@ module.exports = {
 			updatedAt: Sequelize.literal('NOW()')
 		},
 		{
-			productName: "Ao mua he",
+			productName: "Áo phông HA011",
 			productStyleID: 3,
 			productPrice: 100000.0,
 			availProducts: 10,
@@ -103,7 +103,7 @@ module.exports = {
 			updatedAt: Sequelize.literal('NOW()')
 		},
 		{
-			productName: "Ao mua he",
+			productName: "Áo phông HA012",
 			productStyleID: 1,
 			productPrice: 100000.0,
 			availProducts: 10,
@@ -112,7 +112,7 @@ module.exports = {
 			updatedAt: Sequelize.literal('NOW()')
 		},
 		{
-			productName: "Ao mua he",
+			productName: "Áo phông HA013",
 			productStyleID: 1,
 			productPrice: 100000.0,
 			availProducts: 10,
@@ -121,7 +121,7 @@ module.exports = {
 			updatedAt: Sequelize.literal('NOW()')
 		},
 		{
-			productName: "Ao mua he",
+			productName: "Áo phông HA014",
 			productStyleID: 1,
 			productPrice: 100000.0,
 			availProducts: 10,
@@ -130,7 +130,7 @@ module.exports = {
 			updatedAt: Sequelize.literal('NOW()')
 		},
 		{
-			productName: "Ao mua he",
+			productName: "Áo phông HA015",
 			productStyleID: 1,
 			productPrice: 100000.0,
 			availProducts: 10,
@@ -139,7 +139,7 @@ module.exports = {
 			updatedAt: Sequelize.literal('NOW()')
 		},
 		{
-			productName: "Ao mua he",
+			productName: "Áo phông HA016",
 			productStyleID: 1,
 			productPrice: 100000.0,
 			availProducts: 10,
@@ -148,7 +148,7 @@ module.exports = {
 			updatedAt: Sequelize.literal('NOW()')
 		},
 		{
-			productName: "Ao mua he",
+			productName: "Áo phông HA017",
 			productStyleID: 1,
 			productPrice: 100000.0,
 			availProducts: 10,
@@ -157,7 +157,7 @@ module.exports = {
 			updatedAt: Sequelize.literal('NOW()')
 		},
 		{
-			productName: "Ao mua he",
+			productName: "Áo phông HA018",
 			productStyleID: 1,
 			productPrice: 100000.0,
 			availProducts: 10,
@@ -166,7 +166,7 @@ module.exports = {
 			updatedAt: Sequelize.literal('NOW()')
 		},
 		{
-			productName: "Ao mua he",
+			productName: "Áo phông HA019",
 			productStyleID: 1,
 			productPrice: 100000.0,
 			availProducts: 10,
@@ -175,7 +175,7 @@ module.exports = {
 			updatedAt: Sequelize.literal('NOW()')
 		},
 		{
-			productName: "Ao mua he",
+			productName: "Áo phông HA020",
 			productStyleID: 1,
 			productPrice: 100000.0,
 			availProducts: 10,
