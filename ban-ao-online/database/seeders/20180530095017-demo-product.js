@@ -76,7 +76,7 @@ module.exports = {
 			updatedAt: Sequelize.literal('NOW()')
 		},
 		{
-			productName: "AÁo phông HA010",
+			productName: "Áo phông HA010",
 			productStyleID: 2,
 			productPrice: 100000.0,
 			pathToImg: "/img/products/shirt-10.jpg",
@@ -157,6 +157,166 @@ module.exports = {
 		},
 		{
 			productName: "Áo phông HA020",
+			productStyleID: 1,
+			productPrice: 100000.0,
+			pathToImg: "/img/products/shirt-20.png",
+			createdAt: Sequelize.literal('NOW()'),
+			updatedAt: Sequelize.literal('NOW()')
+		},
+		{
+			productName: "Áo phông HA021",
+			productStyleID: 1,
+			productPrice: 100000.0,
+			pathToImg: "/img/products/shirt-1.jpg",
+			createdAt: Sequelize.literal('NOW()'),
+			updatedAt: Sequelize.literal('NOW()')
+		},
+		{
+			productName: "Áo phông HA022",
+			productStyleID: 2,
+			productPrice: 100000.0,
+			pathToImg: "/img/products/shirt-2.jpg",
+			createdAt: Sequelize.literal('NOW()'),
+			updatedAt: Sequelize.literal('NOW()')
+		},
+		{
+			productName: "Áo phông HA023",
+			productStyleID: 3,
+			productPrice: 100000.0,
+			pathToImg: "/img/products/shirt-3.jpg",
+			createdAt: Sequelize.literal('NOW()'),
+			updatedAt: Sequelize.literal('NOW()')
+		},
+		{
+			productName: "Áo phông HA024",
+			productStyleID: 4,
+			productPrice: 100000.0,
+			pathToImg: "/img/products/shirt-4.jpg",
+			createdAt: Sequelize.literal('NOW()'),
+			updatedAt: Sequelize.literal('NOW()')
+		},
+		{
+			productName: "Áo phông HA025",
+			productStyleID: 5,
+			productPrice: 100000.0,
+			pathToImg: "/img/products/shirt-5.jpg",
+			createdAt: Sequelize.literal('NOW()'),
+			updatedAt: Sequelize.literal('NOW()')
+		},
+		{
+			productName: "Áo phông HA026",
+			productStyleID: 6,
+			productPrice: 100000.0,
+			pathToImg: "/img/products/shirt-6.jpg",
+			createdAt: Sequelize.literal('NOW()'),
+			updatedAt: Sequelize.literal('NOW()')
+		},
+		{
+			productName: "Áo phông HA027",
+			productStyleID: 7,
+			productPrice: 100000.0,
+			pathToImg: "/img/products/shirt-7.jpg",
+			createdAt: Sequelize.literal('NOW()'),
+			updatedAt: Sequelize.literal('NOW()')
+		},
+		{
+			productName: "Áo phông HA028",
+			productStyleID: 8,
+			productPrice: 100000.0,
+			pathToImg: "/img/products/shirt-8.jpg",
+			createdAt: Sequelize.literal('NOW()'),
+			updatedAt: Sequelize.literal('NOW()')
+		},
+		{
+			productName: "Áo phông HA029",
+			productStyleID: 1,
+			productPrice: 100000.0,
+			pathToImg: "/img/products/shirt-9.jpg",
+			createdAt: Sequelize.literal('NOW()'),
+			updatedAt: Sequelize.literal('NOW()')
+		},
+		{
+			productName: "Áo phông HA030",
+			productStyleID: 2,
+			productPrice: 100000.0,
+			pathToImg: "/img/products/shirt-10.jpg",
+			createdAt: Sequelize.literal('NOW()'),
+			updatedAt: Sequelize.literal('NOW()')
+		},
+		{
+			productName: "Áo phông HA031",
+			productStyleID: 3,
+			productPrice: 100000.0,
+			pathToImg: "/img/products/shirt-11.jpg",
+			createdAt: Sequelize.literal('NOW()'),
+			updatedAt: Sequelize.literal('NOW()')
+		},
+		{
+			productName: "Áo phông HA032",
+			productStyleID: 1,
+			productPrice: 100000.0,
+			pathToImg: "/img/products/shirt-12.jpg",
+			createdAt: Sequelize.literal('NOW()'),
+			updatedAt: Sequelize.literal('NOW()')
+		},
+		{
+			productName: "Áo phông HA033",
+			productStyleID: 1,
+			productPrice: 100000.0,
+			pathToImg: "/img/products/shirt-13.jpg",
+			createdAt: Sequelize.literal('NOW()'),
+			updatedAt: Sequelize.literal('NOW()')
+		},
+		{
+			productName: "Áo phông HA034",
+			productStyleID: 1,
+			productPrice: 100000.0,
+			pathToImg: "/img/products/shirt-14.jpg",
+			createdAt: Sequelize.literal('NOW()'),
+			updatedAt: Sequelize.literal('NOW()')
+		},
+		{
+			productName: "Áo phông HA035",
+			productStyleID: 1,
+			productPrice: 100000.0,
+			pathToImg: "/img/products/shirt-15.jpg",
+			createdAt: Sequelize.literal('NOW()'),
+			updatedAt: Sequelize.literal('NOW()')
+		},
+		{
+			productName: "Áo phông HA036",
+			productStyleID: 1,
+			productPrice: 100000.0,
+			pathToImg: "/img/products/shirt-16.jpg",
+			createdAt: Sequelize.literal('NOW()'),
+			updatedAt: Sequelize.literal('NOW()')
+		},
+		{
+			productName: "Áo phông HA037",
+			productStyleID: 1,
+			productPrice: 100000.0,
+			pathToImg: "/img/products/shirt-17.png",
+			createdAt: Sequelize.literal('NOW()'),
+			updatedAt: Sequelize.literal('NOW()')
+		},
+		{
+			productName: "Áo phông HA038",
+			productStyleID: 1,
+			productPrice: 100000.0,
+			pathToImg: "/img/products/shirt-18.jpg",
+			createdAt: Sequelize.literal('NOW()'),
+			updatedAt: Sequelize.literal('NOW()')
+		},
+		{
+			productName: "Áo phông HA039",
+			productStyleID: 1,
+			productPrice: 100000.0,
+			pathToImg: "/img/products/shirt-19.png",
+			createdAt: Sequelize.literal('NOW()'),
+			updatedAt: Sequelize.literal('NOW()')
+		},
+		{
+			productName: "Áo phông HA040",
 			productStyleID: 1,
 			productPrice: 100000.0,
 			pathToImg: "/img/products/shirt-20.png",
