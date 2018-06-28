@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var passport = require('passport');
+
 var controllers = require('../database/controllers');
 var stylesController = controllers.stylesController;
 var productsController = controllers.productsController;
@@ -22,7 +23,25 @@ var csrf = require('csurf');
 var csrfProtection = csrf();
 router.use(csrfProtection);
 
-router.get('/manageaccounts', isLoggedIn, function(req, res, next) {
+router.get('/managestyles', isLoggedIn, function(req, res, next) {
+    var usrID = req.session.passport ? req.session.passport.user : (-1);
+    usersController.findUserById(usrID, function(error, user) {
+        if (!user.dataValues.isAdmin)
+            return res.redirect('/');
+
+        stylesController.getAllStyles(function(error, styles) {
+            res.render('admin/managestyles', {
+                styles: styles,
+                isAdmin: true,
+                title: "Bán áo online",
+                email: user.dataValues.email,
+            });
+        });
+    });
+});
+
+/*
+router.post('/deleteaccounts', isLoggedIn, function(req, res, next) {
     var usrID = req.session.passport ? req.session.passport.user : (-1);
     usersController.findUserById(usrID, function(error, user) {
         if (!user.dataValues.isAdmin)
@@ -33,6 +52,25 @@ router.get('/manageaccounts', isLoggedIn, function(req, res, next) {
             res.render('admin/manageaccounts', {
                 isAdmin: true,
                 users: usersList,
+                title: "Bán áo online",
+                email: user.dataValues.email,
+            });
+        });
+    });
+});
+*/
+
+router.get('/manageaccounts', isLoggedIn, function(req, res, next) {
+    var usrID = req.session.passport ? req.session.passport.user : (-1);
+    usersController.findUserById(usrID, function(error, user) {
+        if (!user.dataValues.isAdmin)
+            return res.redirect('/');
+
+        usersController.getAllUsers({}, function(error, users) {
+            var usersList = extractListOfUsers.extractListOfUsers(users);
+            res.render('admin/manageaccounts', {
+                users: usersList,
+                isAdmin: true,
                 title: "Bán áo online",
                 email: user.dataValues.email,
             });
