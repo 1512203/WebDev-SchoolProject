@@ -149,7 +149,7 @@ router.get('/manageproducts/changeSortType', isLoggedIn, function(req, res, next
 });
 
 
-router.post('/manageproducts',urlencodedParser, function(req,res){
+router.post('manageproducts/filterbyprice',urlencodedParser, function(req,res){
     var priceStart= 1;
     var priceEnd= 100;
     var priceSelect = req.body.myselect;
@@ -167,6 +167,22 @@ router.post('/manageproducts',urlencodedParser, function(req,res){
     }
     
     productsController.getAllProductsFilterByPrice(priceStart, priceEnd,function(error, products) {
+        var productsList = extractListOfProducts.extractListOfProducts(products);
+        res.render('admin/manageproducts', {
+            isAdmin: true,
+            products: productsList,
+            title: "Bán áo online",
+            email: user.dataValues.email,
+        });
+    });
+    
+});
+
+router.post('/manageproducts/searchbyname',urlencodedParser, function(req,res){
+   
+    var searchString = req.body.input-search;
+    
+    productsController.getProductsFilterSearchString(searchString,function(error, products) {
         var productsList = extractListOfProducts.extractListOfProducts(products);
         res.render('admin/manageproducts', {
             isAdmin: true,

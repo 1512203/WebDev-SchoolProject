@@ -4,18 +4,17 @@
 		<div class="ds-giao-dich" style="width: 90%;margin-left: auto; margin-right: auto;">
 			<h2 style="color: black; margin-left: 15px;">Danh sách sản phẩm:</h2>
 			<div style="float:right;height:50px; width: 100%; background:#DBECF6;">
-				<form style="float:right; margin-right: 18px;margin-top: 5px">
-					<input class="form-control" placeholder="Tìm kiếm" id="txt_global_search" value="" type="text" style="padding: 3px 0;">
-					<button type="button" id="btn-search">
-						<img src="/img/icon/search.png">
-					</button>
+				<form action="/admin/manageproduct/searchbyname"  style="float:right; margin-right: 18px;margin-top: 5px">
+					<input class="form-control" placeholder="Tìm kiếm" name="input-search" id="txt_global_search" value="" type="text" style="padding: 3px 0;">
+					<input type="submit" id="btn-search" value="search" style="width: 70px;">
+					</input>
 				</form>
 
 				<!--<button id="admin-mng-product-btn-loc" style="color: black ;float: right; height: 35px; margin-right: 30px; margin-top: 2px">
 					Lọc
 				</button>-->
-				<form action="/admin/manageproducts/" name="pricepicker" method="POST" style="height: 40px; width: 190px; float: right; ">
-					<select name="myselect" id="myselect" onchange="this.form.submit()">
+				<form action="/admin/manageproducts/filterbyprice" name="pricepicker" method="POST" style="height: 40px; width: 190px; float: right; margin-right: 10px; ">
+					<select name="myselect" onchange="this.form.submit()">
 						<option value="100">Dưới 100.000vnd</option>
 						<option value="101">100.000-150.000vnd</option>
 						<option value="151">150.000-200.000vnd</option>
