@@ -8,7 +8,7 @@ $(document).ready(function () {
 
     seeProductDetailHandler();
 
-    adminProductFilter();
+    //adminProductFilter();
 });
 
 
@@ -215,7 +215,7 @@ function loginRequiredBeforeCheckout() {
 }
 
 function adminProductFilter() {
-    $('#admin-mng-product-btn-loc').on('click', function () {
+   /* $('#admin-mng-product-btn-loc').on('click', function () {
         var priceStart = 1;
         var priceEnd = 100;
         var priceSelect = $('#price-select').val();
@@ -236,7 +236,7 @@ function adminProductFilter() {
             priceStartVar: priceStart,
             priceEndVar: priceEnd
         }, function (ketqua) {
-            
+
         });
-    });
+    });*/
 }

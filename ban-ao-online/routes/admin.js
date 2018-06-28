@@ -149,9 +149,22 @@ router.get('/manageproducts/changeSortType', isLoggedIn, function(req, res, next
 });
 
 
-router.post('/manageproducts', function(req,res){
-    var priceStart= req.body.priceStartVar;
-    var priceEnd= req.body.priceEndVar;
+router.post('/manageproducts',urlencodedParser, function(req,res){
+    var priceStart= 1;
+    var priceEnd= 100;
+    var priceSelect = req.body.myselect;
+    if (priceSelect == 101) {
+        priceStart = 101;
+        priceEnd = 150;
+    }
+    else if (priceSelect == 151) {
+        priceStart = 151;
+        priceEnd = 200;
+    }
+    else if (priceSelect == 201) {
+        priceStart = 201;
+        priceEnd = 10000;
+    }
     
     productsController.getAllProductsFilterByPrice(priceStart, priceEnd,function(error, products) {
         var productsList = extractListOfProducts.extractListOfProducts(products);
