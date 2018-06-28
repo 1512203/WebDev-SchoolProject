@@ -24,15 +24,31 @@
                                     <th>Số sản phẩm đã mua</th>
                                     <th>Tổng số tiền thu được</th>
 									<th>Thời điểm thanh toán</th>
+                                    <th>Tình trạng</th>
+                                    <th>Xem chi tiết</th>
 								</tr>
                                 {{#each carts}}
-                                <tr onclick="showCartDetail({{this.orderID}})">
+                                <tr>
                                     <td>{{this.ownerCartName}}</td>
                                     <td>{{this.customerEmail}}</td>
                                     <td>{{this.customerName}}</td>
                                     <td>{{this.totalQuantity}}</td>
                                     <td>{{this.totalPrice}}</td>
                                     <td>{{this.checkoutTime}}</td>
+                                    <td>
+                                        <button class="btn-quan-li-sua" style="
+                                        background-color: {{#if this.statusobj.isDelivered}}#4CAF50{{else}}{{#if this.statusobj.isPending}}#f4df16{{else}}red{{/if}}{{/if}};
+                                            box-sizing: border-box;
+                                            width: 100%;
+                                            " onclick="changeStatus({{this.orderID}}, {{this.statusnumber}})" >{{this.statusobj.status}}</button>
+                                    </td>
+                                    <td>
+                                        <button class="btn-quan-li-sua" style="
+                                        background-color: #20309c;
+                                            box-sizing: border-box;
+                                            width: 100%;
+                                            " onclick="showCartDetail({{this.orderID}})" >Xem chi tiết</button>
+                                    </td>
 								</tr>
                                 {{/each}}
 							</tbody>
@@ -42,6 +58,19 @@
 			</div>
 		</div>
 </section>
+
+<script>
+function changeStatus(orderid, statusnumber) {
+    if (statusnumber == 2) {
+        // Do nothing
+    }
+    else if (statusnumber == 1 || statusnumber == 3) {
+        $.get('/admin/changeorderstatus/' + orderid + '/' + (4-statusnumber), function(data, status) {
+            window.location.replace('/admin/dashboard');
+        });
+    }
+}
+</script>
 
 <script>
 function showCartDetail(orderID) {

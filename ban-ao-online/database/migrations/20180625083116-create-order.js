@@ -26,6 +26,9 @@ module.exports = {
             as: 'cartID',
         },
       },
+        orderStatus: {
+            type: Sequelize.INTEGER,
+        },
       address: {
         type: Sequelize.STRING
       },

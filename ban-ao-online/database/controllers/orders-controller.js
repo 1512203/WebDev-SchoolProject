@@ -7,6 +7,7 @@ var sequelize = require('../models').sequelize;
 
 module.exports = {
     createNewOrder(orderData, done) {
+        orderData.orderStatus = 1; // PENDING
         return ordersModel
             .create(orderData)
             .then(function(order) {
@@ -85,9 +86,26 @@ module.exports = {
             });
     },
 
+    changeStatus(orderID, newStatus, done) {
+        return ordersModel
+            .update({
+                orderStatus: newStatus,
+            }, {
+                where: {
+                    id: orderID,
+                }
+            })
+            .then(function() {
+                done(null);
+            })
+            .catch(function(error) {
+                done(error);
+            });
+    },
+
     getOrdersPriceForStatistic(done) {
         return sequelize
-            .query("SELECT SUM(\"totalPrice\"), date_trunc('day', \"Order\".\"createdAt\") as date FROM \"Orders\" AS \"Order\" LEFT OUTER JOIN \"Carts\" AS \"Cart\" ON \"Order\".\"cartID\" = \"Cart\".\"id\" GROUP BY date_trunc('day', \"Order\".\"createdAt\");", {
+            .query("SELECT SUM(\"totalPrice\"), date_trunc('day', \"Order\".\"createdAt\") as date FROM \"Orders\" AS \"Order\" LEFT OUTER JOIN \"Carts\" AS \"Cart\" ON \"Order\".\"cartID\" = \"Cart\".\"id\" GROUP BY date_trunc('day', \"Order\".\"createdAt\") ORDER BY date_trunc('day', \"Order\".\"createdAt\");", {
                 type: sequelize.QueryTypes.SELECT,
             })
             .then(function(sumList) {

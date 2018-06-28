@@ -1,3 +1,11 @@
+function getStatus(statusInteger) {
+    if (statusInteger == 1)
+        return { status: "ĐANG CHỜ", isPending: true};
+    if (statusInteger == 2)
+        return { status: "ĐÃ GIAO HÀNG", isDelivered: true};
+    return { status: "ĐÃ HỦY"};
+}
+
 module.exports = {
     extractListOfAllOrders(orders) {
         console.log("HERE");
@@ -20,6 +28,8 @@ module.exports = {
             cart.totalPrice = i_orderCart.totalPrice;
             cart.totalQuantity = i_orderCart.totalQuantiles;
             cart.orderID = i_order.id;
+            cart.statusobj = getStatus(i_order.orderStatus);
+            cart.statusnumber = i_order.orderStatus;
 
             totalMoney += cart.totalPrice;
             totalQuantity += cart.totalQuantity;

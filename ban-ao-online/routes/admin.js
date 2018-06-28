@@ -53,6 +53,19 @@ router.get('/changeStatus/:accID', isLoggedIn, function(req, res, next) {
     });
 });
 
+router.get('/changeorderstatus/:ordID/:newStatus', isLoggedIn, function(req, res, next) {
+    var usrID = req.session.passport ? req.session.passport.user : (-1);
+    usersController.findUserById(usrID, function(error, user) {
+        if (!user.dataValues.isAdmin)
+            return res.redirect('/');
+
+        ordersController.changeStatus(req.params.ordID, req.params.newStatus, function(error) {
+            if (!error) return res.send(200);
+            else return res.send(400);
+        });
+    });
+});
+
 router.get('/manageaccounts', isLoggedIn, function(req, res, next) {
     var usrID = req.session.passport ? req.session.passport.user : (-1);
     usersController.findUserById(usrID, function(error, user) {
