@@ -40,25 +40,18 @@ router.get('/managestyles', isLoggedIn, function(req, res, next) {
     });
 });
 
-/*
-router.post('/deleteaccounts', isLoggedIn, function(req, res, next) {
+router.get('/changeStatus/:accID', isLoggedIn, function(req, res, next) {
     var usrID = req.session.passport ? req.session.passport.user : (-1);
     usersController.findUserById(usrID, function(error, user) {
         if (!user.dataValues.isAdmin)
             return res.redirect('/');
 
-        usersController.getAllUsers({}, function(error, users) {
-            var usersList = extractListOfUsers.extractListOfUsers(users);
-            res.render('admin/manageaccounts', {
-                isAdmin: true,
-                users: usersList,
-                title: "Bán áo online",
-                email: user.dataValues.email,
-            });
+        usersController.changeStatus(req.params.accID, function(error) {
+            if (!error) return res.send(200);
+            else return res.send(400);
         });
     });
 });
-*/
 
 router.get('/manageaccounts', isLoggedIn, function(req, res, next) {
     var usrID = req.session.passport ? req.session.passport.user : (-1);
@@ -66,7 +59,7 @@ router.get('/manageaccounts', isLoggedIn, function(req, res, next) {
         if (!user.dataValues.isAdmin)
             return res.redirect('/');
 
-        usersController.getAllUsers({}, function(error, users) {
+        usersController.getAllUsers({isAdmin: false,}, function(error, users) {
             var usersList = extractListOfUsers.extractListOfUsers(users);
             res.render('admin/manageaccounts', {
                 users: usersList,

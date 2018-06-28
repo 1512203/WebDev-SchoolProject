@@ -11,6 +11,9 @@ module.exports = {
         fullname: {
             type: Sequelize.STRING,
         },
+        isActive: {
+            type: Sequelize.BOOLEAN,
+        },
       email: {
         type: Sequelize.STRING
       },

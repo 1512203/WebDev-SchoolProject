@@ -7,6 +7,8 @@ module.exports = {
                 memberName: i_user.fullname,
                 memberEmail: i_user.email,
                 accountCreatedAt: i_user.createdAt,
+                isActive: i_user.isActive,
+                id: i_user.id,
             };
             users.push(user);
         }

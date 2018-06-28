@@ -27,16 +27,19 @@
                             <td>{{this.memberEmail}}</td>
                             <td>{{this.accountCreatedAt}}</td>
 							<td>
-								<button class="btn-quan-li-sua" style="
-                                    background-color: #4CAF50;
-                                    box-sizing: border-box;
-                                    width: 40%;
-                                    ">Sửa</button>
+                                {{#if this.isActive}}
 								<button class="btn-quan-li-xoa" style="
                                     background-color: red;
                                     box-sizing: border-box;
-                                    width: 40%;
-                                    ">Xóa</button>
+                                    width: 80%;
+                                    " onclick="changeStatus({{this.id}})">Khóa tài khoản</button>
+                                {{else}}
+								<button class="btn-quan-li-sua" style="
+                                    background-color: #4CAF50;
+                                    box-sizing: border-box;
+                                    width: 80%;
+                                    " onclick="changeStatus({{this.id}})">Mở khóa tài khoản</button>
+                                {{/if}}
 							</td>
 						</tr>
                         {{/each}}
@@ -55,3 +58,11 @@
 		</div>
 	</div>
 </section>
+
+<script>
+function changeStatus(accid) {
+    $.get('/admin/changestatus/' + accid, function(data, status) {
+        window.location.replace('/admin/manageaccounts');
+    });
+}
+</script>

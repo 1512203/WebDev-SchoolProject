@@ -76,8 +76,11 @@ passport.use('local.signin', new localStrategy({
         }
         else {
             user = users[0];
+            if (!user.isActive) {
+                return done(null, false, {message: 'Tài khoản của bạn đã bị khóa!'});
+            }
             if (!user.validPassword(password)) {
-                return done(null, false, {message: 'Wrong password.'});
+                return done(null, false, {message: 'Sai mật khẩu!'});
             }
             return done(null, user);
         }

@@ -1,6 +1,24 @@
 var usersModel = require('../models').User;
+var Sequelize = require('sequelize');
 
 module.exports = {
+    changeStatus(accID, done) {
+        return usersModel
+            .update({
+                isActive: Sequelize.literal('NOT \"isActive\"'),
+            }, {
+                where: {
+                    id: accID,
+                    isAdmin: false,
+                },
+            })
+            .then(function() {
+                done(null);
+            })
+            .catch(function(error) {
+                done(error);
+            });
+    },
     getAllUsers(constraints, done) {
         return usersModel
             .findAll({
@@ -21,6 +39,8 @@ module.exports = {
                 phonenumber: phonenumber,
                 fullname: fullname,
                 address: address,
+                isActive: true,
+                isAdmin: false,
             })
             .then(function(newUser) {
                 done(null, newUser);

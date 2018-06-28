@@ -30,7 +30,7 @@ router.get('/loginFail', isNotLoggedIn, function (req, res, next) {
                         title: 'Bán áo online',
                         listOfStyles: styleList,
                         listOfProducts: productList,
-                        errorMess: 'Fail to login',
+                        errorMess: 'Đăng nhập không thành công!',
                         hasError: true,
                     });
                 }
@@ -52,7 +52,7 @@ router.get('/signupFail', isNotLoggedIn, function (req, res, next) {
                         title: 'Bán áo online',
                         listOfStyles: styleList,
                         listOfProducts: productList,
-                        errorMess: 'Fail to signup',
+                        errorMess: 'Đăng ký không thành công!',
                         hasError: true,
                     });
                 }
@@ -178,10 +178,10 @@ router.post('/editprofile', isLoggedIn, function(req, res, next) {
 router.get('/history', isLoggedIn, function (req, res, next) {
     var usrID = req.session.passport ? req.session.passport.user : (-1);
     usersController.findUserById(usrID, function (error, user) {
-        var curEmail = "";
-        if (user) {
-            curEmail = user.dataValues.email;
+        if (user.dataValues.isAdmin) {
+            return res.redirect('/admin/dashboard');
         }
+        var curEmail = user.dataValues.email;
         ordersController.getOrdersDetailInformationByUser(usrID, function (error, carts) {
             if (error || !carts) 
                 return res.status(400).send({message: "Cannot get detail information of orders"});
