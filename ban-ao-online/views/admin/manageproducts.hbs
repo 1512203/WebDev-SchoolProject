@@ -1,0 +1,63 @@
+{{>adminTopMenu}}
+<section id="qhuy-main-content">
+	<div class="qhuy-container">
+		<div class="ds-giao-dich" style="width: 90%;margin-left: auto; margin-right: auto;">
+			<h2 style="color: black; margin-left: 15px;">Danh sách sản phẩm:</h2>
+			<div style="float:right;height:40px; width: 100%; background:#DBECF6;">
+				<form style="float:right; margin-right: 18px;">
+					<input class="form-control" placeholder="Tìm kiếm" id="txt_global_search" value="" type="text" style="padding: 3px 0;">
+					<button type="button" id="btn-search">
+						<img src="/img/icon/search.png">
+					</button>
+				</form>
+			</div>
+			<div id="chi-tiet-gd">
+				<table cellpadding="0" cellspacing="0" style="text-align: center;">
+					<tbody>
+						<tr>
+							<th>Hình ảnh</th>
+							<th>Mã sản phẩm</th>
+							<th>Tên sản phẩm</th>
+							<th>Loại sản phẩm</th>
+							<th>Mô tả</th>
+							<th>Giá</th>
+							<th>Chỉnh sửa</th>
+						</tr>
+                        {{#each products}}
+                        <tr>
+                            <td>
+                                <img src="{{this.pathToImg}}" alt="" style="width: 100px;">
+                            </td>
+                            <td>{{this.productID}}</td>
+                            <td>{{this.productName}}</td>
+                            <td>{{this.productStyle}}</td>
+                            <td>{{this.productDescription}}</td>
+                            <td>{{this.productPrice}}</td>
+							<td>
+								<button class="btn-quan-li-sua" style="
+                                    background-color: #4CAF50;
+                                    box-sizing: border-box;
+                                    width: 40%;
+                                    ">Sửa</button>
+								<button class="btn-quan-li-xoa" style="
+                                    background-color: red;
+                                    box-sizing: border-box;
+                                    width: 40%;
+                                    ">Xóa</button>
+							</td>
+                        </tr>
+                        {{/each}}
+					</tbody>
+				</table>
+			</div>
+			<div class="button-luu-thay-doi">
+				<button type="button" id="button-cart" class="btn btn-primary btn-lg btn-block"
+				style="float:right; background: #45A049; padding: 5px;
+						margin: 10px 18px 40px 0px; font-weight:bold;
+						width: 150px; color:white;">
+						Lưu thay đổi
+				</button>
+		</div>
+		</div>
+	</div>
+</section>

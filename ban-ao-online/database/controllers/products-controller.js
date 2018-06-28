@@ -6,6 +6,9 @@ module.exports = {
         return productsModel
             .findAll({
                 where: constraints,
+                include: [{
+                    model: stylesModel,
+                }],
             })
             .then(function(products) {
                 done(null, products);

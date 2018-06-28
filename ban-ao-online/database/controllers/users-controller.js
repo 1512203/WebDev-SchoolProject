@@ -1,6 +1,18 @@
 var usersModel = require('../models').User;
 
 module.exports = {
+    getAllUsers(constraints, done) {
+        return usersModel
+            .findAll({
+                where: constraints,
+            })
+            .then(function(users) {
+                done(null, users);
+            })
+            .catch(function(error) {
+                done(error);
+            });
+    },
     createNewUser(email, password, phonenumber, fullname, address, done) {
         return usersModel
             .create({

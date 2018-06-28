@@ -14,43 +14,74 @@ var extractListOfOrders = require('./helpers/extractListOfOrders-helper');
 var extractListOfAllOrders = require('./helpers/extractListOfAllOrders-helper');
 var extracListOfCartItemsOfOrder = require('./helpers/extractListOfCartItemsOfOrder-helper');
 var extractSumList = require('./helpers/extractSumList-helper');
+var extractListOfProducts = require('./helpers/extractListOfProducts-helper');
+var extractListOfUsers = require('./helpers/extractListOfUsers-helper');
 
 var csrf = require('csurf');
 
 var csrfProtection = csrf();
 router.use(csrfProtection);
 
-router.get('/test', function(req, res, next) {
+router.get('/manageaccounts', isLoggedIn, function(req, res, next) {
+    var usrID = req.session.passport ? req.session.passport.user : (-1);
+    usersController.findUserById(usrID, function(error, user) {
+        if (!user.dataValues.isAdmin)
+            return res.redirect('/');
+
+        usersController.getAllUsers({}, function(error, users) {
+            var usersList = extractListOfUsers.extractListOfUsers(users);
+            res.render('admin/manageaccounts', {
+                isAdmin: true,
+                users: usersList,
+                title: "Bán áo online",
+                email: user.dataValues.email,
+            });
+        });
+    });
+});
+
+router.get('/manageproducts', isLoggedIn, function(req, res, next) {
+    var usrID = req.session.passport ? req.session.passport.user : (-1);
+    usersController.findUserById(usrID, function(error, user) {
+        if (!user.dataValues.isAdmin) 
+            return res.redirect('/');
+
+        productsController.getAllProducts({}, function(error, products) {
+            var productsList = extractListOfProducts.extractListOfProducts(products);
+            res.render('admin/manageproducts', {
+                isAdmin: true,
+                products: productsList,
+                title: "Bán áo online",
+                email: user.dataValues.email,
+            });
+        });
+    });
 });
 
 router.get('/dashboard', isLoggedIn, function(req, res, next) {
     var usrID = req.session.passport ? req.session.passport.user : (-1);
     usersController.findUserById(usrID, function(error, user) {
-        if (user.dataValues.isAdmin) {
-            ordersController.getOrdersPriceForStatistic(function(error, groupedOrders) {
-                var groupedOrdersExtracted = extractSumList.extractSumList(groupedOrders);
-                ordersController.getAllOrdersFromAllUsers(function(error, orders) {
-                    if (orders === undefined) {
-                        return res.redirect('/user/logout');
-                    }
-                    else {
-                        var extractedList = extractListOfAllOrders.extractListOfAllOrders(orders);
-                        return res.render('admin/dashboard', {
-                            isAdmin: true,
-                            groupedOrders: groupedOrders,
-                            carts: extractedList.carts,
-                            totalMoney: extractedList.totalMoney,
-                            totalQuantity: extractedList.totalQuantity,
-                            title: "Bán áo online",
-                            email: user.dataValues.email,
-                        });
-                    }
+        if (!user.dataValues.isAdmin) 
+            return res.redirect('/');
+
+        ordersController.getOrdersPriceForStatistic(function(error, groupedOrders) {
+            var groupedOrdersExtracted = extractSumList.extractSumList(groupedOrders);
+            ordersController.getAllOrdersFromAllUsers(function(error, orders) {
+                if (orders === undefined) 
+                    return res.redirect('/');
+
+                var extractedList = extractListOfAllOrders.extractListOfAllOrders(orders);
+                return res.render('admin/dashboard', {
+                    isAdmin: true,
+                    groupedOrders: groupedOrders,
+                    carts: extractedList.carts,
+                    totalMoney: extractedList.totalMoney,
+                    totalQuantity: extractedList.totalQuantity,
+                    title: "Bán áo online",
+                    email: user.dataValues.email,
                 });
             });
-        }
-        else {
-            return res.redirect('/');
-        }
+        });
     });
 });
 
