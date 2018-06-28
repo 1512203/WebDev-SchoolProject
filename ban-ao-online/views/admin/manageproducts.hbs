@@ -38,7 +38,7 @@
                                     background-color: #4CAF50;
                                     box-sizing: border-box;
                                     width: 40%;
-                                    ">Sửa</button>
+                                    " onclick="editProduct({{this.productID}})">Sửa</button>
 								<button class="btn-quan-li-xoa" style="
                                     background-color: red;
                                     box-sizing: border-box;
@@ -70,4 +70,16 @@ function removeProduct(productid) {
         window.location.replace('/admin/manageproducts');
     });
 }
+
+function editProduct(productid) {
+    $.get('/admin/editproduct/'+productid, function(data, status) {
+        $('#qhuy-edit-product form input.csrfToken').val(data.csrfToken);
+        $('#qhuy-edit-product form').attr('action', '/admin/editproduct/' + data.productID);
+        $('#qhuy-edit-product form input#productName').val(data.productName);
+        $('#qhuy-edit-product form input#productDesp').val(data.productDesp);
+        $('#qhuy-edit-product').css('display', 'block');
+    });
+}
 </script>
+
+{{>editProductForm}}

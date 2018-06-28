@@ -23,6 +23,47 @@ var csrf = require('csurf');
 var csrfProtection = csrf();
 router.use(csrfProtection);
 
+router.get('/editproduct/:productID', isLoggedIn, function(req, res, next) {
+    console.log(req.params.productID);
+    var usrID = req.session.passport ? req.session.passport.user : (-1);
+    usersController.findUserById(usrID, function(error, user) {
+        if (!user.dataValues.isAdmin)
+            return res.redirect('/');
+
+        console.log(req.params.productID);
+        productsController.findProductByID(req.params.productID, function(error, product) {
+            if (!error && product !== undefined) {
+                var messages = req.flash('error');
+                console.log(product);
+                return res.send({
+                    csrfToken: req.csrfToken(),
+                    messages: messages,
+                    hasErrors: messages.length > 0,
+                    productID: product.dataValues.id,
+                    productName: product.dataValues.productName,
+                    productDesp: product.dataValues.productDescription,
+                });
+            }
+            return res.status(400).send({});
+        });
+    });
+});
+
+router.post('/editproduct/:productID', isLoggedIn, function(req, res, next) {
+    var usrID = req.session.passport ? req.session.passport.user : (-1);
+    usersController.findUserById(usrID, function(error, user) {
+        if (!user.dataValues.isAdmin)
+            return res.redirect('/');
+
+        productsController.updateProductInfo(req.body.productName, req.body.productDesp, req.params.productID, function(error) {
+            if (!error) {
+                return res.redirect('/admin/manageproducts');
+            }
+            return res.status(400).send({mess: 'Error!'});
+        });
+    });
+});
+
 router.get('/deleteproduct/:productID', isLoggedIn, function(req, res, next) {
     var usrID = req.session.passport ? req.session.passport.user : (-1);
     usersController.findUserById(usrID, function(error, user) {

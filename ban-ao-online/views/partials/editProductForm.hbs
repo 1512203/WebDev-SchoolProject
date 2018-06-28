@@ -1,0 +1,26 @@
+<div id="qhuy-edit-product" class="qhuy-modal">
+    <form class="qhuy-modal-content qhuy-animate" action="/admin/editproduct/" method="post">
+		<div class="qhuy-img-container">
+			<span class="qhuy-close" title="Close Modal" onclick="hideEditProduct()">&times;</span>
+		</div>
+		<div class="qhuy-container">
+			<label for="productName"><b>Tên sản phẩm</b></label>
+            <input id="productName" type="text" placeholder="ten san pham" name="productName" required>
+
+			<label for="productDesp"><b>Mô tả sản phẩm</b></label>
+            <input id="productDesp" type="text" placeholder="mo ta san pham" name="productDesp">
+
+            <input class="csrfToken" type="hidden" name="_csrf" value="">
+			<button type="submit">Sửa</button>
+		</div>
+	</form>
+</div>
+
+<script>
+function hideEditProduct() {
+    $('#qhuy-edit-product').css('display', 'none');
+    $('#qhuy-edit-product form input#productName').val("");
+    $('#qhuy-edit-product form input#productDesp').val("");
+    $('#qhuy-edit-product form input.csrfToken').val("");
+}
+</script>
