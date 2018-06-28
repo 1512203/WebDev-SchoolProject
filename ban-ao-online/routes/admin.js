@@ -23,6 +23,22 @@ var csrf = require('csurf');
 var csrfProtection = csrf();
 router.use(csrfProtection);
 
+router.get('/deleteproduct/:productID', isLoggedIn, function(req, res, next) {
+    var usrID = req.session.passport ? req.session.passport.user : (-1);
+    usersController.findUserById(usrID, function(error, user) {
+        if (!user.dataValues.isAdmin)
+            return res.redirect('/');
+
+        productsController.findProductByID(req.params.productID, function(error, product) {
+            if (!error && product !== undefined) {
+                product.destroy();
+                return res.status(200).send({});
+            }
+            return res.status(400).send({});
+        });
+    });
+});
+
 router.get('/managestyles', isLoggedIn, function(req, res, next) {
     var usrID = req.session.passport ? req.session.passport.user : (-1);
     usersController.findUserById(usrID, function(error, user) {

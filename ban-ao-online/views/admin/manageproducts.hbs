@@ -43,7 +43,7 @@
                                     background-color: red;
                                     box-sizing: border-box;
                                     width: 40%;
-                                    ">Xóa</button>
+                                    " onclick="removeProduct({{this.productID}})">Xóa</button>
 							</td>
                         </tr>
                         {{/each}}
@@ -63,3 +63,11 @@
 		</div>
 	</div>
 </section>
+
+<script>
+function removeProduct(productid) {
+    $.get('/admin/deleteproduct/'+productid, function(data, status) {
+        window.location.replace('/admin/manageproducts');
+    });
+}
+</script>

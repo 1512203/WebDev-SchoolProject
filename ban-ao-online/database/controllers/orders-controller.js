@@ -114,21 +114,5 @@ module.exports = {
             .catch(function(error) {
                 done(error);
             });
-        /*
-        return ordersModel
-            .findAll({
-                attributes: [sequelize.fn('SUM', sequelize.col('totalPrice'))],
-                group: [sequelize.fn('date_trunc', 'day', sequelize.col('createdAt'))],
-                include: [{
-                    model: cartsModel,
-                }],
-            })
-            .then(function(orders) {
-                done(null, orders);
-            })
-            .catch(function(error) {
-                done(error);
-            });
-            */
     },
 }
