@@ -3,6 +3,7 @@ var cartsModel = require('../models').Cart;
 var cartItemsModel = require('../models').CartItem;
 var productsModel = require('../models').Product;
 var usersModel = require('../models').User;
+var sequelize = require('../models').sequelize;
 
 module.exports = {
     createNewOrder(orderData, done) {
@@ -47,6 +48,9 @@ module.exports = {
                 }, {
                     model: usersModel,
                 }],
+                order: [
+                    ['createdAt', 'DESC'],
+                ],
             })
             .then(function(carts) {
                 done(null, carts);
@@ -79,5 +83,34 @@ module.exports = {
             .catch(function(err) {
                 done(err);
             });
+    },
+
+    getOrdersPriceForStatistic(done) {
+        return sequelize
+            .query("SELECT SUM(\"totalPrice\"), date_trunc('day', \"Order\".\"createdAt\") as date FROM \"Orders\" AS \"Order\" LEFT OUTER JOIN \"Carts\" AS \"Cart\" ON \"Order\".\"cartID\" = \"Cart\".\"id\" GROUP BY date_trunc('day', \"Order\".\"createdAt\");", {
+                type: sequelize.QueryTypes.SELECT,
+            })
+            .then(function(sumList) {
+                done(null, sumList);
+            })
+            .catch(function(error) {
+                done(error);
+            });
+        /*
+        return ordersModel
+            .findAll({
+                attributes: [sequelize.fn('SUM', sequelize.col('totalPrice'))],
+                group: [sequelize.fn('date_trunc', 'day', sequelize.col('createdAt'))],
+                include: [{
+                    model: cartsModel,
+                }],
+            })
+            .then(function(orders) {
+                done(null, orders);
+            })
+            .catch(function(error) {
+                done(error);
+            });
+            */
     },
 }

@@ -11,7 +11,6 @@ $(document).ready(function () {
 
 
 
-
 function seeProductDetailHandler() {
     // See product's detail
     $('.col-3').on('click', function () {

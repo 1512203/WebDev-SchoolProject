@@ -84,11 +84,21 @@ function showCartDetail(orderID) {
 
 <script>
     var BarChart = {
-        labels: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"],
+        labels: [
+            {{#each groupedOrders}}
+            '{{this.date}}',
+            {{/each}}
+        ],
+       // labels: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"],
         datasets: [{
             fillColor: "rgb(255, 165, 0)",
             strokeColor: "rgb(255,0,0)",
-            data: [13, 20, 30, 40, 50, 13, 33, 5, 32, 5, 10, 12]
+            data: [
+                //13, 20, 30, 40, 50, 13, 33, 5, 32, 5, 10, 12
+                {{#each groupedOrders}}
+                {{this.sum}},
+                {{/each}}
+            ]
         }]
     }
 </script>
