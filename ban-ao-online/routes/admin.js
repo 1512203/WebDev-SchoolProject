@@ -17,10 +17,16 @@ var extracListOfCartItemsOfOrder = require('./helpers/extractListOfCartItemsOfOr
 var extractSumList = require('./helpers/extractSumList-helper');
 var extractListOfProducts = require('./helpers/extractListOfProducts-helper');
 var extractListOfUsers = require('./helpers/extractListOfUsers-helper');
+var bodyParser = require('body-parser');
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 var csrf = require('csurf');
 
 var csrfProtection = csrf();
+
+var productSortType = "DESC";
+
+
 router.use(csrfProtection);
 
 router.get('/editproduct/:productID', isLoggedIn, function(req, res, next) {
@@ -147,7 +153,7 @@ router.get('/manageproducts', isLoggedIn, function(req, res, next) {
         if (!user.dataValues.isAdmin) 
             return res.redirect('/');
 
-        productsController.getAllProducts({}, function(error, products) {
+        productsController.getAllProductsOrders('ASC',function(error, products) {
             var productsList = extractListOfProducts.extractListOfProducts(products);
             res.render('admin/manageproducts', {
                 isAdmin: true,
@@ -157,6 +163,76 @@ router.get('/manageproducts', isLoggedIn, function(req, res, next) {
             });
         });
     });
+});
+
+router.get('/manageproducts/changeSortType', isLoggedIn, function(req, res, next) {
+    var usrID = req.session.passport ? req.session.passport.user : (-1);
+    usersController.findUserById(usrID, function(error, user) {
+        if (!user.dataValues.isAdmin) 
+            return res.redirect('/');
+
+        if (productSortType == 'DESC'){
+            productSortType = 'ASC';
+        }
+        else{
+            productSortType = 'DESC';
+        }
+        productsController.getAllProductsOrders(productSortType,function(error, products) {
+            var productsList = extractListOfProducts.extractListOfProducts(products);
+            res.render('admin/manageproducts', {
+                isAdmin: true,
+                products: productsList,
+                title: "Bán áo online",
+                email: user.dataValues.email,
+            });
+        });
+    });
+});
+
+
+router.post('manageproducts/filterbyprice',urlencodedParser, function(req,res){
+    var priceStart= 1;
+    var priceEnd= 100;
+    var priceSelect = req.body.myselect;
+    if (priceSelect == 101) {
+        priceStart = 101;
+        priceEnd = 150;
+    }
+    else if (priceSelect == 151) {
+        priceStart = 151;
+        priceEnd = 200;
+    }
+    else if (priceSelect == 201) {
+        priceStart = 201;
+        priceEnd = 10000;
+    }
+    
+    productsController.getAllProductsFilterByPrice(priceStart, priceEnd,function(error, products) {
+        var productsList = extractListOfProducts.extractListOfProducts(products);
+        res.render('admin/manageproducts', {
+            isAdmin: true,
+            products: productsList,
+            title: "Bán áo online",
+            email: user.dataValues.email,
+        });
+    });
+    
+});
+
+router.post('/manageproducts/searchbyname',urlencodedParser, function(req,res){
+   
+    var searchString = req.body.input-search;
+    
+    productsController.getProductsFilterSearchString(searchString,function(error, products) {
+        var productsList = extractListOfProducts.extractListOfProducts(products);
+        res.render('admin/manageproducts', {
+            isAdmin: true,
+            products: productsList,
+            title: "Bán áo online",
+            email: user.dataValues.email,
+        });
+    });
+    
 });
 
 router.get('/dashboard', isLoggedIn, function(req, res, next) {

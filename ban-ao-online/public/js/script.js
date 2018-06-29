@@ -7,6 +7,8 @@ $(document).ready(function () {
     checkoutEventHandler();
 
     seeProductDetailHandler();
+
+    //adminProductFilter();
 });
 
 
@@ -140,15 +142,13 @@ function signupEventHandler() {
 
 function captchaProcessWhenSignup() {
     var v = grecaptcha.getResponse();
-    if(v.length == 0)
-    {
-        document.getElementById('captcha').innerHTML="You can't leave Captcha Code empty";
+    if (v.length == 0) {
+        document.getElementById('captcha').innerHTML = "You can't leave Captcha Code empty";
         return false;
     }
-    else
-    {
+    else {
         // document.getElementById('captcha').innerHTML="Captcha completed";
-        return true; 
+        return true;
     }
 }
 
@@ -212,4 +212,31 @@ function continueCheckoutIfHasLoggedInAlready(data) {
 
 function loginRequiredBeforeCheckout() {
     $.get('/user/login', processAfterSendingLoginGetRequest);
+}
+
+function adminProductFilter() {
+   /* $('#admin-mng-product-btn-loc').on('click', function () {
+        var priceStart = 1;
+        var priceEnd = 100;
+        var priceSelect = $('#price-select').val();
+
+        if (priceSelect == 101) {
+            priceStart = 101;
+            priceEnd = 150;
+        }
+        else if (priceSelect == 151) {
+            priceStart = 151;
+            priceEnd = 200;
+        }
+        else if (priceSelect == 201) {
+            priceStart = 201;
+            priceEnd = 10000;
+        }
+        $.post('/admin/manageproducts', {
+            priceStartVar: priceStart,
+            priceEndVar: priceEnd
+        }, function (ketqua) {
+
+        });
+    });*/
 }
