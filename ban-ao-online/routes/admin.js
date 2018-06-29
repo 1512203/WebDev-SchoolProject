@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var passport = require('passport');
+var formidable = require('formidable');
+var fs = require('fs-extra');
 
 var controllers = require('../database/controllers');
 var stylesController = controllers.stylesController;
@@ -26,8 +28,52 @@ var csrfProtection = csrf();
 
 var productSortType = "DESC";
 
-
 router.use(csrfProtection);
+
+router.post('/insertproduct/', isLoggedIn, function(req, res, next) {
+    var usrID = req.session.passport ? req.session.passport.user : (-1);
+    usersController.findUserById(usrID, function(error, user) {
+        if (!user.dataValues.isAdmin)
+            return res.redirect('/');
+        productsController.addProduct(req.body.productName, req.body.productDesp, req.body.productStyle, req.body.productPrice, function(error, product) {
+            if (error) return res.status(400).send({});
+            return res.redirect('/admin/manageproducts');
+        });
+        /*
+        var form = new formidable.IncomingForm();
+        console.log(req.body);
+        form.parse(req, function(err, fields, files) {
+            var filename = files.imgInp.name;
+            var oldPath = files.imgInp.path;
+            var newPath = 'public/img/products/' + filename;
+            console.log("RUN THERE");
+            console.log(oldPath, newPath);
+            fs.copySync(oldPath, newPath);
+            var pathOnWeb = '/img/products/' + filename;
+        });
+        */
+    });
+});
+
+router.get('/insertproduct/', isLoggedIn, function(req, res, next) {
+    var usrID = req.session.passport ? req.session.passport.user : (-1);
+    usersController.findUserById(usrID, function(error, user) {
+        if (!user.dataValues.isAdmin)
+            return res.redirect('/');
+
+        stylesController.getAllStyles(function(error, styles) {
+            if (error || styles === undefined)
+                res.status(400).send({});
+            var messages = req.flash('error');
+            return res.send({
+                csrfToken: req.csrfToken(),
+                messages: messages,
+                hasErrors: messages.length > 0,
+                styles: styles,
+            });
+        });
+    });
+});
 
 router.get('/editproduct/:productID', isLoggedIn, function(req, res, next) {
     console.log(req.params.productID);

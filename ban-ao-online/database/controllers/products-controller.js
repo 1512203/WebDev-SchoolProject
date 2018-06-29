@@ -107,5 +107,21 @@ module.exports = {
             .catch(function(error) {
                 done(error);
             });
-    }
+    },
+
+    addProduct(productName, productDescription, productStyle, productPrice, done) {
+        return productsModel
+            .create({
+                productName: productName,
+                productDescription: productDescription,
+                productStyleID: productStyle,
+                productPrice: productPrice,
+            })
+            .then(function(product) {
+                done(null, product);
+            })
+            .catch(function(error) {
+                done(error);
+            });
+    },
 };

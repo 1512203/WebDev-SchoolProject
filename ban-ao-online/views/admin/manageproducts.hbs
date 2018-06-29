@@ -67,15 +67,14 @@
 					</tbody>
 				</table>
 			</div>
-			<!--
 			<div class="button-luu-thay-doi">
 				<button type="button" id="button-cart" class="btn btn-primary btn-lg btn-block"
 				style="float:right; background: #45A049; padding: 5px;
 						margin: 10px 18px 40px 0px; font-weight:bold;
-						width: 150px; color:white;">
-						Lưu thay đổi
+						width: 150px; color:white;" 
+                        onclick="addProduct()">
+                    Thêm sản phẩm
 				</button>
-            -->
 		</div>
 	</div>
 	</div>
@@ -83,6 +82,20 @@
 
 
 <script>
+function addProduct() {
+    $('#qhuy-insert-product').css('display', 'block');
+    $.get('/admin/insertproduct', function(data, status) {
+        console.log(data);
+        for (let i = 0; i < data.styles.length; ++i) {
+            let selection = "<option value=\"" + data.styles[i].styleID + "\">" + data.styles[i].styleName + "</option>";
+            $('#qhuy-insert-product select#productStyle').append(selection);
+        }
+        
+        $('#qhuy-insert-product form input.insert-csrfToken').val(data.csrfToken);
+        $('#qhuy-insert-product').css('display', 'block');
+    });
+}
+
 function removeProduct(productid) {
     $.get('/admin/deleteproduct/'+productid, function(data, status) {
         window.location.replace('/admin/manageproducts');
@@ -101,3 +114,4 @@ function editProduct(productid) {
 </script>
 
 {{>editProductForm}}
+{{>addProductForm}}

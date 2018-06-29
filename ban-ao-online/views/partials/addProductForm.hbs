@@ -1,0 +1,31 @@
+<div id="qhuy-insert-product" class="qhuy-modal">
+    <form class="qhuy-modal-content qhuy-animate" action="/admin/insertproduct" method="post">
+		<div class="qhuy-img-container">
+			<span class="qhuy-close" title="Close Modal" onclick="hideInsertProduct()">&times;</span>
+		</div>
+		<div class="qhuy-container">
+			<label for="productName"><b>Tên sản phẩm</b></label>
+            <input id="productName" type="text" placeholder="ten san pham" name="productName" required>
+
+			<label for="productDesp"><b>Mô tả sản phẩm</b></label>
+            <input id="productDesp" type="text" placeholder="mo ta san pham" name="productDesp">
+
+            <label for="productPrice"><b>Giá sản phẩm</b></label>
+            <input id="productPrice" type="text" placeholder="" name="productPrice">
+
+            <label for="productStyle"><b>Loại sản phẩm</b></label>
+            <select id="productStyle" name="productStyle">
+            </select>
+            
+            <input class="insert-csrfToken" type="hidden" name="_csrf" value="">
+			<button type="submit">Thêm</button>
+		</div>
+	</form>
+</div>
+
+<script>
+function hideInsertProduct() {
+    $('#qhuy-insert-product').css('display', 'none');
+    $('#qhuy-insert-product form input.csrfToken').val("");
+}
+</script>
