@@ -71,9 +71,11 @@ module.exports = {
     getAllProductsFilterByPrice(priceStart, priceEnd, done) {
         return productsModel
             .findAll({
+                where: {
                 productPrice: {
                     $between: [priceStart, priceEnd]
                 }, 
+                },
                 order: [['id', 'ASC']],
                 include: [{
                     model: stylesModel,

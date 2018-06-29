@@ -156,6 +156,7 @@ router.get('/manageproducts', isLoggedIn, function(req, res, next) {
         productsController.getAllProductsOrders('ASC',function(error, products) {
             var productsList = extractListOfProducts.extractListOfProducts(products);
             res.render('admin/manageproducts', {
+                csrfToken: req.csrfToken(),
                 isAdmin: true,
                 products: productsList,
                 title: "Bán áo online",
@@ -180,6 +181,7 @@ router.get('/manageproducts/changeSortType', isLoggedIn, function(req, res, next
         productsController.getAllProductsOrders(productSortType,function(error, products) {
             var productsList = extractListOfProducts.extractListOfProducts(products);
             res.render('admin/manageproducts', {
+                csrfToken: req.csrfToken(),
                 isAdmin: true,
                 products: productsList,
                 title: "Bán áo online",
@@ -190,30 +192,51 @@ router.get('/manageproducts/changeSortType', isLoggedIn, function(req, res, next
 });
 
 
-router.post('manageproducts/filterbyprice',urlencodedParser, function(req,res){
+router.post('/manageproducts/filterbyprice',urlencodedParser, function(req,res){
     var priceStart= 1;
     var priceEnd= 100;
     var priceSelect = req.body.myselect;
-    if (priceSelect == 101) {
+    var tempobj = {};
+    if (priceSelect == 0) {
+        return res.redirect('/admin/manageproducts');
+    }
+    if (priceSelect == 100) {
+        tempobj.is0 = true;
+    }
+    else if (priceSelect == 101) {
+        tempobj.is1 = true;
         priceStart = 101;
         priceEnd = 150;
     }
     else if (priceSelect == 151) {
+        tempobj.is2 = true;
         priceStart = 151;
         priceEnd = 200;
     }
     else if (priceSelect == 201) {
+        tempobj.is3 = true;
         priceStart = 201;
         priceEnd = 10000;
     }
+    priceStart *= 1000;
+    priceEnd *= 1000;
     
-    productsController.getAllProductsFilterByPrice(priceStart, priceEnd,function(error, products) {
-        var productsList = extractListOfProducts.extractListOfProducts(products);
-        res.render('admin/manageproducts', {
-            isAdmin: true,
-            products: productsList,
-            title: "Bán áo online",
-            email: user.dataValues.email,
+    var usrID = req.session.passport ? req.session.passport.user : (-1);
+    usersController.findUserById(usrID, function(error, user) {
+        if (!user.dataValues.isAdmin) 
+            return res.redirect('/');
+
+        productsController.getAllProductsFilterByPrice(priceStart, priceEnd,function(error, products) {
+            var productsList = extractListOfProducts.extractListOfProducts(products);
+            console.log(productsList);
+            res.render('admin/manageproducts', {
+                csrfToken: req.csrfToken(),
+                isAdmin: true,
+                products: productsList,
+                title: "Bán áo online",
+                email: user.dataValues.email,
+                tempobj: tempobj,
+            });
         });
     });
     

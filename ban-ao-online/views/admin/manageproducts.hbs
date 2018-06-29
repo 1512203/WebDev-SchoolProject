@@ -15,11 +15,13 @@
 				</button>-->
 				<form action="/admin/manageproducts/filterbyprice" name="pricepicker" method="POST" style="height: 40px; width: 190px; float: right; margin-right: 10px; ">
 					<select name="myselect" onchange="this.form.submit()">
-						<option value="100">Dưới 100.000vnd</option>
-						<option value="101">100.000-150.000vnd</option>
-						<option value="151">150.000-200.000vnd</option>
-						<option value="201">Trên 200.000vnd</option>
+                        <option value="0" >Tất cả</option>
+						<option value="100" {{#if tempobj.is0}}selected{{/if}}>Dưới 100.000vnd</option>
+						<option value="101" {{#if tempobj.is1}}selected{{/if}}>100.000-150.000vnd</option>
+						<option value="151" {{#if tempobj.is2}}selected{{/if}}>150.000-200.000vnd</option>
+						<option value="201" {{#if tempobj.is3}}selected{{/if}}>Trên 200.000vnd</option>
 					</select>
+                    <input class="filter-csrfToken" type="hidden" name="_csrf" value="{{csrfToken}}">
 				</form>
 				
 				<button id="admin-mng-product-sort-btn" style="float: right; height: 25px; margin-right: 30px; margin-top: 5px;">
